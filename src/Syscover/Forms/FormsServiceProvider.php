@@ -1,8 +1,8 @@
-<?php namespace Syscover\Plantilla;
+<?php namespace Syscover\Forms;
 
 use Illuminate\Support\ServiceProvider;
 
-class DefaultServiceProvider extends ServiceProvider
+class FormsServiceProvider extends ServiceProvider
 {
 	/**
 	 * Bootstrap the application services.
@@ -15,10 +15,10 @@ class DefaultServiceProvider extends ServiceProvider
 		include realpath(__DIR__ . '/../../routes.php');
 
 		// register views
-		$this->loadViewsFrom(realpath(__DIR__ . '/../../views'), 'default');
+		$this->loadViewsFrom(realpath(__DIR__ . '/../../views'), 'forms');
 
         // register translations
-        $this->loadTranslationsFrom(realpath(__DIR__ . '/../../lang'), 'default');
+        $this->loadTranslationsFrom(realpath(__DIR__ . '/../../lang'), 'forms');
 
         // register migrations
         $this->publishes([
