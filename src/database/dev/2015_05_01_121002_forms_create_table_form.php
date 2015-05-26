@@ -12,17 +12,17 @@ class FormsCreateTableForm extends Migration {
      */
     public function up()
     {
-        Schema::create('004_400_form', function(Blueprint $table)
+        Schema::create('004_402_form', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
-            $table->increments('id_400')->unsigned();
-            $table->string('name_400', 100);
-            $table->integer('mail_account_400')->unsigned();
-            $table->tinyInteger('push_notification_400')->unsigned();
+            $table->increments('id_402')->unsigned();
+            $table->string('name_402', 100);
+            $table->integer('mail_account_402')->unsigned();
+            $table->tinyInteger('push_notification_402')->unsigned();
 
             // correos de reenvío
 
-            $table->foreign('mail_account_400')->references('id_402')->on('004_402_mail_account')
+            $table->foreign('mail_account_402')->references('id_400')->on('004_400_mail_account')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
     }
@@ -34,7 +34,7 @@ class FormsCreateTableForm extends Migration {
      */
     public function down()
     {
-        Schema::drop('004_400_form');
+        Schema::drop('004_402_form');
     }
 
 }

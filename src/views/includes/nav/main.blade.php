@@ -1,4 +1,4 @@
-        <li{!! Miscellaneous::setCurrentOpenPage(['my-resource']) !!}>
+        <li{!! Miscellaneous::setCurrentOpenPage(['forms-environment']) !!}>
             <a href="javascript:void(0);"><i class="icomoon-icon-images"></i>My Package</a>
             <ul class="sub-menu">
                 @if(Session::get('userAcl')->isAllowed(Auth::user()->profile_010, 'mifinan', 'access'))
