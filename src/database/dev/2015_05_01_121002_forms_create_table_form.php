@@ -19,9 +19,10 @@ class FormsCreateTableForm extends Migration {
             $table->string('name_402', 100);
             $table->integer('mail_account_402')->unsigned();
             $table->tinyInteger('push_notification_402')->unsigned();
+            $table->text('forward_402');
+
 
             // correos de reenvío
-
             $table->foreign('mail_account_402')->references('id_400')->on('004_400_mail_account')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
