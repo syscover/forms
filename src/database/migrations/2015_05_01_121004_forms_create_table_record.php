@@ -16,18 +16,18 @@ class FormsCreateTableRecord extends Migration {
         {
             $table->engine = 'InnoDB';
             $table->increments('id_403')->unsigned();
-
             $table->integer('form_403')->unsigned();
-            $table->string('subject_403', 100);
-            $table->tinyInteger('state_403')->unsigned();
+            $table->integer('record_date_403')->unsigned();
+            $table->integer('state_403')->unsigned()->nullable();
 
-            $table->integer('date_403')->unsigned();
+            $table->string('subject_403', 255)->nullable();
+            $table->string('name_403', 50)->nullable();
+            $table->string('surname_403', 50)->nullable();
+            $table->string('company_403', 100)->nullable();
+            $table->string('email_403', 100)->nullable();
+            $table->integer('date_403')->unsigned()->nullable();
 
-            $table->string('name_403', 50);
-            $table->string('surmane_403', 50);
-            $table->string('company_403', 100);
-
-            $table->string('country_403', 2);
+            $table->string('country_403', 2)->nullable();;
             $table->string('territorial_area_1_403', 6)->nullable();
             $table->string('territorial_area_2_403', 10)->nullable();
             $table->string('territorial_area_3_403', 10)->nullable();
@@ -35,12 +35,17 @@ class FormsCreateTableRecord extends Migration {
             $table->string('locality_403', 100)->nullable();
             $table->string('address_403', 150)->nullable();
 
-            $table->text('data_403');
+            $table->boolean('opened_403')->default(false);
+            $table->boolean('dispatched_403')->default(false);
 
-            $table->foreign('form_403')->references('id_402')->on('004_402_form')
+            $table->json('data_403');
+
+            $table->foreign('form_403')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('state_403')->references('id_401')->on('004_401_state')
+
+            $table->foreign('state_403')->references('id_400')->on('004_400_state')
                 ->onDelete('restrict')->onUpdate('cascade');
+
             $table->foreign('country_403')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('territorial_area_1_403')->references('id_003')->on('001_003_territorial_area_1')

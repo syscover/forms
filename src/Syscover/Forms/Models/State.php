@@ -1,6 +1,6 @@
-<?php namespace Syscover\Plantilla\Models;
+<?php namespace Syscover\Forms\Models;
 
-/**
+/*
  * @package	    Pulsar
  * @author	    Jose Carlos Rodríguez Palacín
  * @copyright   Copyright (c) 2015, SYSCOVER, SL
@@ -14,14 +14,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\ModelTrait;
 
-class Family extends Model {
+class State extends Model {
 
     use ModelTrait;
 
-	protected $table        = '008_070_family';
-    protected $primaryKey   = 'id_070';
+	protected $table        = '004_400_state';
+    protected $primaryKey   = 'id_400';
     public $timestamps      = false;
-    protected $fillable     = ['id_070', 'name_070'];
+    protected $fillable     = ['id_400', 'name_400', 'color_400'];
     private static $rules   = [
         'name'  => 'required|between:2,50'
     ];
