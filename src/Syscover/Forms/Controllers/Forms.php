@@ -59,7 +59,8 @@ class Forms extends Controller {
 
     public function jsonCustomDataBeforeActions($aObject)
     {
-        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'access')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_forms') . '"><span class="badge bg-red">17</span> <i class="icon-eye-open"></i></a>' : null;
+        $unOpened = $aObject['n_unopened_401'] > 0? '<span class="badge bg-red">' . $aObject['n_unopened_401'] . '</span> ' : null;
+        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'access')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_forms') . '">' . $unOpened . '<i class="icon-eye-open"></i></a>' : null;
     }
 
     public function createCustomRecord($parameters)

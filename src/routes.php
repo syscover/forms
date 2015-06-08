@@ -18,21 +18,29 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
 
     /*
     |--------------------------------------------------------------------------
+    | COMMENTS
+    |--------------------------------------------------------------------------
+    */
+    Route::any(config('pulsar.appName') . '/forms/comments/{offset?}',                                         ['as'=>'FormsComment',                    'uses'=>'Syscover\Forms\Controllers\Comments@index',                           'resource' => 'forms-comment',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/forms/comments/json/data/{ref}/{modal}',                           ['as'=>'jsonDataFormsComment',            'uses'=>'Syscover\Forms\Controllers\Comments@jsonData',                        'resource' => 'forms-comment',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/forms/comments/create/{ref}/{offset}',                             ['as'=>'createFormsComment',              'uses'=>'Syscover\Forms\Controllers\Comments@createRecord',                    'resource' => 'forms-comment',        'action' => 'create']);
+    Route::post(config('pulsar.appName') . '/forms/comments/store/{ref}/{offset}',                             ['as'=>'storeFormsComment',               'uses'=>'Syscover\Forms\Controllers\Comments@storeRecord',                     'resource' => 'forms-comment',        'action' => 'create']);
+    Route::get(config('pulsar.appName') . '/forms/comments/{ref}/{id}/edit/{offset}',                          ['as'=>'editFormsComment',                'uses'=>'Syscover\Forms\Controllers\Comments@editRecord',                      'resource' => 'forms-comment',        'action' => 'access']);
+    Route::put(config('pulsar.appName') . '/forms/comments/update/{id}/{offset}',                              ['as'=>'updateFormsComment',              'uses'=>'Syscover\Forms\Controllers\Comments@updateRecord',                    'resource' => 'forms-comment',        'action' => 'edit']);
+    Route::get(config('pulsar.appName') . '/forms/comments/delete/{id}/{form}/{ref}/{offset}',                        ['as'=>'deleteFormsComment',              'uses'=>'Syscover\Forms\Controllers\Comments@deleteRecord',                    'resource' => 'forms-comment',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/forms/comments/delete/select/records/{form}/{ref}/{offset}/{tab}',     ['as'=>'deleteSelectFormsComment',        'uses'=>'Syscover\Forms\Controllers\Comments@deleteRecordsSelect',             'resource' => 'forms-comment',        'action' => 'delete']);
+
+    /*
+    |--------------------------------------------------------------------------
     | RECORDS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/forms/records/{ref}/{offset?}',                          ['as'=>'FormsRecord',                   'uses'=>'Syscover\Forms\Controllers\Records@index',                      'resource' => 'forms-record',        'action' => 'access']);
-    Route::any(config('pulsar.appName') . '/forms/records/json/data/{ref}',                          ['as'=>'jsonDataFormsRecord',           'uses'=>'Syscover\Forms\Controllers\Records@jsonData',                   'resource' => 'forms-record',        'action' => 'access']);
-
-    //Route::get(config('pulsar.appName') . '/forms/records/create/{ref}/{offset}',                    ['as'=>'createFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@createRecord',               'resource' => 'forms-record',        'action' => 'create']);
-    //Route::post(config('pulsar.appName') . '/forms/records/store/{ref}/{offset}',                    ['as'=>'storeFormsRecord',              'uses'=>'Syscover\Forms\Controllers\Records@storeRecord',                'resource' => 'forms-record',        'action' => 'create']);
-    //Route::get(config('pulsar.appName') . '/forms/records/{ref}/{id}/edit/{offset}',                 ['as'=>'editFormsRecord',               'uses'=>'Syscover\Forms\Controllers\Records@editRecord',                 'resource' => 'forms-record',        'action' => 'access']);
-    //Route::put(config('pulsar.appName') . '/forms/records/update/{ref}/{id}/{offset}',               ['as'=>'updateFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@updateRecord',               'resource' => 'forms-record',        'action' => 'edit']);
-
-    Route::get(config('pulsar.appName') . '/forms/records/delete/{id}/{ref}/{offset}',               ['as'=>'deleteFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@deleteRecord',               'resource' => 'forms-record',        'action' => 'delete']);
-    Route::delete(config('pulsar.appName') . '/forms/records/delete/select/records/{ref}',           ['as'=>'deleteSelectFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@deleteRecordsSelect',        'resource' => 'forms-record',        'action' => 'delete']);
-
-
+    Route::any(config('pulsar.appName') . '/forms/records/{form}/{offset?}',                          ['as'=>'FormsRecord',                   'uses'=>'Syscover\Forms\Controllers\Records@index',                      'resource' => 'forms-record',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/forms/records/json/data/{form}',                          ['as'=>'jsonDataFormsRecord',           'uses'=>'Syscover\Forms\Controllers\Records@jsonData',                   'resource' => 'forms-record',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/forms/records/{id}/{form}/show/{offset}/{tab}',           ['as'=>'showFormsRecord',               'uses'=>'Syscover\Forms\Controllers\Records@showRecord',                 'resource' => 'forms-record',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/forms/records/delete/{id}/{form}/{offset}',               ['as'=>'deleteFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@deleteRecord',               'resource' => 'forms-record',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/forms/records/delete/select/records/{form}',           ['as'=>'deleteSelectFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@deleteRecordsSelect',        'resource' => 'forms-record',        'action' => 'delete']);
+    
     /*
     |--------------------------------------------------------------------------
     | FORMS
@@ -46,8 +54,7 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::put(config('pulsar.appName') . '/forms/forms/update/{id}/{offset}',               ['as'=>'updateFormsForm',             'uses'=>'Syscover\Forms\Controllers\Forms@updateRecord',               'resource' => 'forms-form',        'action' => 'edit']);
     Route::get(config('pulsar.appName') . '/forms/forms/delete/{id}/{offset}',               ['as'=>'deleteFormsForm',             'uses'=>'Syscover\Forms\Controllers\Forms@deleteRecord',               'resource' => 'forms-form',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/forms/forms/delete/select/records',           ['as'=>'deleteSelectFormsForm',       'uses'=>'Syscover\Forms\Controllers\Forms@deleteRecordsSelect',        'resource' => 'forms-form',        'action' => 'delete']);
-
-
+    
     /*
     |--------------------------------------------------------------------------
     | STATES

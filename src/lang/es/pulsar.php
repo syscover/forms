@@ -15,4 +15,5 @@ return [
     'package_name'                          => 'Package name',
     'push_notifications'                    => 'Notificaciones push',
     'view_forms'                            => 'Ver formularios',
+    'record_date'                           => 'Fecha registro'
 ];

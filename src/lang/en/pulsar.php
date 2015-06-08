@@ -15,4 +15,5 @@ return [
     'package_name'                          => 'Forms',
     'push_notifications'                    => 'Push notifications',
     'view_forms'                            => 'View forms',
+    'record_date'                           => 'Record date'
 ];

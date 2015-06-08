@@ -18,7 +18,8 @@ class FormsCreateTableForm extends Migration {
             $table->increments('id_401')->unsigned();
             $table->string('name_401', 100);
             $table->integer('email_account_401')->unsigned();
-            $table->boolean('push_notification_401');
+            $table->boolean('push_notification_401')->default(false);
+            $table->integer('n_unopened_401')->unsigned()->default(0);
 
             // correos de reenvío
             $table->foreign('email_account_401')->references('id_013')->on('001_013_email_account')

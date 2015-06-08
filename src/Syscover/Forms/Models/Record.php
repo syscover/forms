@@ -21,7 +21,7 @@ class Record extends Model {
 	protected $table        = '004_403_record';
     protected $primaryKey   = 'id_403';
     public $timestamps      = false;
-    protected $fillable     = ['id_403', 'form_403', 'record_date_403', 'state_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'date_403', 'country_403', 'territorial_area_1_403', 'territorial_area_2_403', 'territorial_area_3_403', 'cp_403', 'locality_403', 'address_403', 'opened_403', 'data_403'];
+    protected $fillable     = ['id_403', 'form_403', 'record_date_403', 'state_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'date_403', 'country_403', 'territorial_area_1_403', 'territorial_area_2_403', 'territorial_area_3_403', 'opened_403', 'data_403'];
 
     private static $rules   = [
         'name'  => 'required|between:2,50',
@@ -33,13 +33,18 @@ class Record extends Model {
         return Validator::make($data, static::$rules);
 	}
 
+    public function form()
+    {
+        return $this->belongsTo('Syscover\Forms\Models\Form', 'form_403');
+    }
+
     public static function getCustomRecordsLimit($parameters)
     {
-        return Record::where('form_403', $parameters['ref'])->newQuery();
+        return Record::where('form_403', $parameters['form'])->newQuery();
     }
 
     public function customCount($parameters)
     {
-        return Record::where('form_403', $parameters['ref'])->newQuery();
+        return Record::where('form_403', $parameters['form'])->newQuery();
     }
 }

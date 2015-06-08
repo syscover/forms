@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Syscover\Forms\Models\Form;
 use Syscover\Forms\Models\Record;
+use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\ControllerTrait;
 
@@ -25,12 +26,38 @@ class Records extends Controller {
     protected $routeSuffix  = 'FormsRecord';
     protected $folder       = 'records';
     protected $package      = 'forms';
-    protected $aColumns     = ['id_403', ['type' => 'date','format' => 'd-m-Y', 'data' => 'record_date_403'], 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
+    protected $aColumns     = ['id_403', ['type' => 'date','format' => 'd-m-Y', 'data' => 'record_date_403'], 'company_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM        = 'name_403';
     protected $model        = '\Syscover\Forms\Models\Record';
     protected $icon         = 'icon-file-text-alt';
     protected $objectTrans  = 'record';
-    protected $jsonParam    = ['edit' => false];
+    protected $jsonParam    = ['edit' => false, 'show' => true];
+
+    public function customActionUrlParameters($actionUrlParameters, $parameters)
+    {
+        // set reference to form
+        $actionUrlParameters['form'] = $parameters['form'];
+        // init record on tap 1
+        $actionUrlParameters['tab'] = 1;
+
+        return $actionUrlParameters;
+    }
+
+    public function showCustomRecord($parameters)
+    {
+        if($parameters['object']->opened_403 == false)
+        {
+            $parameters['object']->opened_403 = true;
+            $parameters['object']->save();
+
+            $form = $parameters['object']->form;
+            $form->decrement('n_unopened_401');
+        }
+
+        $parameters['states'] = State::all();
+
+        return $parameters;
+    }
 
     public function recordForm(HttpRequest $request)
     {
@@ -50,7 +77,15 @@ class Records extends Controller {
         $data = [];
         foreach($fields->data as $field)
         {
-            $data[] = [$field => $request->input($field)];
+            $obj = [
+                'type'  => $field->type,
+                'name'  => $field->name,
+                'value' => $request->input($field->name)
+            ];
+
+            if(isset($field->length)) $obj['length'] = $field->length;
+
+            $data[] = $obj;
         }
 
         Record::create([
@@ -65,6 +100,7 @@ class Records extends Controller {
             'data_403'          => json_encode($data)
         ]);
 
+        $form->increment('n_unopened_401');
 
         if($request->input('_redirectOk') == '')
         {
@@ -88,17 +124,5 @@ class Records extends Controller {
         {
             return redirect($request->input('_redirectOk'));
         }
-    }
-
-    public function customActionUrlParameters($actionUrlParameters, $parameters)
-    {
-        $actionUrlParameters['ref']     = $parameters['ref'];
-
-        return $actionUrlParameters;
-    }
-
-    public function jsonCustomDataBeforeActions($aObject)
-    {
-        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'access')? '<a class="btn btn-xs bs-tooltip" href="' . route($this->routeSuffix, [$aObject['id_403']]) . '" data-original-title="' . trans('pulsar::pulsar.view_record') . '"><i class="icon-eye-open"></i></a>' : null;
     }
 }

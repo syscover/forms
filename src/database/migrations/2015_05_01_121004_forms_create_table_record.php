@@ -21,9 +21,9 @@ class FormsCreateTableRecord extends Migration {
             $table->integer('state_403')->unsigned()->nullable();
 
             $table->string('subject_403', 255)->nullable();
+            $table->string('company_403', 100)->nullable();
             $table->string('name_403', 50)->nullable();
             $table->string('surname_403', 50)->nullable();
-            $table->string('company_403', 100)->nullable();
             $table->string('email_403', 100)->nullable();
             $table->integer('date_403')->unsigned()->nullable();
 
@@ -31,9 +31,6 @@ class FormsCreateTableRecord extends Migration {
             $table->string('territorial_area_1_403', 6)->nullable();
             $table->string('territorial_area_2_403', 10)->nullable();
             $table->string('territorial_area_3_403', 10)->nullable();
-            $table->string('cp_403', 10)->nullable();
-            $table->string('locality_403', 100)->nullable();
-            $table->string('address_403', 150)->nullable();
 
             $table->boolean('opened_403')->default(false);
             $table->boolean('dispatched_403')->default(false);
