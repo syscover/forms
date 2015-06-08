@@ -23,7 +23,7 @@ class Comments extends Controller {
     protected $routeSuffix      = 'FormsComment';
     protected $folder           = 'comments';
     protected $package          = 'forms';
-    protected $aColumns         = ['date_404', 'user_404', 'subject_404'];
+    protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';
     protected $model            = '\Syscover\Forms\Models\Comment';
     protected $icon             = 'icon-comments';

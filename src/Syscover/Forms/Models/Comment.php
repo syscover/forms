@@ -33,11 +33,18 @@ class Comment extends Model {
 
     public static function getCustomRecordsLimit($parameters)
     {
-        return Comment::where('record_404', $parameters['ref'])->newQuery();
+        return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
+            ->where('record_404', $parameters['ref'])->newQuery();
     }
 
     public function customCount($parameters)
     {
         return Comment::where('record_404', $parameters['ref'])->newQuery();
+    }
+
+    public static function getRecord($parameters)
+    {
+        return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
+            ->find($parameters['id']);
     }
 }

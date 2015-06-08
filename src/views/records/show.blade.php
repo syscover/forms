@@ -15,6 +15,7 @@
             {
                 $('.datatable-pulsar').dataTable({
                     'iDisplayStart' : 0,
+                    'aaSorting': [[ 0, "desc" ]],
                     'aoColumnDefs': [
                         { 'bSortable': false, 'aTargets': [3,4]},
                         { 'sClass': 'checkbox-column', 'aTargets': [3]},
