@@ -11,8 +11,10 @@
  */
 
 use Illuminate\Support\Facades\Request;
-use Illuminate\Http\Request as HttpRequest;
+use Syscover\Forms\Models\Message;
+use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
+use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\ControllerTrait;
 use Syscover\Forms\Models\Comment;
 
@@ -34,19 +36,41 @@ class Comments extends Controller {
     {
         $actionUrlParameters['modal']   = true;
         $actionUrlParameters['ref']     = $parameters['ref'];
-        //$actionUrlParameters['form']    = $parameters['form'];
 
         return $actionUrlParameters;
     }
 
     public function storeCustomRecord($parameters)
     {
-        Comment::create([
+        $comment = Comment::create([
             'record_404'                => Request::input('ref'),
             'user_404'                  => Request::input('user'),
             'date_404'                  => date('U'),
             'subject_404'               => Request::input('subject'),
             'comment_404'               => Request::input('comment')
+        ]);
+
+        $record = Record::find(Request::input('ref'));
+        $user = User::find(Request::input('user'));
+
+        Message::create([
+            'record_405'                => Request::input('ref'),
+            'date_405'                  => date('U'),
+            'template_405'              => 'forms::emails.comment',
+            'data_405'                  => json_encode([
+                'user'  => [
+                    'id'        => $user->id_010,
+                    'user'      => $user->user_010,
+                    'name'      => $user->name_010,
+                    'surname'   => $user->surname_010,
+                    'email'     => $user->email_010
+                ],
+                'record'    => $record->toArray(),
+                'comment'   => $comment->toArray(),
+                'forwards'  => [
+                    ['name' => 'minombre', 'email' => '']
+                ]
+            ])
         ]);
 
         $parameters['modal'] = 1;

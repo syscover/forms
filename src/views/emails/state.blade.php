@@ -1,0 +1,1 @@
+Hemos detectado un cambio de estado:

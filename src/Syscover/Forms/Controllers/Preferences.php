@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Request;
 use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
+use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Traits\ControllerTrait;
 
@@ -34,11 +35,15 @@ class Preferences extends Controller {
         $parameters['states'] = State::all();
         $parameters['defaultState']  = Preference::getValue('defaultState', 4);
 
+        $parameters['accounts'] = EmailAccount::all();
+        $parameters['notificationsAccount']  = Preference::getValue('defaultState', 4);
+
         return $parameters;
     }
     
     public function updateCustomRecord()
     {
         Preference::setValue('defaultState', Request::input('defaultState'), 4);
+        Preference::setValue('notificationsAccount', Request::input('notificationsAccount'), 4);
     }
 }

@@ -16,5 +16,6 @@ return [
     'push_notifications'                    => 'Notificaciones push',
     'view_forms'                            => 'Ver formularios',
     'record_date'                           => 'Fecha registro',
-    'change_state'                          => 'El estado del registro ha sido modificado'
+    'change_state'                          => 'El estado del registro ha sido modificado',
+    'notifications_account'                 => 'Cuenta de notificaciones'
 ];

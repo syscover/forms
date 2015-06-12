@@ -16,5 +16,6 @@ return [
     'push_notifications'                    => 'Push notifications',
     'view_forms'                            => 'View forms',
     'record_date'                           => 'Record date',
-    'change_state'                          => 'Registration status has been modified'
+    'change_state'                          => 'Registration status has been modified',
+    'notifications_account'                 => 'Notifications account'
 ];
