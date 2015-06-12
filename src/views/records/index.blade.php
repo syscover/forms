@@ -10,9 +10,11 @@
                 $('.datatable-pulsar').dataTable({
                     'iDisplayStart' : {{ $offset }},
                     'aoColumnDefs': [
-                        { 'bSortable': false, 'aTargets': [7,8]},
-                        { 'sClass': 'checkbox-column', 'aTargets': [7]},
-                        { 'sClass': 'align-center', 'aTargets': [6,8]}
+                        { 'visible': false, "bSearchable": false, 'aTargets': [2]}, // hidden column 2 and prevents search on column 2
+                        { "iDataSort": 2, "aTargets": [3] }, // sort column 3 according hidden column 2 data
+                        { 'bSortable': false, 'aTargets': [8,9]},
+                        { 'sClass': 'checkbox-column', 'aTargets': [8]},
+                        { 'sClass': 'align-center', 'aTargets': [1,7,9]}
                     ],
                     "bProcessing": true,
                     "bServerSide": true,
@@ -28,8 +30,9 @@
     <!-- forms::records.index -->
     <tr>
         <th data-hide="phone,tablet">ID.</th>
+        <th>{{ trans_choice('pulsar::pulsar.state', 1) }}</th>
+        <th>{{ trans('pulsar::pulsar.date') }}</th>
         <th data-hide="phone">{{ trans('pulsar::pulsar.date') }}</th>
-        <th data-hide="phone">{{ trans('pulsar::pulsar.company_name') }}</th>
         <th data-class="expand">{{ trans('pulsar::pulsar.name') }}</th>
         <th data-hide="phone,tablet">{{ trans('pulsar::pulsar.surname') }}</th>
         <th data-hide="phone">{{ trans('pulsar::pulsar.email') }}</th>

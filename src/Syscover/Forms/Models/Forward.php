@@ -21,7 +21,7 @@ class Forward extends Model {
 	protected $table        = '004_402_forward';
     protected $primaryKey   = 'id_402';
     public $timestamps      = false;
-    protected $fillable     = ['id_402', 'form_402', 'name_402', 'email_402'];
+    protected $fillable     = ['id_402', 'form_402', 'name_402', 'email_402', 'comments_402', 'states_402'];
     private static $rules   = [
         'name'  => 'required|between:2,50',
         'email' => 'required'
@@ -36,5 +36,10 @@ class Forward extends Model {
     {
         return Forward::join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401')
             ->newQuery();
+    }
+
+    public static function deleteRecordsNotIn($ids)
+    {
+        Forward::whereNotIn('id_402', $ids)->delete();
     }
 }

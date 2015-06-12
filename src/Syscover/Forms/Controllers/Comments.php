@@ -28,6 +28,7 @@ class Comments extends Controller {
     protected $model            = '\Syscover\Forms\Models\Comment';
     protected $icon             = 'icon-comments';
     protected $objectTrans      = 'comment';
+    protected $jsonParam        = ['onlyEditOwner' => 'user_404', 'showIfNotEdit' => true, 'show' => true];
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {

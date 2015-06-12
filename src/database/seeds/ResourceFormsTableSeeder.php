@@ -13,7 +13,8 @@ class ResourceFormsTableSeeder extends Seeder {
             ['id_007' => 'form-form','name_007' => 'Forms','package_007' => '4'],
             ['id_007' => 'form-forward','name_007' => 'Forwards','package_007' => '4'],
             ['id_007' => 'form-record','name_007' => 'Records','package_007' => '4'],
-            ['id_007' => 'form-comment','name_007' => 'Comments','package_007' => '4']
+            ['id_007' => 'form-comment','name_007' => 'Comments','package_007' => '4'],
+            ['id_007' => 'form-preference','name_007' => 'Preferences','package_007' => '4']
         ]);
     }
 }

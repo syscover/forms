@@ -19,6 +19,8 @@ class FormsCreateTableForward extends Migration {
             $table->integer('form_402')->unsigned();
             $table->string('name_402', 100);
             $table->string('email_402', 50);
+            $table->boolean('comments_402')->default(false);
+            $table->boolean('states_402')->default(false);
 
             $table->foreign('form_402')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');

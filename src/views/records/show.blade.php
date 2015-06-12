@@ -3,11 +3,17 @@
 @section('script')
     @parent
     @include('pulsar::includes.js.datatable_config')
+    <!-- forms::records.show -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/plugins/pnotify/jquery.pnotify.default.css') }}">
 
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/plugins/pnotify/jquery.pnotify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/js/i18n/' . config('app.locale') . '.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.cookie/js.cookie.js') }}"></script>
-    <!-- forms::records.show -->
+
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -30,6 +36,35 @@
                 });
             }
 
+            $("#selectState").select2({
+                templateResult: formatState,
+                templateSelection: formatState,
+                minimumResultsForSearch: -1
+            }).on('change', function(){
+                $.ajax({
+                    url: '{{ route('jsonSetStateFormsRecord') }}',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        record: '{{ $object->id_403 }}',
+                        value: this.value
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response)
+                    {
+                        $.pnotify({
+                            type:   'success',
+                            title:  '{{ trans('pulsar::pulsar.action_successful') }}',
+                            text:   '{{ trans('forms::pulsar.change_state') }}',
+                            icon:   'picon icon16 iconic-icon-check-alt white',
+                            opacity: 0.95,
+                            history: false,
+                            sticker: false
+                        });
+                    }
+                });
+            });
+
             $('.magnific-popup').magnificPopup({
                 type: 'iframe',
                 removalDelay: 300,
@@ -43,6 +78,15 @@
             $('.tabbable li:eq(1) a').tab('show');
             @endif
         });
+
+        function formatState(option)
+        {
+            if (!option.id) { return option.text; }
+            var $option = $(
+                    '<span><i class="color" style="background-color:' + $(option.element).data('color') + '"></i>' + ' ' + option.text + '</span>'
+            );
+            return $option;
+        };
     </script>
     <!-- /forms::records.show -->
 @stop
@@ -83,7 +127,14 @@
 
 @section('box_tab2')
     <!-- forms::records.show -->
-    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn marginB10"><i class="icon-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
+    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn marginB10 fl"><i class="icon-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
+    <div id="select2-records" class="fr col-xs-6 col-md-4">
+        <select id="selectState" data-width="100%">
+            @foreach($states as $state)
+            <option value="{{ $state->id_400 }}" data-color="{{ $state->color_400 }}"{{ $state->id_400 == $object->state_403? ' selected' : null }}>{{ $state->name_400 }}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="widget box">
         <div class="widget-content no-padding">
             <form id="formView" method="post" action="{{ route('deleteSelectFormsComment', $urlParameters) }}">

@@ -84,9 +84,11 @@ class Forms extends Controller {
         foreach($forwardsData as $forwardData)
         {
             $forwards[] = [
-                "form_402"  =>  $form->id_401,
-                "name_402"  =>  $forwardData->name_402,
-                "email_402" =>  $forwardData->email_402
+                "form_402"      =>  $form->id_401,
+                "name_402"      =>  $forwardData->name_402,
+                "email_402"     =>  $forwardData->email_402,
+                "comments_402"  =>  $forwardData->comments_402,
+                "states_402"    =>  $forwardData->states_402
             ];
         }
 
@@ -118,9 +120,13 @@ class Forms extends Controller {
         {
             if(isset($forwardData->id_402))
             {
+                $ids[] = $forwardData->id_402;
+
                 Forward::where('id_402', $forwardData->id_402)->update([
-                    "name_402"  =>  $forwardData->name_402,
-                    "email_402" =>  $forwardData->email_402
+                    "name_402"      =>  $forwardData->name_402,
+                    "email_402"     =>  $forwardData->email_402,
+                    "comments_402"  =>  $forwardData->comments_402,
+                    "states_402"    =>  $forwardData->states_402
                 ]);
             }
             else
@@ -128,9 +134,17 @@ class Forms extends Controller {
                 $forwards[] = [
                     "form_402"  =>  $parameters['id'],
                     "name_402"  =>  $forwardData->name_402,
-                    "email_402" =>  $forwardData->email_402
+                    "email_402" =>  $forwardData->email_402,
+                    "comments_402"  =>  $forwardData->comments_402,
+                    "states_402"    =>  $forwardData->states_402
                 ];
             }
+        }
+
+        if(count($ids) > 0)
+        {
+            // to delete forwards the we have delete
+            Forward::deleteRecordsNotIn($ids);
         }
 
         if(isset($forwards) && count($forwards) > 0)

@@ -12,8 +12,9 @@ return [
     | If you come up with something more exciting, let us know.
     |
     */
-    'package_name'                          => 'Package name',
+    'package_name'                          => 'Forms',
     'push_notifications'                    => 'Notificaciones push',
     'view_forms'                            => 'Ver formularios',
-    'record_date'                           => 'Fecha registro'
+    'record_date'                           => 'Fecha registro',
+    'change_state'                          => 'El estado del registro ha sido modificado'
 ];
