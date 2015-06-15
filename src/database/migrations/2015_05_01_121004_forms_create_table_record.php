@@ -17,8 +17,8 @@ class FormsCreateTableRecord extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id_403')->unsigned();
             $table->integer('form_403')->unsigned();
-            $table->integer('record_date_403')->unsigned();
-            $table->string('record_text_date_403', 25);
+            $table->integer('date_403')->unsigned();
+            $table->string('text_date_403', 25);
             $table->integer('state_403')->unsigned()->nullable();
 
             $table->string('subject_403', 255)->nullable();
@@ -26,7 +26,6 @@ class FormsCreateTableRecord extends Migration {
             $table->string('name_403', 50)->nullable();
             $table->string('surname_403', 50)->nullable();
             $table->string('email_403', 100)->nullable();
-            $table->integer('date_403')->unsigned()->nullable();
 
             $table->string('country_403', 2)->nullable();;
             $table->string('territorial_area_1_403', 6)->nullable();

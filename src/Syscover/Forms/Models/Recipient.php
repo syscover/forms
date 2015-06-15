@@ -1,7 +1,7 @@
 <?php namespace Syscover\Forms\Models;
 
-/**
- * @package	    Forms
+/*
+ * @package	    Pulsar
  * @author	    Jose Carlos Rodríguez Palacín
  * @copyright   Copyright (c) 2015, SYSCOVER, SL
  * @license
@@ -14,18 +14,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\ModelTrait;
 
-class Message extends Model {
+class Recipient extends Model {
 
     use ModelTrait;
 
-	protected $table        = '004_405_message';
-    protected $primaryKey   = 'id_405';
+	protected $table        = '004_406_recipient';
+    protected $primaryKey   = 'id_406';
     public $timestamps      = false;
-    protected $fillable     = ['id_405', 'type_405', 'record_405', 'date_405', 'forward_405', 'name_405', 'email_405', 'send_date_405', 'dispatched_405', 'template_405', 'text_template_405', 'data_405'];
+    protected $fillable     = ['id_406', 'record_406', 'forward_406', 'name_406', 'email_406', 'comments_406', 'states_406'];
+
     private static $rules   = [];
 
     public static function validate($data)
     {
         return Validator::make($data, static::$rules);
 	}
+
+    public function record()
+    {
+        return $this->belongsTo('Syscover\Forms\Models\Record', 'record_406');
+    }
 }

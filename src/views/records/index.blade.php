@@ -16,9 +16,10 @@
                         { 'sClass': 'checkbox-column', 'aTargets': [8]},
                         { 'sClass': 'align-center', 'aTargets': [1,7,9]}
                     ],
-                    "bProcessing": true,
-                    "bServerSide": true,
-                    "sAjaxSource": "{{ route('jsonData' . $routeSuffix, ['form' => $form]) }}"
+                    'aaSorting': [[ 0, 'desc' ]],
+                    'bProcessing': true,
+                    'bServerSide': true,
+                    'sAjaxSource': "{{ route('jsonData' . $routeSuffix, ['form' => $form]) }}"
                 }).fnSetFilteringDelay();
             }
         });

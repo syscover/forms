@@ -36,7 +36,7 @@ class Preferences extends Controller {
         $parameters['defaultState']  = Preference::getValue('defaultState', 4);
 
         $parameters['accounts'] = EmailAccount::all();
-        $parameters['notificationsAccount']  = Preference::getValue('defaultState', 4);
+        $parameters['notificationsAccount']  = Preference::getValue('notificationsAccount', 4);
 
         return $parameters;
     }

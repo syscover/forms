@@ -12,6 +12,7 @@
 
 use Illuminate\Support\Facades\Request;
 use Syscover\Forms\Models\Message;
+use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\User;
@@ -55,9 +56,31 @@ class Comments extends Controller {
 
         $form       = $record->form;
         $forwards   = $form->forwards;
-        $comments   = $record->comments;
+        $recipients = [];
 
-        dd($comments);
+        foreach($forwards as $forward)
+        {
+            if($forward->comments_402)
+            {
+                $recipients[] = [
+                    'record_406'    => $record->id_403,
+                    'forward_406'   => true,
+                    'name_406'      => $record->name_403,
+                    'email_406'     => $record->email_403
+                ];
+            }
+
+            if($forward->comments_402)
+            {
+
+            }
+        }
+
+        if(count($recipients) > 0)
+        {
+            Recipient::insert($recipients);
+        }
+
 
         Message::create([
             'record_405'                => Request::input('ref'),
