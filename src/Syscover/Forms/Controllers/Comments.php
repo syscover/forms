@@ -50,8 +50,14 @@ class Comments extends Controller {
             'comment_404'               => Request::input('comment')
         ]);
 
-        $record = Record::find(Request::input('ref'));
-        $user = User::find(Request::input('user'));
+        $record     = Record::find(Request::input('ref'));
+        $user       = User::find(Request::input('user'));
+
+        $form       = $record->form;
+        $forwards   = $form->forwards;
+        $comments   = $record->comments;
+
+        dd($comments);
 
         Message::create([
             'record_405'                => Request::input('ref'),

@@ -17,5 +17,11 @@ return [
     'view_forms'                            => 'View forms',
     'record_date'                           => 'Record date',
     'change_state'                          => 'Registration status has been modified',
-    'notifications_account'                 => 'Notifications account'
+    'notifications_account'                 => 'Notifications account',
+    'less_email'                            => 'Want less email from Pulsar Forms?',
+    'stop_email_form'                       => 'Stop receiving emails',
+    'stop_email_form2'                      => 'about this form.',
+    'sent_to'                               => 'This email was sent to:',
+    'view_on_forms'                         => 'View this on Pulsar Forms',
+    'sent_form'                             => 'sent this record on Pulsar Forms.',
 ];

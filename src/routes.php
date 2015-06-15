@@ -14,7 +14,14 @@ Route::get(config('pulsar.appName') . '/forms/forms/init/form/{id}',            
 Route::post(config('pulsar.appName') . '/forms/records/record/form',                            ['as'=>'recordFormsRecord',     'uses'=>'Syscover\Forms\Controllers\Records@recordForm']);
 
 
+Route::any(config('pulsar.appName') . '/email', function(){
+    return view('forms::emails.record');
+});
+
 Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar']], function() {
+
+
+
 
     /*
     |--------------------------------------------------------------------------

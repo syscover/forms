@@ -116,6 +116,7 @@ class Forms extends Controller {
 
         $forwardsData = json_decode(Request::input('forwardsData'));
 
+        $ids = [];
         foreach($forwardsData as $forwardData)
         {
             if(isset($forwardData->id_402))
