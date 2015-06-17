@@ -37,6 +37,13 @@ class Records extends Controller {
     protected $objectTrans  = 'record';
     protected $jsonParam    = ['edit' => false, 'show' => true];
 
+    public function indexCustom($parameters)
+    {
+        $parameters['objForm'] = Form::find($parameters['form']);
+
+        return $parameters;
+    }
+
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
         // set reference to form
@@ -152,42 +159,33 @@ class Records extends Controller {
                 'states_406'    => $forward->states_402
             ];
 
-
-            ///////////////
-            $user = User::where('email_010', $forward->email_402)->find();
+            // get user and permissions
+            $user = User::where('email_010', $forward->email_402)->first();
             if($user != null)
             {
                 $userAcl = PulsarAcl::getProfileAcl($user->profile_010);
             }
-            ///////////////
 
             $messages[] = [
-                'type_405'          => 'record',
-                'record_405'        => $record->id_403,
-
-
-                // por crear
-                'form_405'          => $form->id_401,
-                'name_form_405'     => $form->name_401,
-                'name_state_405'    => $state->name_400,
-                'color_state_405'   => $state->color_400,
-                'names_405'         => implode (", ", $names),
-
-                // user
-                // permission_state
-                // permission_comment
-                // permission_forward
-                // permission_form
-
-
-
-                'date_405'          => date('U'),
-                'forward_405'       => true,
-                'name_405'          => $forward->name_402,
-                'email_405'         => $forward->email_402,
-                'template_405'      => 'forms::emails.record',
-                'text_template_405' => 'forms::emails.text_record',
-                'data_405'          => json_encode($dataRecord)
+                'type_405'                  => 'record',
+                'record_405'                => $record->id_403,
+                'date_405'                  => date('U'),
+                'forward_405'               => true,
+                'name_405'                  => $forward->name_402,
+                'email_405'                 => $forward->email_402,
+                'form_405'                  => $form->id_401,
+                'name_form_405'             => $form->name_401,
+                'name_state_405'            => $state->name_400,
+                'color_state_405'           => $state->color_400,
+                'names_405'                 => implode (", ", $names),
+                'user_405'                  => $user == null? null : $user->id_010,
+                'permission_state_405'      => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'edit'),
+                'permission_comment_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-comment', 'create'),
+                'permission_forward_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-form', 'edit'),
+                'permission_record_405'     => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'show'),
+                'template_405'              => 'forms::emails.record',
+                'text_template_405'         => 'forms::emails.text_record',
+                'data_405'                  => json_encode($dataRecord)
             ];
         }
 

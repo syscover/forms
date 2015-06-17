@@ -81,7 +81,7 @@ class Comments extends Controller {
             Recipient::insert($recipients);
         }
 
-
+/*
         Message::create([
             'record_405'                => Request::input('ref'),
             'date_405'                  => date('U'),
@@ -101,6 +101,7 @@ class Comments extends Controller {
                 ]
             ])
         ]);
+*/
 
         $parameters['modal'] = 1;
 

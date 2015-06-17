@@ -13,15 +13,7 @@
 Route::get(config('pulsar.appName') . '/forms/forms/init/form/{id}',                            ['as'=>'initFormsForm',         'uses'=>'Syscover\Forms\Controllers\Forms@initForm']);
 Route::post(config('pulsar.appName') . '/forms/records/record/form',                            ['as'=>'recordFormsRecord',     'uses'=>'Syscover\Forms\Controllers\Records@recordForm']);
 
-
-Route::any(config('pulsar.appName') . '/email', function(){
-    return view('forms::emails.record');
-});
-
 Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar']], function() {
-
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -43,12 +35,12 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     | RECORDS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/forms/records/{form}/{offset?}',                ['as'=>'FormsRecord',                   'uses'=>'Syscover\Forms\Controllers\Records@index',                      'resource' => 'forms-record',        'action' => 'access']);
-    Route::any(config('pulsar.appName') . '/forms/records/json/data/{form}',                ['as'=>'jsonDataFormsRecord',           'uses'=>'Syscover\Forms\Controllers\Records@jsonData',                   'resource' => 'forms-record',        'action' => 'access']);
-    Route::post(config('pulsar.appName') . '/forms/records/json/set/state/record',          ['as'=>'jsonSetStateFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@jsonSetStateRecordForm',     'resource' => 'forms-record',        'action' => 'edit']);
-    Route::any(config('pulsar.appName') . '/forms/records/{id}/{form}/show/{offset}/{tab}', ['as'=>'showFormsRecord',               'uses'=>'Syscover\Forms\Controllers\Records@showRecord',                 'resource' => 'forms-record',        'action' => 'access']);
-    Route::get(config('pulsar.appName') . '/forms/records/delete/{id}/{form}/{offset}',     ['as'=>'deleteFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@deleteRecord',               'resource' => 'forms-record',        'action' => 'delete']);
-    Route::delete(config('pulsar.appName') . '/forms/records/delete/select/records/{form}', ['as'=>'deleteSelectFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@deleteRecordsSelect',        'resource' => 'forms-record',        'action' => 'delete']);
+    Route::any(config('pulsar.appName') . '/forms/records/{form}/{offset?}',                                ['as'=>'FormsRecord',                   'uses'=>'Syscover\Forms\Controllers\Records@index',                      'resource' => 'forms-record',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/forms/records/json/data/{form}',                                ['as'=>'jsonDataFormsRecord',           'uses'=>'Syscover\Forms\Controllers\Records@jsonData',                   'resource' => 'forms-record',        'action' => 'access']);
+    Route::post(config('pulsar.appName') . '/forms/records/json/set/state/record',                          ['as'=>'jsonSetStateFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@jsonSetStateRecordForm',     'resource' => 'forms-record',        'action' => 'edit']);
+    Route::any(config('pulsar.appName') . '/forms/records/{id}/{form}/show/{offset}/{tab}/{newComment?}',   ['as'=>'showFormsRecord',               'uses'=>'Syscover\Forms\Controllers\Records@showRecord',                 'resource' => 'forms-record',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/forms/records/delete/{id}/{form}/{offset}',                     ['as'=>'deleteFormsRecord',             'uses'=>'Syscover\Forms\Controllers\Records@deleteRecord',               'resource' => 'forms-record',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/forms/records/delete/select/records/{form}',                 ['as'=>'deleteSelectFormsRecord',       'uses'=>'Syscover\Forms\Controllers\Records@deleteRecordsSelect',        'resource' => 'forms-record',        'action' => 'delete']);
     
     /*
     |--------------------------------------------------------------------------

@@ -60,7 +60,7 @@ class Forms extends Controller {
     public function jsonCustomDataBeforeActions($aObject)
     {
         $unOpened = $aObject['n_unopened_401'] > 0? '<span class="badge bg-red">' . $aObject['n_unopened_401'] . '</span> ' : null;
-        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'access')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_forms') . '">' . $unOpened . '<i class="icon-eye-open"></i></a>' : null;
+        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_forms') . '">' . $unOpened . '<i class="icon-eye-open"></i></a>' : null;
     }
 
     public function createCustomRecord($parameters)
@@ -86,7 +86,7 @@ class Forms extends Controller {
             $forwards[] = [
                 "form_402"      =>  $form->id_401,
                 "name_402"      =>  $forwardData->name_402,
-                "email_402"     =>  $forwardData->email_402,
+                "email_402"     =>  trim(strtolower($forwardData->email_402)),
                 "comments_402"  =>  $forwardData->comments_402,
                 "states_402"    =>  $forwardData->states_402
             ];
@@ -125,7 +125,7 @@ class Forms extends Controller {
 
                 Forward::where('id_402', $forwardData->id_402)->update([
                     "name_402"      =>  $forwardData->name_402,
-                    "email_402"     =>  $forwardData->email_402,
+                    "email_402"     =>  trim(strtolower($forwardData->email_402)),
                     "comments_402"  =>  $forwardData->comments_402,
                     "states_402"    =>  $forwardData->states_402
                 ]);
@@ -135,7 +135,7 @@ class Forms extends Controller {
                 $forwards[] = [
                     "form_402"  =>  $parameters['id'],
                     "name_402"  =>  $forwardData->name_402,
-                    "email_402" =>  $forwardData->email_402,
+                    "email_402"     =>  trim(strtolower($forwardData->email_402)),
                     "comments_402"  =>  $forwardData->comments_402,
                     "states_402"    =>  $forwardData->states_402
                 ];

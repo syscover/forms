@@ -20,8 +20,9 @@ class Cron {
 
     public static function checkMessageToSend()
     {
-        $notificationsAccount = Preference::getValue('notificationsAccount', 4);
-        $emailAccount = EmailAccount::find($notificationsAccount->value_018);
+        $notificationsAccount   = Preference::getValue('notificationsAccount', 4);
+        $emailAccount           = EmailAccount::find($notificationsAccount->value_018);
+
         if($emailAccount == null) return null;
 
         $messages = Message::where('dispatched_405', false)->get();
@@ -35,16 +36,15 @@ class Cron {
 
         foreach($messages as $message)
         {
-            Mail::send(['html' => $message->template_405, 'text' => $message->text_template_405], json_decode($message->data_405, true), function($m) use ($emailAccount, $message) {
-                $m->to($message->email_405, $message->name_405)->subject("HOLA MUNDO");
+            Mail::send(['html' => $message->template_405, 'text' => $message->text_template_405], ['dataMessage' => $message, 'data' => json_decode($message->data_405)], function($m) use ($emailAccount, $message) {
+                $m->to($message->email_405, $message->name_405)->subject(trans('forms::pulsar.subject_email_record') . ' ' . $message->name_form_405);
                 if($emailAccount->reply_to_013 != null) $m->replyTo($emailAccount->reply_to_013);
             });
-/*
+
             Message::where('id_405', $message->id_405)->update([
                 'dispatched_405'  => true,
                 'send_date_405'   =>  date('U')
             ]);
-*/
         }
     }
 }

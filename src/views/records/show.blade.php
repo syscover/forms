@@ -77,6 +77,11 @@
             @elseif($tab == 1)
             $('.tabbable li:eq(1) a').tab('show');
             @endif
+
+            // new comment
+            @if(isset($newComment) && $newComment)
+                $('.magnific-popup').magnificPopup('open');
+            @endif
         });
 
         function formatState(option)

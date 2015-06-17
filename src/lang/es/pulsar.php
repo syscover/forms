@@ -22,10 +22,14 @@ return [
     'stop_email_form2'                      => 'de este formulario.',
     'sent_to'                               => 'Este email fue enviado a:',
     'or'                                    => 'o',
-    'view_on_forms'                         => 'Ver esto en Pulsar Forms',
+    'view_on_forms'                         => 'ver este registro',
+    'view_all_records'                      => 'ver todos los registros del formulario',
+    'create_comment'                        => 'crear un comentario',
+    'change_state'                          => 'cambiar el estos del registro',
     'sent_form'                             => 'envió este registro sobre Pulsar Forms.',
     'actions_email_record'                  => 'Puedes realizar las siguites acciones',
     'form_received'                         => 'Has recibido un nuevo registro del formulario',
     'state_record'                          => 'Actualmente el estado del registro es',
-    'record_data'                           => 'Datos del registro'
+    'record_data'                           => 'Datos del registro',
+    'subject_email_record'                  => 'Nuevo registro del formulario:'
 ];

@@ -1,4 +1,4 @@
-@extends('pulsar::layouts.index', ['newButton' => false])
+@extends('pulsar::layouts.index', ['newButton' => false, 'customTransHeader' => trans_choice($objectTrans, 2) . ': ' . $objForm->name_401])
 
 @section('script')
     @parent
