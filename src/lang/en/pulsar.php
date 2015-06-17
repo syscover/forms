@@ -18,10 +18,16 @@ return [
     'record_date'                           => 'Record date',
     'change_state'                          => 'Registration status has been modified',
     'notifications_account'                 => 'Notifications account',
-    'less_email'                            => 'Want less email from Pulsar Forms?',
     'stop_email_form'                       => 'Stop receiving emails',
     'stop_email_form2'                      => 'about this form.',
     'sent_to'                               => 'This email was sent to:',
-    'view_on_forms'                         => 'View this on Pulsar Forms',
+    'or'                                    => 'or',
+    'view_on_forms'                         => 'view this record Pulsar Forms',
+    'create_comment'                        => 'create a comment',
+    'change_state'                          => 'change state record',
     'sent_form'                             => 'sent this record on Pulsar Forms.',
+    'actions_email_record'                  => 'You can perform these actions',
+    'form_received'                         => 'You\'ve received a new registration form',
+    'state_record'                          => 'Currently the registration status is',
+    'record_data'                           => 'Record data'
 ];

@@ -38,6 +38,11 @@ class Record extends Model {
         return $this->belongsTo('Syscover\Forms\Models\Form', 'form_403');
     }
 
+    public function state()
+    {
+        return $this->belongsTo('Syscover\Forms\Models\State', 'state_403');
+    }
+
     public function comments()
     {
         return $this->hasMany('Syscover\Forms\Models\Comment', 'record_404');

@@ -18,10 +18,14 @@ return [
     'record_date'                           => 'Fecha registro',
     'change_state'                          => 'El estado del registro ha sido modificado',
     'notifications_account'                 => 'Cuenta de notificaciones',
-    'less_email'                            => '¿Quieres menos emails de Pulsar Forms?',
     'stop_email_form'                       => 'Parar de recibir emails',
     'stop_email_form2'                      => 'de este formulario.',
     'sent_to'                               => 'Este email fue enviado a:',
+    'or'                                    => 'o',
     'view_on_forms'                         => 'Ver esto en Pulsar Forms',
     'sent_form'                             => 'envió este registro sobre Pulsar Forms.',
+    'actions_email_record'                  => 'Puedes realizar las siguites acciones',
+    'form_received'                         => 'Has recibido un nuevo registro del formulario',
+    'state_record'                          => 'Actualmente el estado del registro es',
+    'record_data'                           => 'Datos del registro'
 ];

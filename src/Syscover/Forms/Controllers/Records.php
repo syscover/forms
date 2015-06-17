@@ -18,7 +18,9 @@ use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
+use Syscover\Pulsar\Libraries\PulsarAcl;
 use Syscover\Pulsar\Models\Preference;
+use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\ControllerTrait;
 
 class Records extends Controller {
@@ -78,11 +80,12 @@ class Records extends Controller {
 
     public function recordForm(HttpRequest $request)
     {
-        $fields     = json_decode($request->input('_fields'));
-        $form       = Form::find(Crypt::decrypt($request->input('_tokenForm')));
-        $forwards   = $form->forwards;
-        $recipients = [];
-        $messages   = [];
+        $fields             = json_decode($request->input('_fields'));
+        $form               = Form::find(Crypt::decrypt($request->input('_tokenForm')));
+        $forwards           = $form->forwards;
+        $recipients         = [];
+        $names              = [];
+        $messages           = [];
 
         if($form == null)
         {
@@ -125,6 +128,7 @@ class Records extends Controller {
         ];
 
         $record = Record::create($dataRecord);
+        $state  = $record->state;
 
         $form->increment('n_unopened_401');
 
@@ -132,6 +136,11 @@ class Records extends Controller {
         $dataRecord['data_403'] = $data;
 
         // set recipients
+        foreach($forwards as $forward)
+        {
+            $names[] = $forward->name_402;
+        }
+
         foreach($forwards as $forward)
         {
             $recipients[] = [
@@ -143,9 +152,35 @@ class Records extends Controller {
                 'states_406'    => $forward->states_402
             ];
 
+
+            ///////////////
+            $user = User::where('email_010', $forward->email_402)->find();
+            if($user != null)
+            {
+                $userAcl = PulsarAcl::getProfileAcl($user->profile_010);
+            }
+            ///////////////
+
             $messages[] = [
                 'type_405'          => 'record',
                 'record_405'        => $record->id_403,
+
+
+                // por crear
+                'form_405'          => $form->id_401,
+                'name_form_405'     => $form->name_401,
+                'name_state_405'    => $state->name_400,
+                'color_state_405'   => $state->color_400,
+                'names_405'         => implode (", ", $names),
+
+                // user
+                // permission_state
+                // permission_comment
+                // permission_forward
+                // permission_form
+
+
+
                 'date_405'          => date('U'),
                 'forward_405'       => true,
                 'name_405'          => $forward->name_402,

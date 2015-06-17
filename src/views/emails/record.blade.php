@@ -28,7 +28,7 @@
                         <tr>
                             <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="small grey" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:grey;font-size:12px;line-height:15px;margin:0 0 15px'>
-                                    Write ABOVE THIS LINE to post a reply or <a href="https://basecamp.com/2909534/projects/8930260/messages/43495320">view this on Basecamp</a>
+                                    {{ trans('forms::pulsar.actions_email_record') }}, <a href="#">{{ trans('forms::pulsar.view_on_forms') }}</a> {{ trans('forms::pulsar.or') }} <a href="">{{ trans('forms::pulsar.create_comment') }}</a> {{ trans('forms::pulsar.or') }} <a href="">{{ trans('forms::pulsar.change_state') }}</a>
                                 </p>
                             </td>
                         </tr>
@@ -36,24 +36,67 @@
                             <td class="main_body" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;border-collapse:collapse;color:#000000;border-spacing:0;font-family:"Helvetica Neue",helvetica,arial,sans-serif;padding:20px 0'>
                                 <table cellspacing="0" cellpadding="0" width="100%" style="background:#ffffff;margin:0;padding:0;border:0;text-align:left;border-collapse:collapse;border-spacing:0">
                                     <tr>
-                                        <td class="avatar" width="45" valign="middle" style='font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;border-collapse:collapse;border-spacing:0;padding:0;background:#ffffff;text-align:left;width:45px;vertical-align:middle'>
-                                            <img alt="Marta Sanz" class="avatar" height="45" src="https://asset1.basecamp.com/2909534/people/11509847/photo/avatar.96.gif" style="border-radius:100px;-moz-border-radius:100px;vertical-align:middle;width:45px;height:45px;-webkit-border-radius:100px;min-height:45px;max-height:45px;padding:0 !important;border:0 !important;padding: 1px; border: 1px solid #cccccc;" title="Marta Sanz" width="45">
-                                        </td>
-                                        <td class="header_body brown" valign="middle" width="100%" style='background:#ffffff;text-align:left;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;border-collapse:collapse;padding:0;border-spacing:0;color:brown;vertical-align:middle;padding-left:10px;width:auto !important'>
-                                            Marta Sanz {{ trans('forms::pulsar.sent_form') }}
+                                        <td class="header_body brown" valign="middle" width="100%" style='background:#ffffff;text-align:left;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;border-collapse:collapse;padding:0;border-spacing:0;vertical-align:middle;padding-left:10px;width:auto !important;'>
+                                            {{ trans('forms::pulsar.form_received') }}, <strong>XXNOMBRE FORMULARIOXX</strong>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class="content_body" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;border-collapse:collapse;color:#000000;border-spacing:0;font-family:"Helvetica Neue",helvetica,arial,sans-serif;padding:0 0 0 55px'>
-                                            <h3 style='line-height:20px;font-weight:normal;font-size:16px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:black;margin:0 0 5px'><b>Subject del mensaje</b></h3>
+                                        <td width="100%">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="header_body brown" valign="middle" width="100%" style='background:#ffffff;text-align:left;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;border-collapse:collapse;padding:0;border-spacing:0;vertical-align:middle;padding-left:10px;width:auto !important'>
+                                            <strong style="color:brown;">{{ trans('forms::pulsar.state_record') }}:</strong> <strong>XXEN PROCESOXX</strong> <span style="width: 45px; height: 45px; border: 1px solid #cccccc; background-color: #cc3d3d">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_body" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;border-collapse:collapse;color:#000000;border-spacing:0;font-family:"Helvetica Neue",helvetica,arial,sans-serif;padding:0 0 0 55px'>
+                                            <h2>{{ trans('forms::pulsar.record_data') }}</h2>
 
-                                            <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 19px !important;max-width:none !important">
-                                                CAMPOS DEL MENSAJE
+                                            @if(isset($text_date_403))
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>Fecha:</strong> {{ $text_date_403 }}
+                                                </div>
+                                            @endif
+                                            @if(isset($subject_403))
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>Asunto:</strong> {{ $subject_403 }}
+                                                </div>
+                                            @endif
+                                            @if(isset($name_403))
+                                            <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                <strong>Nombre:</strong> {{ $name_403 }}
                                             </div>
-                                            <p style='font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;margin:0 0 19px'><a href="#">{{ trans('forms::pulsar.view_on_forms') }}</a></p>
+                                            @endif
+                                            @if(isset($surname_403))
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>Apellidos:</strong> {{ $surname_403 }}
+                                                </div>
+                                            @endif
+                                            @if(isset($company_403))
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>Empresa:</strong> {{ $company_403 }}
+                                                </div>
+                                            @endif
+                                            @if(isset($email_403))
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>Email:</strong> <a href="mailto:{{ $email_403 }}">{{ $email_403 }}</a>
+                                                </div>
+                                            @endif
+                                            @foreach($data_403 as $data)
+                                                <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
+                                                    <strong>{{ $data['name'] }}:</strong> {{ $data['value'] }}
+                                                </div>
+                                            @endforeach
                                         </td>
                                     </tr>
                                 </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
+                                <p class="small grey" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:grey;font-size:12px;line-height:15px;margin:0 0 15px'>
+                                    {{ trans('forms::pulsar.actions_email_record') }}, <a href="#">{{ trans('forms::pulsar.view_on_forms') }}</a> {{ trans('forms::pulsar.or') }} <a href="">{{ trans('forms::pulsar.create_comment') }}</a> {{ trans('forms::pulsar.or') }} <a href="">{{ trans('forms::pulsar.change_state') }}</a>
+                                </p>
                             </td>
                         </tr>
                         <tr>
@@ -64,16 +107,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
-                                <p class="message small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;line-height:15px;color:grey;font-size:12px;margin:0 0 15px;margin-bottom:8px'>
-                                    <a href="#" style="color:grey">{{ trans('forms::pulsar.stop_email_form') }}</a> {{ trans('forms::pulsar.stop_email_form2') }}
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="subscription_footer" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="message small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;margin:0 0 15px;line-height:15px;font-size:12px;color:grey;margin-bottom:8px;border-top:1px solid #ddd;margin-top:10px;padding-top:15px'>
-                                    {{ trans('forms::pulsar.less_email') }} <a href="#" style="color:grey">Get a digest of your notifications</a>  every few hours instead, or <a href="#" style="color:grey">go to your Basecamp settings</a> to choose which emails you receive.
+                                    <a href="#" style="color:grey">{{ trans('forms::pulsar.stop_email_form') }}</a> {{ trans('forms::pulsar.stop_email_form2') }}
                                 </p>
                             </td>
                         </tr>

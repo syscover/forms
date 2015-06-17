@@ -20,7 +20,6 @@ class Cron {
 
     public static function checkMessageToSend()
     {
-
         $notificationsAccount = Preference::getValue('notificationsAccount', 4);
         $emailAccount = EmailAccount::find($notificationsAccount->value_018);
         if($emailAccount == null) return null;
@@ -40,11 +39,12 @@ class Cron {
                 $m->to($message->email_405, $message->name_405)->subject("HOLA MUNDO");
                 if($emailAccount->reply_to_013 != null) $m->replyTo($emailAccount->reply_to_013);
             });
-
+/*
             Message::where('id_405', $message->id_405)->update([
                 'dispatched_405'  => true,
                 'send_date_405'   =>  date('U')
             ]);
+*/
         }
     }
 }
