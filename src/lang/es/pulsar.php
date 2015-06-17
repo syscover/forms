@@ -22,6 +22,8 @@ return [
     'stop_email_form2'                      => 'de este formulario.',
     'sent_to'                               => 'Este email fue enviado a:',
     'or'                                    => 'o',
+    'to'                                    => 'a',
+    'comment'                               => 'Comentario',
     'view_on_forms'                         => 'ver este registro',
     'view_all_records'                      => 'ver todos los registros del formulario',
     'create_comment'                        => 'crear un comentario',
@@ -29,7 +31,12 @@ return [
     'sent_form'                             => 'envió este registro sobre Pulsar Forms.',
     'actions_email_record'                  => 'Puedes realizar las siguites acciones',
     'form_received'                         => 'Has recibido un nuevo registro del formulario',
+    'form_comment'                          => 'Tienes un nuevo comentario de un registro de este formulario',
+    'record_change_state'                   => 'Un registro ha cambiado de estado, del formulario',
     'state_record'                          => 'Actualmente el estado del registro es',
+    'state_transition'                      => 'El estado del registro ha cambiado de',
     'record_data'                           => 'Datos del registro',
-    'subject_email_record'                  => 'Nuevo registro del formulario:'
+    'subject_email_record'                  => 'Nuevo registro del formulario:',
+    'subject_change_state'                  => 'Un registro ha cambiado de estado, del formulario:',
+    'subject_comment'                       => 'Hay un nuevo comentario de registro para este formulario:'
 ];

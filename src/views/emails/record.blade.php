@@ -25,19 +25,19 @@
         <table cellspacing="0" cellpadding="0" class="layout" style="border-spacing:0;background:#ffffff;margin:0;padding:0;border-collapse:collapse;text-align:left;border:0;width:100%"><tr>
                 <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                     <table cellspacing="0" cellpadding="0" class="layout" style="border-spacing:0;background:#ffffff;margin:0;padding:0;border-collapse:collapse;text-align:left;border:0;width:100%">
-                        @if($dataMessage->permission_record_405 || $dataMessage->permission_comment_405 || $dataMessage->permission_state_405)
+                        @if($dataTextMessage->permission_record_405 || $dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405)
                         <tr>
                             <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="small grey" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:grey;font-size:12px;line-height:15px;margin:0 0 15px'>
                                     {{ trans('forms::pulsar.actions_email_record') }},
-                                    @if($dataMessage->permission_record_405)
-                                        <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 1]) }}">{{ trans('forms::pulsar.view_on_forms') }}</a> @if($dataMessage->permission_comment_405 || $dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
-                                        <a href="{{ route('FormsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataMessage->permission_comment_405 || $dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                    @if($dataTextMessage->permission_record_405)
+                                        <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 1]) }}">{{ trans('forms::pulsar.view_on_forms') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                        <a href="{{ route('FormsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
                                     @endif
-                                    @if($dataMessage->permission_comment_405)
-                                        <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0, 'newComment' => 1]) }}">{{ trans('forms::pulsar.create_comment') }}</a> @if($dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                    @if($dataTextMessage->permission_comment_405)
+                                        <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0, 'newComment' => 1]) }}">{{ trans('forms::pulsar.create_comment') }}</a> @if($dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
                                     @endif
-                                    @if($dataMessage->permission_state_405)
+                                    @if($dataTextMessage->permission_state_405)
                                         <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0]) }}">{{ trans('forms::pulsar.change_state') }}</a>
                                     @endif
                                 </p>
@@ -49,7 +49,7 @@
                                 <table cellspacing="0" cellpadding="0" width="100%" style="background:#ffffff;margin:0;padding:0;border:0;text-align:left;border-collapse:collapse;border-spacing:0">
                                     <tr>
                                         <td class="header_body brown" valign="middle" width="100%" style='background:#ffffff;text-align:left;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;border-collapse:collapse;padding:0;border-spacing:0;vertical-align:middle;padding-left:10px;width:auto !important;'>
-                                            {{ trans('forms::pulsar.form_received') }}, <strong>{{ $dataMessage->name_form_405 }}</strong>
+                                            {{ trans('forms::pulsar.form_received') }}, <strong>{{ $dataTextMessage->name_form_405 }}</strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -57,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <td class="header_body brown" valign="middle" width="100%" style='background:#ffffff;text-align:left;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;border-collapse:collapse;padding:0;border-spacing:0;vertical-align:middle;padding-left:10px;width:auto !important'>
-                                            <strong style="color:brown;">{{ trans('forms::pulsar.state_record') }}:</strong> <strong>{{ $dataMessage->name_state_405 }}</strong> <span style="width: 45px; height: 45px; background-color: {{ $dataMessage->color_state_405 }}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <strong style="color:brown;">{{ trans('forms::pulsar.state_record') }}:</strong> <strong>{{ $dataTextMessage->name_state_405 }}</strong> <span style="width: 45px; height: 45px; background-color: {{ $dataTextMessage->color_state_405 }}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -104,19 +104,19 @@
                                 </table>
                             </td>
                         </tr>
-                        @if($dataMessage->permission_record_405 || $dataMessage->permission_comment_405 || $dataMessage->permission_state_405)
+                        @if($dataTextMessage->permission_record_405 || $dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405)
                             <tr>
                                 <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                     <p class="small grey" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:grey;font-size:12px;line-height:15px;margin:0 0 15px'>
                                         {{ trans('forms::pulsar.actions_email_record') }},
-                                        @if($dataMessage->permission_record_405)
-                                            <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 1]) }}">{{ trans('forms::pulsar.view_on_forms') }}</a> @if($dataMessage->permission_comment_405 || $dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
-                                            <a href="{{ route('FormsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataMessage->permission_comment_405 || $dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                        @if($dataTextMessage->permission_record_405)
+                                            <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 1]) }}">{{ trans('forms::pulsar.view_on_forms') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                            <a href="{{ route('FormsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
                                         @endif
-                                        @if($dataMessage->permission_comment_405)
-                                            <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0, 'newComment' => 1]) }}">{{ trans('forms::pulsar.create_comment') }}</a> @if($dataMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                                        @if($dataTextMessage->permission_comment_405)
+                                            <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0, 'newComment' => 1]) }}">{{ trans('forms::pulsar.create_comment') }}</a> @if($dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
                                         @endif
-                                        @if($dataMessage->permission_state_405)
+                                        @if($dataTextMessage->permission_state_405)
                                             <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0]) }}">{{ trans('forms::pulsar.change_state') }}</a>
                                         @endif
                                     </p>
@@ -126,11 +126,11 @@
                         <tr>
                             <td style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;line-height:15px;color:grey;font-size:12px;margin:0 0 15px;margin-bottom:8px'>
-                                    {{ trans('forms::pulsar.sent_to') }} {{ $dataMessage->names_405 }}.
+                                    {{ trans('forms::pulsar.sent_to') }} {{ $dataTextMessage->names_405 }}.
                                 </p>
                             </td>
                         </tr>
-                        @if($dataMessage->permission_record_405)
+                        @if($dataTextMessage->permission_record_405)
                         <tr>
                             <td class="subscription_footer" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="message small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;margin:0 0 15px;line-height:15px;font-size:12px;color:grey;margin-bottom:8px;border-top:1px solid #ddd;margin-top:10px;padding-top:15px'>

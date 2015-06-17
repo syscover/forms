@@ -10,11 +10,14 @@
  * @filesource
  */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
+use Syscover\Pulsar\Libraries\Miscellaneous;
+use Syscover\Pulsar\Libraries\PulsarAcl;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\ControllerTrait;
 use Syscover\Forms\Models\Comment;
@@ -43,65 +46,107 @@ class Comments extends Controller {
 
     public function storeCustomRecord($parameters)
     {
+        $record             = Record::find(Request::input('ref'));
+        $record->data_403   = json_decode($record->data_403);
+        $form               = $record->form;
+        $state              = $record->state;
+        $names              = [];
+        $usersEmails        = [];
+        $messages           = [];
+
         $comment = Comment::create([
             'record_404'                => Request::input('ref'),
-            'user_404'                  => Request::input('user'),
+            'user_404'                  => Auth::user()->id_010,
             'date_404'                  => date('U'),
             'subject_404'               => Request::input('subject'),
             'comment_404'               => Request::input('comment')
         ]);
 
-        $record     = Record::find(Request::input('ref'));
-        $user       = User::find(Request::input('user'));
+        // ?? check new recipients
 
-        $form       = $record->form;
-        $forwards   = $form->forwards;
-        $recipients = [];
+        // get recipient emails to compare with new email user comment
+        $recipients = Recipient::where('record_406', Request::input('ref'))->where('comments_406', true)->get();
 
-        foreach($forwards as $forward)
+        // set recipients
+        foreach($recipients as $recipient)
         {
-            if($forward->comments_402)
+            $names[]        = $recipient->name_406;
+            $usersEmails[]  = $recipient->email_406;
+        }
+
+        // get users with the emails recipients
+        $users = User::whereIn('email_010', $usersEmails)->get();
+        $matchAuthor = false;
+        foreach($recipients as $recipient)
+        {
+            if($recipient->email_406 == Auth::user()->email_010)
             {
-                $recipients[] = [
-                    'record_406'    => $record->id_403,
-                    'forward_406'   => true,
-                    'name_406'      => $record->name_403,
-                    'email_406'     => $record->email_403
+                $matchAuthor = true;
+            }
+            else
+            {
+                // send to all recipients less Author recipient
+                // get user and permissions
+                $matchUser = null;
+                foreach($users as $user)
+                {
+                    if($user->email_010 == $recipient->email_406)
+                    {
+                        $matchUser = $user;
+                        break;
+                    }
+                }
+
+                if($matchUser != null)
+                {
+                    $userAcl = PulsarAcl::getProfileAcl($matchUser->profile_010);
+                }
+
+                $messages[] = [
+                    'type_405'                  => 'comment',
+                    'record_405'                => $record->id_403,
+                    'date_405'                  => date('U'),
+                    'forward_405'               => $recipient->forward_406,
+                    'subject_405'               => 'forms::pulsar.subject_comment',
+                    'name_405'                  => $recipient->name_406,
+                    'email_405'                 => $recipient->email_406,
+                    'form_405'                  => $form->id_401,
+                    'user_405'                  => $user == null? null : $user->id_010,
+                    'template_405'              => 'forms::emails.comment',
+                    'text_template_405'         => 'forms::emails.text_comment',
+                    'data_message_405'          => json_encode([
+                        'name_form_405'             => $form->name_401,
+                        'author_comment_405'        => Auth::user()->name_010 . ' ' .  Auth::user()->surname_010,
+                        'date_comment_405'          => date(config('pulsar.datePattern')),
+                        'subject_comment_405'       => $comment->subject_404,
+                        'comment_405'               => $comment->comment_404,
+                        'name_state_405'            => $state->name_400,
+                        'color_state_405'           => $state->color_400,
+                        'names_405'                 => implode (", ", $names),
+                        'permission_state_405'      => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'edit'),
+                        'permission_comment_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-comment', 'create'),
+                        'permission_forward_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-form', 'edit'),
+                        'permission_record_405'     => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'show'),
+                    ]),
+                    'data_405'                  => json_encode($record->toArray())
                 ];
             }
-
-            if($forward->comments_402)
-            {
-
-            }
         }
 
-        if(count($recipients) > 0)
+        if(!$matchAuthor)
         {
-            Recipient::insert($recipients);
+            // Include Author to recipients but not forward
+            Recipient::create([
+                'record_406'    => $record->id_403,
+                'forward_406'   => false,
+                'name_406'      => Auth::user()->name_010 . ' ' .  Auth::user()->surname_010,
+                'email_406'     => Auth::user()->email_010,
+                'comments_406'  => true,
+                'states_406'    => true
+            ]);
         }
 
-/*
-        Message::create([
-            'record_405'                => Request::input('ref'),
-            'date_405'                  => date('U'),
-            'template_405'              => 'forms::emails.comment',
-            'data_405'                  => json_encode([
-                'user'  => [
-                    'id'        => $user->id_010,
-                    'user'      => $user->user_010,
-                    'name'      => $user->name_010,
-                    'surname'   => $user->surname_010,
-                    'email'     => $user->email_010
-                ],
-                'record'    => $record->toArray(),
-                'comment'   => $comment->toArray(),
-                'forwards'  => [
-                    ['name' => 'minombre', 'email' => '']
-                ]
-            ])
-        ]);
-*/
+        if(count($messages) > 0)    Message::insert($messages);
 
         $parameters['modal'] = 1;
 

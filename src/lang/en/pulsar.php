@@ -22,6 +22,8 @@ return [
     'stop_email_form2'                      => 'about this form.',
     'sent_to'                               => 'This email was sent to:',
     'or'                                    => 'or',
+    'to'                                    => 'to',
+    'comment'                               => 'Comment',
     'view_on_forms'                         => 'view this record',
     'view_all_records'                      => 'view all records for this form',
     'create_comment'                        => 'create a comment',
@@ -29,7 +31,12 @@ return [
     'sent_form'                             => 'sent this record on Pulsar Forms.',
     'actions_email_record'                  => 'You can perform these actions',
     'form_received'                         => 'You\'ve received a new registration form',
+    'form_comment'                         => 'You\'ve a new comment on record for this form',
+    'record_change_state'                   => 'A record has changed state, for this form',
     'state_record'                          => 'Currently the registration status is',
+    'state_transition'                      => 'Registration status has changed from',
     'record_data'                           => 'Record data',
-    'subject_email_record'                  => 'New record from form:'
+    'subject_email_record'                  => 'New record for this form:',
+    'subject_change_state'                  => 'State record has been changed for this form:',
+    'subject_comment'                       => 'New record comment for this form:'
 ];

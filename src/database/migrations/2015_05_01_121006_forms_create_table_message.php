@@ -22,20 +22,22 @@ class FormsCreateTableMessage extends Migration {
             $table->integer('send_date_405')->unsigned()->nullable(); // date which the message went sent
             $table->boolean('dispatched_405')->default(false);
             $table->boolean('forward_405')->default(false); // check if is a forward contact
+            $table->string('subject_405', 255);
             $table->string('name_405', 100);
             $table->string('email_405', 50);
             $table->integer('form_405')->unsigned();
-            $table->string('name_form_405', 100);
-            $table->string('name_state_405', 50);
-            $table->string('color_state_405', 50);
-            $table->text('names_405');
-            $table->integer('user_405')->unsigned()->nullable();
-            $table->boolean('permission_state_405')->default(false); // permission to change state
-            $table->boolean('permission_comment_405')->default(false); // permission to create comment
-            $table->boolean('permission_forward_405')->default(false); // permission to delete from forward
-            $table->boolean('permission_record_405')->default(false); // permission to view record on Pulsar Form
+            $table->integer('user_405')->unsigned()->nullable(); // if message is to Pulsar User we indicate your ID
             $table->string('template_405', 255);
             $table->string('text_template_405', 255);
+            /**********************************************************************************************
+             *  JSON FIELDS
+             *
+             * name_form_405, name_state_405, color_state_405, name_old_state_405, color_old_state_405,
+             * names_405, permission_state_405, permission_comment_405, permission_forward_405,
+             * permission_record_405
+             *
+             **********************************************************************************************/
+            $table->text('data_message_405');
             $table->text('data_405');
 
             $table->foreign('form_405')->references('id_401')->on('004_401_form')
