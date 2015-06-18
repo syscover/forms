@@ -12,11 +12,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Libraries\Miscellaneous;
 use Syscover\Pulsar\Libraries\PulsarAcl;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\ControllerTrait;
@@ -62,9 +62,10 @@ class Comments extends Controller {
             'comment_404'               => Request::input('comment')
         ]);
 
-        // ?? check new recipients
+        // check new recipients
+        Miscellaneous::checkRecipients($record, $form);
 
-        // get recipient emails to compare with new email user comment
+        // get recipient emails to compare with new user email
         $recipients = Recipient::where('record_406', Request::input('ref'))->where('comments_406', true)->get();
 
         // set recipients

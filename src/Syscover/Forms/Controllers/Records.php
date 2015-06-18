@@ -12,6 +12,7 @@
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request as HttpRequest;
+use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Form;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
@@ -91,8 +92,10 @@ class Records extends Controller {
             'state_403' => $request->input('value')
         ]);
 
-        // ?? check new recipients
+        // check new recipients
+        Miscellaneous::checkRecipients($record, $form);
 
+        // get recipients emails to compare with new user email
         $recipients = Recipient::where('record_406', $request->input('record'))->where('states_406', true)->get();
 
         // set recipients
