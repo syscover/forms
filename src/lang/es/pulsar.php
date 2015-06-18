@@ -20,6 +20,7 @@ return [
     'notifications_account'                 => 'Cuenta de notificaciones',
     'stop_email_form'                       => 'Parar de recibir emails',
     'stop_email_form2'                      => 'de este formulario.',
+    'stop_email_form3'                      => 'de este registro.',
     'sent_to'                               => 'Este email fue enviado a:',
     'or'                                    => 'o',
     'to'                                    => 'a',

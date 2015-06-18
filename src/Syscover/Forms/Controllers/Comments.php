@@ -112,7 +112,7 @@ class Comments extends Controller {
                     'name_405'                  => $recipient->name_406,
                     'email_405'                 => $recipient->email_406,
                     'form_405'                  => $form->id_401,
-                    'user_405'                  => $user == null? null : $user->id_010,
+                    'user_405'                  => $matchUser == null? null : $matchUser->id_010,
                     'template_405'              => 'forms::emails.comment',
                     'text_template_405'         => 'forms::emails.text_comment',
                     'data_message_405'          => json_encode([
@@ -124,10 +124,10 @@ class Comments extends Controller {
                         'name_state_405'            => $state->name_400,
                         'color_state_405'           => $state->color_400,
                         'names_405'                 => implode (", ", $names),
-                        'permission_state_405'      => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'edit'),
-                        'permission_comment_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-comment', 'create'),
-                        'permission_forward_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-form', 'edit'),
-                        'permission_record_405'     => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'show'),
+                        'permission_state_405'      => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-record', 'edit'),
+                        'permission_comment_405'    => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-comment', 'create'),
+                        'permission_forward_405'    => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-form', 'edit'),
+                        'permission_record_405'     => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-record', 'show'),
                     ]),
                     'data_405'                  => json_encode($record->toArray())
                 ];

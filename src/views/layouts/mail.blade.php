@@ -33,11 +33,20 @@
                     </tr>
                     @include('forms::includes.block.actions_email')
                     @include('forms::includes.block.sent_to_email')
-                    @if($dataTextMessage->permission_record_405)
+                    @if($dataTextMessage->permission_record_405 && $dataMessage->forward_record_405)
                         <tr>
                             <td class="subscription_footer" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
                                 <p class="message small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;margin:0 0 15px;line-height:15px;font-size:12px;color:grey;margin-bottom:8px;border-top:1px solid #ddd;margin-top:10px;padding-top:15px'>
                                     <a href="{{ route('editFormsForm', ['id' => $dataMessage->form_405, 'offset' => 0]) }}" style="color:grey">{{ trans('forms::pulsar.stop_email_form') }}</a> {{ trans('forms::pulsar.stop_email_form2') }}
+                                </p>
+                            </td>
+                        </tr>
+                    @endif
+                    @if(!$dataMessage->forward_record_405)
+                        <tr>
+                            <td class="subscription_footer" style='background:#ffffff;text-align:left;vertical-align:top;font-size:15px;line-height:19px;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#000000;padding:0;border-spacing:0;border-collapse:collapse'>
+                                <p class="message small grey footer" style='font-family:"Helvetica Neue",helvetica,arial,sans-serif;margin:0 0 15px;line-height:15px;font-size:12px;color:grey;margin-bottom:8px;border-top:1px solid #ddd;margin-top:10px;padding-top:15px'>
+                                    <a href="#" style="color:grey">{{ trans('forms::pulsar.stop_email_form') }}</a> {{ trans('forms::pulsar.stop_email_form3') }}
                                 </p>
                             </td>
                         </tr>

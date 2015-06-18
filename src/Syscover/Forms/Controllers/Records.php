@@ -71,6 +71,26 @@ class Records extends Controller {
         return $parameters;
     }
 
+    public function deleteCustomRecord($record)
+    {
+        // set records unopened
+        if(!$record->opened_403)
+        {
+            $record->form->decrement('n_unopened_401');
+        }
+    }
+
+    public function deleteCustomRecords($idsRecord)
+    {
+        $nUnopenedToDelete = Record::where('opened_403', false)->whereIn('id_403', $idsRecord)->count();
+        // set records unopened
+        if($nUnopenedToDelete > 0)
+        {
+            $record = Record::find($idsRecord[0]);
+            $record->form->decrement('n_unopened_401', $nUnopenedToDelete);
+        }
+    }
+
     /**
      *  Change state record
      *
@@ -180,6 +200,7 @@ class Records extends Controller {
         $recipients         = [];
         $names              = [];
         $messages           = [];
+        $recordDate         = date('U');
 
         if($form == null)
         {
@@ -206,12 +227,12 @@ class Records extends Controller {
         }
 
         $defaultState   = Preference::getValue('defaultState', 4);
-        $date           = date('U');
+
 
         $dataRecord     = [
             'form_403'              => $form->id_401,
-            'date_403'              => $date,
-            'text_date_403'         => date(config('pulsar.datePattern'), $date),
+            'date_403'              => $recordDate,
+            'text_date_403'         => date(config('pulsar.datePattern'), $recordDate),
             'state_403'             => $defaultState->value_018,
             'subject_403'           => $request->input($fields->subject, null),
             'name_403'              => $request->input($fields->name, null),
@@ -224,7 +245,9 @@ class Records extends Controller {
         $record = Record::create($dataRecord);
         $state  = $record->state;
 
-        $form->increment('n_unopened_401');
+        // set records unopened
+        $form->n_unopened_401 = Record::where('form_403', $form->id_401)->where('opened_403', false)->count();
+        $form->save();
 
         // set data index to preparate $dataRecord to message
         $dataRecord['data_403'] = $data;
@@ -288,15 +311,14 @@ class Records extends Controller {
             $response = [
                 'success'   => true,
                 'form'      => [
-                    'date_403'              => $date,
-                    'text_date_403'         => date(config('pulsar.datePattern'), $date),
+                    'date_403'              => $recordDate,
+                    'text_date_403'         => date(config('pulsar.datePattern'), $recordDate),
                     'subject_403'           => $request->input($fields->subject, null),
                     'state_403'             => $defaultState->value_018,
                     'name_403'              => $request->input($fields->name, null),
                     'surname_403'           => $request->input($fields->surname, null),
                     'company_403'           => $request->input($fields->company, null),
                     'email_403'             => $request->input($fields->email, null),
-                    'date_403'              => $request->input($fields->date, null),
                     'data_403'              => json_encode($data)
                 ]
             ];
