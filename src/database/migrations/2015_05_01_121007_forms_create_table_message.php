@@ -21,6 +21,7 @@ class FormsCreateTableMessage extends Migration {
             $table->integer('date_405')->unsigned();
             $table->integer('send_date_405')->unsigned()->nullable(); // date which the message went sent
             $table->boolean('dispatched_405')->default(false);
+            $table->integer('recipient_405')->unsigned();
             $table->boolean('forward_405')->default(false); // check if is a forward contact
             $table->string('subject_405', 255);
             $table->string('name_405', 100);
@@ -46,6 +47,8 @@ class FormsCreateTableMessage extends Migration {
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_405')->references('id_010')->on('001_010_user')
                 ->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('recipient_405')->references('id_406')->on('004_406_recipient')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

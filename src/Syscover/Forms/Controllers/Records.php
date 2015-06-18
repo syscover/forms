@@ -31,7 +31,7 @@ class Records extends Controller {
     protected $routeSuffix  = 'FormsRecord';
     protected $folder       = 'records';
     protected $package      = 'forms';
-    protected $aColumns     = ['id_403', ['type' => 'color', 'data' => 'color_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'text_date_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
+    protected $aColumns     = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'text_date_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM        = 'name_403';
     protected $model        = '\Syscover\Forms\Models\Record';
     protected $icon         = 'icon-file-text-alt';
@@ -43,6 +43,18 @@ class Records extends Controller {
         $parameters['objForm'] = Form::find($parameters['form']);
 
         return $parameters;
+    }
+
+    public function customColumnType($row, $aColumn, $aObject, $request)
+    {
+        switch ($aColumn['type'])
+        {
+            case 'color_400':
+                $row[] = $aObject['name_400'] . ' <i class="color' . (isset($aColumn['tooltip']) && $aColumn['tooltip']? ' bs-tooltip' : null) . '"' . (isset($aColumn['title'])? ' title="' . $aObject[$aColumn['title']] . '"' : null) . ' style="background-color: ' . $aObject['color_400'] . '"></i>';
+                break;
+        }
+
+        return $row;
     }
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
@@ -89,6 +101,30 @@ class Records extends Controller {
             $record = Record::find($idsRecord[0]);
             $record->form->decrement('n_unopened_401', $nUnopenedToDelete);
         }
+    }
+
+    /**
+     *  Delete recipient from record
+     *
+     * @access	public
+     * @param   HttpRequest  $request
+     * @return  \Illuminate\Support\Facades\Redirect
+     */
+    public function deleteRecipient(HttpRequest $request)
+    {
+        $parameters = $request->route()->parameters();
+        $recipient  = Recipient::find($parameters['id']);
+        $record     = $recipient->record;
+
+        if(isset($parameters['id']))
+        {
+            Recipient::where('id_406', $parameters['id'])->delete();
+        }
+
+        return redirect()->route('showFormsRecord', ['id' => $record->id_403, 'form' => $record->form_403, 'offset' => 0, 'tab' => 0])->with([
+            'msg'        => 1,
+            'txtMsg'     => trans('pulsar::pulsar.message_delete_record_successful', ['name' => $recipient->email_406])
+        ]);
     }
 
     /**
@@ -150,6 +186,7 @@ class Records extends Controller {
                 'type_405'                  => 'state',
                 'record_405'                => $record->id_403,
                 'date_405'                  => date('U'),
+                'recipient_405'             => $recipient->id_406,
                 'forward_405'               => $recipient->forward_406,
                 'subject_405'               => 'forms::pulsar.subject_change_state',
                 'name_405'                  => $recipient->name_406,
@@ -252,7 +289,7 @@ class Records extends Controller {
         // set data index to preparate $dataRecord to message
         $dataRecord['data_403'] = $data;
 
-        // set recipients
+        // set recipients from forwards
         foreach($forwards as $forward)
         {
             $names[] = $forward->name_402;
@@ -268,9 +305,17 @@ class Records extends Controller {
                 'comments_406'  => $forward->comments_402,
                 'states_406'    => $forward->states_402
             ];
+        }
 
+        if(count($recipients) > 0)  Recipient::insert($recipients);
+
+        // get recipient emails to compare with new user email
+        $recipients = $record->recipients;
+
+        foreach($recipients as $recipient)
+        {
             // get user and permissions
-            $user = User::where('email_010', $forward->email_402)->first();
+            $user = User::where('email_010', $recipient->email_406)->first();
             if($user != null)
             {
                 $userAcl = PulsarAcl::getProfileAcl($user->profile_010);
@@ -280,10 +325,11 @@ class Records extends Controller {
                 'type_405'                  => 'record',
                 'record_405'                => $record->id_403,
                 'date_405'                  => date('U'),
+                'recipient_405'             => $recipient->id_406,
                 'forward_405'               => true,
                 'subject_405'               => 'forms::pulsar.subject_email_record',
-                'name_405'                  => $forward->name_402,
-                'email_405'                 => $forward->email_402,
+                'name_405'                  => $recipient->name_406,
+                'email_405'                 => $recipient->email_406,
                 'form_405'                  => $form->id_401,
                 'user_405'                  => $user == null? null : $user->id_010,
                 'template_405'              => 'forms::emails.record',
@@ -301,8 +347,6 @@ class Records extends Controller {
                 'data_405'                  => json_encode($dataRecord)
             ];
         }
-
-        if(count($recipients) > 0)  Recipient::insert($recipients);
 
         if(count($messages) > 0)    Message::insert($messages);
 

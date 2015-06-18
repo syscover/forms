@@ -48,6 +48,11 @@ class Record extends Model {
         return $this->hasMany('Syscover\Forms\Models\Comment', 'record_404');
     }
 
+    public function recipients()
+    {
+        return $this->hasMany('Syscover\Forms\Models\Recipient', 'record_406');
+    }
+
     public static function getCustomRecordsLimit($parameters)
     {
         return Record::leftJoin('004_400_state', '004_403_record.state_403', '=', '004_400_state.id_400')

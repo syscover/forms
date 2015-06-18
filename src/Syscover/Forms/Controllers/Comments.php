@@ -71,8 +71,11 @@ class Comments extends Controller {
         // set recipients
         foreach($recipients as $recipient)
         {
-            $names[]        = $recipient->name_406;
-            $usersEmails[]  = $recipient->email_406;
+            if($recipient->email_406 != Auth::user()->email_010)
+            {
+                $names[]        = $recipient->name_406;
+                $usersEmails[]  = $recipient->email_406;
+            }
         }
 
         // get users with the emails recipients
@@ -107,6 +110,7 @@ class Comments extends Controller {
                     'type_405'                  => 'comment',
                     'record_405'                => $record->id_403,
                     'date_405'                  => date('U'),
+                    'recipient_405'             => $recipient->id_406,
                     'forward_405'               => $recipient->forward_406,
                     'subject_405'               => 'forms::pulsar.subject_comment',
                     'name_405'                  => $recipient->name_406,

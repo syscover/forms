@@ -2,7 +2,6 @@
 
 @section('script')
     @parent
-    @include('pulsar::includes.js.datatable_config')
     <!-- forms::records.show -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/css/select2.min.css') }}">
@@ -13,6 +12,9 @@
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/js/i18n/' . config('app.locale') . '.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.cookie/js.cookie.js') }}"></script>
+
+    @include('pulsar::includes.js.success_message')
+    @include('pulsar::includes.js.datatable_config')
 
     <script type="text/javascript">
         $(document).ready(function() {
