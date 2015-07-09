@@ -12,11 +12,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
-use Syscover\Pulsar\Traits\ModelTrait;
+use Syscover\Pulsar\Traits\TraitModel;
 
 class Form extends Model {
 
-    use ModelTrait;
+    use TraitModel;
 
 	protected $table        = '004_401_form';
     protected $primaryKey   = 'id_401';
