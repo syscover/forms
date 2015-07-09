@@ -22,11 +22,11 @@ use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\PulsarAcl;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Models\User;
-use Syscover\Pulsar\Traits\ControllerTrait;
+use Syscover\Pulsar\Traits\TraitController;
 
 class Records extends Controller {
 
-    use ControllerTrait;
+    use TraitController;
 
     protected $routeSuffix  = 'FormsRecord';
     protected $folder       = 'records';

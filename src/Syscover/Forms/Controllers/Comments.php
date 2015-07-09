@@ -19,12 +19,12 @@ use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\PulsarAcl;
 use Syscover\Pulsar\Models\User;
-use Syscover\Pulsar\Traits\ControllerTrait;
+use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Comment;
 
 class Comments extends Controller {
 
-    use ControllerTrait;
+    use TraitController;
 
     protected $routeSuffix      = 'FormsComment';
     protected $folder           = 'comments';

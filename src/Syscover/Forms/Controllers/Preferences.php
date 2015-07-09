@@ -15,11 +15,11 @@ use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Models\Preference;
-use Syscover\Pulsar\Traits\ControllerTrait;
+use Syscover\Pulsar\Traits\TraitController;
 
 class Preferences extends Controller {
 
-    use ControllerTrait;
+    use TraitController;
 
     protected $routeSuffix  = 'FormsPreference';
     protected $folder       = 'preferences';

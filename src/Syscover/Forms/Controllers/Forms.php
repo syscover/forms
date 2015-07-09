@@ -17,12 +17,12 @@ use Illuminate\Http\Request as HttpRequest;
 use Syscover\Forms\Models\Forward;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
-use Syscover\Pulsar\Traits\ControllerTrait;
+use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Form;
 
 class Forms extends Controller {
 
-    use ControllerTrait;
+    use TraitController;
 
     protected $routeSuffix  = 'FormsForm';
     protected $folder       = 'forms';
