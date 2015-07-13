@@ -18,7 +18,7 @@ class FormsCreateTableRecord extends Migration {
             $table->increments('id_403')->unsigned();
             $table->integer('form_403')->unsigned();
             $table->integer('date_403')->unsigned();
-            $table->string('text_date_403', 25);
+            $table->string('date_text_403', 25);
             $table->integer('state_403')->unsigned()->nullable();
 
             $table->string('subject_403', 255)->nullable();
