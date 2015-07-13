@@ -22,12 +22,12 @@ use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Comment;
 
-class Comments extends Controller {
+class CommentController extends Controller {
 
     use TraitController;
 
     protected $routeSuffix      = 'FormsComment';
-    protected $folder           = 'comments';
+    protected $folder           = 'comment';
     protected $package          = 'forms';
     protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';

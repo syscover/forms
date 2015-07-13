@@ -20,12 +20,12 @@ use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Form;
 
-class Forms extends Controller {
+class FormController extends Controller {
 
     use TraitController;
 
     protected $routeSuffix  = 'FormsForm';
-    protected $folder       = 'forms';
+    protected $folder       = 'form';
     protected $package      = 'forms';
     protected $aColumns     = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
     protected $nameM        = 'name_401';

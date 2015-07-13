@@ -17,12 +17,12 @@ use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Traits\TraitController;
 
-class Preferences extends Controller {
+class PreferenceController extends Controller {
 
     use TraitController;
 
     protected $routeSuffix  = 'FormsPreference';
-    protected $folder       = 'preferences';
+    protected $folder       = 'preference';
     protected $package      = 'forms';
     protected $aColumns     = ['id_200', 'name_200'];
     protected $nameM        = 'name_200';

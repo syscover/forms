@@ -15,12 +15,12 @@ use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\State;
 
-class States extends Controller {
+class StateController extends Controller {
 
     use TraitController;
 
     protected $routeSuffix  = 'FormsState';
-    protected $folder       = 'states';
+    protected $folder       = 'state';
     protected $package      = 'forms';
     protected $aColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];
     protected $nameM        = 'name_400';
