@@ -24,7 +24,7 @@ use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
 
-class Records extends Controller {
+class RecordController extends Controller {
 
     use TraitController;
 
