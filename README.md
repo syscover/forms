@@ -48,3 +48,8 @@ php artisan db:seed --class="CronjobFormsTableSeeder"
 php artisan db:seed --class="ResourceFormsTableSeeder"
 
 ```
+
+**7 - Run seed database**
+
+Access Pulsar and section Administration -> Packages, enable Forms package.
+Finally, give permission to the new package, access the section Administration -> Permissions -> Profiles, select your profile and click the button lock "Set all permissions"
