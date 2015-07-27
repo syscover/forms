@@ -269,7 +269,7 @@ class RecordController extends Controller {
         $dataRecord     = [
             'form_403'              => $form->id_401,
             'date_403'              => $recordDate,
-            'text_date_403'         => date(config('pulsar.datePattern'), $recordDate),
+            'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
             'state_403'             => $defaultState->value_018,
             'subject_403'           => $request->input($fields->subject, null),
             'name_403'              => $request->input($fields->name, null),
@@ -356,7 +356,7 @@ class RecordController extends Controller {
                 'success'   => true,
                 'form'      => [
                     'date_403'              => $recordDate,
-                    'text_date_403'         => date(config('pulsar.datePattern'), $recordDate),
+                    'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
                     'subject_403'           => $request->input($fields->subject, null),
                     'state_403'             => $defaultState->value_018,
                     'name_403'              => $request->input($fields->name, null),

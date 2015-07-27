@@ -1,8 +1,8 @@
 <h2>{{ trans('forms::pulsar.record_data') }}</h2>
 
-@if(isset($data->text_date_403))
+@if(isset($data->date_text_403))
     <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
-        <strong>Fecha:</strong> {{ $data->text_date_403 }}
+        <strong>Fecha:</strong> {{ $data->date_text_403 }}
     </div>
 @endif
 @if(isset($data->subject_403))

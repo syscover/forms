@@ -21,7 +21,7 @@ class Record extends Model {
 	protected $table        = '004_403_record';
     protected $primaryKey   = 'id_403';
     public $timestamps      = false;
-    protected $fillable     = ['id_403', 'form_403', 'date_403', 'text_date_403', 'state_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'country_403', 'territorial_area_1_403', 'territorial_area_2_403', 'territorial_area_3_403', 'opened_403', 'data_403'];
+    protected $fillable     = ['id_403', 'form_403', 'date_403', 'date_text_403', 'state_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'country_403', 'territorial_area_1_403', 'territorial_area_2_403', 'territorial_area_3_403', 'opened_403', 'data_403'];
 
     private static $rules   = [
         'name'  => 'required|between:2,50',
