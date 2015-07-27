@@ -51,5 +51,5 @@ php artisan db:seed --class="ResourceFormsTableSeeder"
 
 **7 - Run seed database**
 
-Access Pulsar and section Administration -> Packages, enable Forms package.
+Access Pulsar and section Administration -> Packages, enable Forms package.<br>
 Finally, give permission to the new package, access the section Administration -> Permissions -> Profiles, select your profile and click the button lock "Set all permissions"
