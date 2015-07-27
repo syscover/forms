@@ -27,12 +27,12 @@ class Cron {
 
         $messages = Message::where('dispatched_405', false)->get();
 
-        config('mail.host',        $emailAccount->outgoing_server_013);
-        config('mail.port',        $emailAccount->outgoing_port_013);
-        config('mail.from',        ['address' => $emailAccount->email_013, 'name' => $emailAccount->name_013]);
-        config('mail.encryption',  $emailAccount->outgoing_secure_013 == 'null'? null : $emailAccount->outgoing_secure_013);
-        config('mail.username',    $emailAccount->outgoing_user_013);
-        config('mail.password',    Crypt::decrypt($emailAccount->outgoing_pass_013));
+        config(['mail.host'         =>  $emailAccount->outgoing_server_013]);
+        config(['mail.port'         =>  $emailAccount->outgoing_port_013]);
+        config(['mail.from'         =>  ['address' => $emailAccount->email_013, 'name' => $emailAccount->name_013]]);
+        config(['mail.encryption'   =>  $emailAccount->outgoing_secure_013 == 'null'? null : $emailAccount->outgoing_secure_013]);
+        config(['mail.username'     =>  $emailAccount->outgoing_user_013]);
+        config(['mail.password'     =>  Crypt::decrypt($emailAccount->outgoing_pass_013)]);
 
         foreach($messages as $message)
         {
