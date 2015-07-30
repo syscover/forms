@@ -20,6 +20,7 @@ class Cron {
 
     public static function checkMessageToSend()
     {
+
         $notificationsAccount   = Preference::getValue('notificationsAccountForms', 4);
         $emailAccount           = EmailAccount::find($notificationsAccount->value_018);
 
