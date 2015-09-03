@@ -35,7 +35,7 @@
 
 @section('rows')
     <!-- forms::preferences.index -->
-    @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('pulsar::pulsar.state', 1), 'name' => 'defaultState', 'value' => $defaultStateForms->value_018, 'objects' => $states, 'idSelect' => 'id_400', 'nameSelect' => 'name_400', 'class' => 'form-control custom-select2', 'fieldSize' => 5, 'required' => true, 'dataOption' => ['color' => 'color_400']])
-    @include('pulsar::includes.html.form_select_group', ['label' => trans('forms::pulsar.notifications_account'), 'name' => 'notificationsAccount', 'value' => $notificationsAccountForms->value_018, 'objects' => $accounts, 'idSelect' => 'id_013', 'nameSelect' => 'name_013', 'class' => 'form-control', 'fieldSize' => 5, 'required' => true])
+    @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('pulsar::pulsar.state', 1), 'name' => 'defaultStateForms', 'value' => (int)$defaultStateForms->value_018, 'objects' => $states, 'idSelect' => 'id_400', 'nameSelect' => 'name_400', 'class' => 'form-control custom-select2', 'fieldSize' => 5, 'required' => true, 'dataOption' => ['color' => 'color_400']])
+    @include('pulsar::includes.html.form_select_group', ['label' => trans('forms::pulsar.notifications_account'), 'name' => 'notificationsAccountForms', 'value' => (int)$notificationsAccountForms->value_018, 'objects' => $accounts, 'idSelect' => 'id_013', 'nameSelect' => 'name_013', 'class' => 'form-control', 'fieldSize' => 5, 'required' => true])
     <!-- /forms::preferences.index -->
 @stop

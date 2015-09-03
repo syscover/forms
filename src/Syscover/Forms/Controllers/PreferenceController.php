@@ -32,18 +32,18 @@ class PreferenceController extends Controller {
 
     public function indexCustom($parameters)
     {
-        $parameters['states']                   = State::all();
-        $parameters['defaultState']             = Preference::getValue('defaultStateForms', 4);
+        $parameters['states']                       = State::all();
+        $parameters['defaultStateForms']            = Preference::getValue('defaultStateForms', 4);
 
-        $parameters['accounts']                 = EmailAccount::all();
-        $parameters['notificationsAccount']     = Preference::getValue('notificationsAccountForms', 4);
+        $parameters['accounts']                     = EmailAccount::all();
+        $parameters['notificationsAccountForms']    = Preference::getValue('notificationsAccountForms', 4);
 
         return $parameters;
     }
     
     public function updateCustomRecord()
     {
-        Preference::setValue('defaultStateForms', Request::input('defaultState'), 4);
-        Preference::setValue('notificationsAccountForms', Request::input('notificationsAccount'), 4);
+        Preference::setValue('defaultStateForms', Request::input('defaultStateForms'), 4);
+        Preference::setValue('notificationsAccountForms', Request::input('notificationsAccountForms'), 4);
     }
 }
