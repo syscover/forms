@@ -32,11 +32,11 @@ class PreferenceController extends Controller {
 
     public function indexCustom($parameters)
     {
-        $parameters['states'] = State::all();
-        $parameters['defaultState']  = Preference::getValue('defaultStateForms', 4);
+        $parameters['states']                   = State::all();
+        $parameters['defaultState']             = Preference::getValue('defaultStateForms', 4);
 
-        $parameters['accounts'] = EmailAccount::all();
-        $parameters['notificationsAccount']  = Preference::getValue('notificationsAccountForms', 4);
+        $parameters['accounts']                 = EmailAccount::all();
+        $parameters['notificationsAccount']     = Preference::getValue('notificationsAccountForms', 4);
 
         return $parameters;
     }
