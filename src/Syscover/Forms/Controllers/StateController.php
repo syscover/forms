@@ -25,7 +25,7 @@ class StateController extends Controller {
     protected $aColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];
     protected $nameM        = 'name_400';
     protected $model        = '\Syscover\Forms\Models\State';
-    protected $icon         = 'icon-fire';
+    protected $icon         = 'fa fa-fire';
     protected $objectTrans  = 'state';
 
     public function storeCustomRecord()

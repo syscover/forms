@@ -27,7 +27,7 @@ class PreferenceController extends Controller {
     protected $aColumns     = ['id_200', 'name_200'];
     protected $nameM        = 'name_200';
     protected $model        = '\Syscover\Pulsar\Models\Preference';
-    protected $icon         = 'icon-cog';
+    protected $icon         = 'fa fa-cog';
     protected $objectTrans  = 'preference';
 
     public function indexCustom($parameters)
