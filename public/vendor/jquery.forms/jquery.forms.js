@@ -29,6 +29,8 @@
 
         init: function(options, callback, item)
         {
+            var that = this;
+
             // extend options.fields
             if(options.fields != undefined)
             {
@@ -85,7 +87,7 @@
                     }
                     else
                     {
-                        if(this.options.debug) console.error(response.message);
+                        if(that.options.debug) console.error(response.message);
                         throw response;
                     }
                 }
