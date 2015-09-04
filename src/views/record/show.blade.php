@@ -121,7 +121,7 @@
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.date'), 'name' => 'date', 'value' => date('d-m-Y', $object->date_403), 'fieldSize' => 4, 'readOnly' => true])
         @endif
         @foreach(json_decode($object->data_403) as $field)
-            @if($field->type == 'text')
+            @if($field->type == 'text' || $field->type == 'select-one')
                 @include('pulsar::includes.html.form_text_group', ['label' => ucfirst($field->name), 'name' => '', 'value' => $field->value, 'fieldSize' => isset($field->length)? $field->length : 10 , 'readOnly' => true])
             @elseif($field->type == 'textarea')
                 @include('pulsar::includes.html.form_textarea_group', ['label' => ucfirst($field->name), 'name' => '', 'value' => $field->value, 'labelSize' => 2, 'fieldSize' => 10, 'readOnly' => true])
