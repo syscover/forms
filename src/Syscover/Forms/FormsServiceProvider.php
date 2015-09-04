@@ -20,6 +20,11 @@ class FormsServiceProvider extends ServiceProvider
         // register translations
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../../lang'), 'forms');
 
+		// register public files
+		$this->publishes([
+			realpath(__DIR__ . '/../../../public') => public_path('/packages/syscover/forms')
+		]);
+
         // register migrations
         $this->publishes([
             __DIR__.'/../../database/migrations/' => base_path('/database/migrations')
