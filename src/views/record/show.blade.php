@@ -103,7 +103,7 @@
     <!-- forms::records.show -->
     @include('pulsar::includes.html.form_record_header', ['action' => 'show'])
         @include('pulsar::includes.html.form_text_group', ['label' => 'ID', 'name' => 'id', 'value' => $object->id_403, 'fieldSize' => 2, 'readOnly' => true])
-        @include('pulsar::includes.html.form_text_group', ['label' => trans('forms::pulsar.record_date'), 'name' => 'recordDate', 'value' => date('d-m-Y', $object->record_date_403), 'fieldSize' => 4, 'readOnly' => true])
+        @include('pulsar::includes.html.form_text_group', ['label' => trans('forms::pulsar.record_date'), 'name' => 'recordDate', 'value' => date(config('pulsar.datePattern'), $object->date_403), 'fieldSize' => 4, 'readOnly' => true])
         @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.subject'), 'name' => 'subject', 'value' => $object->subject_403, 'fieldSize' => 10, 'readOnly' => true,])
         @if(isset($object->company_403))
             @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('pulsar::pulsar.company', 1), 'name' => 'company', 'value' => $object->company_403, 'fieldSize' => 10, 'readOnly' => true])
