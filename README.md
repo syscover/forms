@@ -64,3 +64,9 @@ Después tienes que declarar el plugin de javascript que adaptará tu formulario
 ```
 
 ```
+
+Puerdes añadir propiedades a tu formulario mediante atributos data
+```
+data-length: Tamaño del campo que tendrá en el panel de control
+data-label: Título del campo que se le asignará
+```
