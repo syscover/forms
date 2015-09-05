@@ -32,6 +32,6 @@
 @endif
 @foreach($data->data_403 as $field)
     <div class="formatted_content" style="padding-bottom:19px;padding:0 !important;border:none !important;margin:0 0 5px !important;max-width:none !important">
-        <strong>{{ $field->name }}:</strong> {{ $field->value }}
+        <strong>{{ isset($field->label)? $field->label : ucfirst($field->name) }}:</strong> {{ $field->value }}
     </div>
 @endforeach

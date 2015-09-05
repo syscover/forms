@@ -53,3 +53,14 @@ php artisan db:seed --class="ResourceFormsTableSeeder"
 Logout from pulsar and login again, to load new resources.<br>
 Access Pulsar and section Administration -> Packages, enable Forms package.<br>
 Finally, give permission to the new package, access the section Administration -> Permissions -> Profiles, select your profile and click the button lock "Set all permissions"
+
+**8 - Javascript implementation**
+Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
+```
+<script type="text/javascript" src="{{ asset('packages/syscover/forms/vendor/jquery.forms/jquery.forms.js') }}"></script>
+```
+
+Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
+```
+
+```

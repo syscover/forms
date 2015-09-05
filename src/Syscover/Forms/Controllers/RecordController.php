@@ -258,7 +258,8 @@ class RecordController extends Controller {
                 'value' => $request->input($field->name)
             ];
 
-            if(isset($field->length)) $obj['length'] = $field->length;
+            if(isset($field->length)) $obj['length']    = $field->length;
+            if(isset($field->label)) $obj['label']      = $field->label;
 
             $data[] = $obj;
         }

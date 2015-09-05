@@ -76,6 +76,10 @@
                                 {
                                     obj.length = $('[name=' + this + ']').data('length');
                                 }
+                                if($('[name=' + this + ']').data('label') != undefined)
+                                {
+                                    obj.label = $('[name=' + this + ']').data('label');
+                                }
                                 data.push(obj);
                             }
                         });

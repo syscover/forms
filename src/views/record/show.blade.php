@@ -122,11 +122,11 @@
         @endif
         @foreach(json_decode($object->data_403) as $field)
             @if($field->type == 'text' || $field->type == 'select-one'|| $field->type == 'select-multiple' || $field->type == 'hidden')
-                @include('pulsar::includes.html.form_text_group', ['label' => ucfirst($field->name), 'name' => '', 'value' => $field->value, 'fieldSize' => isset($field->length)? $field->length : 10 , 'readOnly' => true])
+                @include('pulsar::includes.html.form_text_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'fieldSize' => isset($field->length)? $field->length : 10 , 'readOnly' => true])
             @elseif($field->type == 'textarea')
-                @include('pulsar::includes.html.form_textarea_group', ['label' => ucfirst($field->name), 'name' => '', 'value' => $field->value, 'labelSize' => 2, 'fieldSize' => 10, 'readOnly' => true])
+                @include('pulsar::includes.html.form_textarea_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'labelSize' => 2, 'fieldSize' => 10, 'readOnly' => true])
             @elseif($field->type == 'checkbox')
-                @include('pulsar::includes.html.form_checkbox_group', ['label' => ucfirst($field->name), 'name' => '', 'value' => $field->value, 'isChecked' => $field->value, 'disabled' => true])
+                @include('pulsar::includes.html.form_checkbox_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'isChecked' => $field->value, 'disabled' => true])
             @endif
         @endforeach
     @include('pulsar::includes.html.form_record_footer', ['action' => 'show'])
