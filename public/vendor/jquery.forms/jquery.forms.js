@@ -1,5 +1,5 @@
 /*
- *	ElementTable v1.0 - 2015-06-1
+ *	ElementTable v1.1 - 2015-09-1
  *	(c) 2015 Syscover S.L. - http://www.syscover.com/
  *	All rights reserved
  */
@@ -42,8 +42,6 @@
             this.item = item;
             this.callback = callback;
 
-            var $this = this;
-
             if(this.options.id == null)
             {
                 if(this.options.debug) console.error('Need implement id paramenter');
@@ -61,14 +59,14 @@
                 {
                     if(response.success)
                     {
-                        $($this.item).attr('action', response.action);
-                        $($this.item).prepend('<input type="hidden" name="_redirectOk">');
-                        $($this.item).prepend('<input type="hidden" name="_fields">');
-                        $($this.item).prepend('<input type="hidden" name="_tokenForm" value="' + response.token + '">');
-                        $($this.item).prepend('<input type="hidden" name="_token" value="' + response.csfr + '">');
+                        $(that.item).attr('action', response.action);
+                        $(that.item).prepend('<input type="hidden" name="_redirectOk">');
+                        $(that.item).prepend('<input type="hidden" name="_fields">');
+                        $(that.item).prepend('<input type="hidden" name="_tokenForm" value="' + response.token + '">');
+                        $(that.item).prepend('<input type="hidden" name="_token" value="' + response.csfr + '">');
 
                         var data = [];
-                        $($this.options.fields.data).each(function(){
+                        $(that.options.fields.data).each(function(){
                             if($('[name=' + this + ']').prop("type") != undefined)
                             {
                                 var obj = {type: $('[name=' + this + ']').prop("type"), name: this};
@@ -84,10 +82,10 @@
                             }
                         });
 
-                        $this.options.fields.data = data;
+                        that.options.fields.data = data;
 
-                        $("[name=_fields]", $this.item).val(JSON.stringify($this.options.fields));
-                        $("[name=_redirectOk]", $this.item).val($this.options.redirectOk);
+                        $("[name=_fields]", that.item).val(JSON.stringify(that.options.fields));
+                        $("[name=_redirectOk]", that.item).val(that.options.redirectOk);
                     }
                     else
                     {
@@ -101,39 +99,68 @@
             {
                 $(this.item).on('submit', function(){
                     event.preventDefault();
-                    $.ajax({
-                        url:						$(this).attr('action'),
-                        data:                       $(this).serializeArray(),
-                        type:						$(this).attr('method'),
-                        dataType:					'json',
-                        success: function(response)
-                        {
-                            if($.isFunction($this.callback))
-                            {
-                                if($this.options.cleanFields)
-                                {
-                                    $('[name=' + $this.options.fields.subject + ']').val('');
-                                    $('[name=' + $this.options.fields.name + ']').val('');
-                                    $('[name=' + $this.options.fields.surname + ']').val('');
-                                    $('[name=' + $this.options.fields.company + ']').val('');
-                                    $('[name=' + $this.options.fields.email + ']').val('');
-                                    $('[name=' + $this.options.fields.date + ']').val('');
-                                    $('[name=' + $this.options.fields.cp + ']').val('');
-                                    $('[name=' + $this.options.fields.locality + ']').val('');
-                                    $('[name=' + $this.options.fields.address + ']').val('');
-                                    $('[name=' + $this.options.fields.message + ']').val('');
 
-                                    $($this.options.fields.data).each(function(){
-                                        $('[name=' + this.name + ']').val('');
-                                    });
-                                }
-                                $this.callback(response);
-                            }
-                        }
-                    });
+                    // fire event forms:submit
+                    that.item.trigger('forms:submit');
+
+                    that.submit();
                 });
             }
             return this;
+        },
+
+        submit: function(){
+            var that = this;
+
+            $.ajax({
+                url:						this.item.attr('action'),
+                data:                       this.item.serializeArray(),
+                type:						this.item.attr('method'),
+                dataType:					'json',
+                success: function(response)
+                {
+                    if($.isFunction(that.callback))
+                    {
+                        if(that.options.cleanFields)
+                        {
+                            $('[name=' + that.options.fields.subject + ']').val('');
+                            $('[name=' + that.options.fields.name + ']').val('');
+                            $('[name=' + that.options.fields.surname + ']').val('');
+                            $('[name=' + that.options.fields.company + ']').val('');
+                            $('[name=' + that.options.fields.email + ']').val('');
+                            $('[name=' + that.options.fields.date + ']').val('');
+                            $('[name=' + that.options.fields.cp + ']').val('');
+                            $('[name=' + that.options.fields.locality + ']').val('');
+                            $('[name=' + that.options.fields.address + ']').val('');
+                            $('[name=' + that.options.fields.message + ']').val('');
+
+                            $(that.options.fields.data).each(function(){
+                                $('[name=' + this.name + ']').val('');
+                            });
+                        }
+                        that.callback(response);
+                    }
+                },
+                error: function(e){
+                    console.error(e);
+                }
+            });
+        },
+
+        checkReCaptcha: function(){
+            $.ajax({
+                url:						'/' + this.options.appName + '/forms/forms/init/form/' + this.options.id,
+                data:                       {},
+                type:						'POST',
+                dataType:					'json',
+                success: function(response)
+                {
+
+                },
+                error: function(e){
+                    console.error(e);
+                }
+            });
         }
     };
 
@@ -154,21 +181,14 @@
      * Start the plugin
      */
     $.fn.forms = function(options, callback) {
-        this.each(function() {
-            if (!$.data(this, 'forms'))
-            {
-                try
-                {
-                    $.data(this, 'forms', Object.create(Forms).init(options, callback, this));
-                }
-                catch (err)
-                {
-                    if($.isFunction(callback))
-                    {
-                        callback(err);
-                    }
-                }
-            }
-        });
+
+        if (!this.data('forms'))
+        {
+            return this.data('forms', Object.create(Forms).init(options, callback, this));
+        }
+        else
+        {
+            return this.data('forms');
+        }
     };
 }( jQuery ));
