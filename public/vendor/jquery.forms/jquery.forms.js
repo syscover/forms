@@ -97,7 +97,7 @@
 
             if(this.options.ajax)
             {
-                $(this.item).on('submit', function(){
+                $(this.item).on('submit', function(event){
                     event.preventDefault();
 
                     // fire event forms:submit
@@ -149,7 +149,7 @@
 
         checkReCaptcha: function(){
             $.ajax({
-                url:						'/' + this.options.appName + '/forms/forms/init/form/' + this.options.id,
+                url:						'/' + this.options.appName + '/forms/forms/google/recaptcha/verify/',
                 data:                       {},
                 type:						'POST',
                 dataType:					'json',

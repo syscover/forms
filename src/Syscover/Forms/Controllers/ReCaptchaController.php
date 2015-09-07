@@ -28,14 +28,23 @@ class ReCaptchaController extends Controller {
         $recaptcha = new ReCaptcha(config('forms.secretKey'));
 
         $resp = $recaptcha->verify($request->input('g-recaptcha-response'), $request->getClientIp());
-        if ($resp->isSuccess()) {
-            // verified!
-            echo('ok');
+
+        if ($resp->isSuccess())
+        {
+            $response = [
+                'success'   => true
+            ];
+
+            return response()->json($response);
         }
         else
         {
-            $errors = $resp->getErrorCodes();
-            echo('NO ok');
+            $response = [
+                'success'       => false,
+                "error-codes"   => $resp->getErrorCodes()
+            ];
+
+            return response()->json($response);
         }
     }
 }
