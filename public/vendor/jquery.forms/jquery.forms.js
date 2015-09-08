@@ -104,48 +104,53 @@
                 event.preventDefault();
 
                 // check if form contain recaptcha element
-                if($(that.item).find('[name=g-recaptcha-response]').length > 0)
-                {
-                    $.ajax({
-                        url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
-                        type: 'POST',
-                        data: {
-                            '_token': $(event.target).find('[name=_token]').val(),
-                            'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
-                        },
-                        dataType: 'json',
-                        success: function(response)
-                        {
-                            if(response.success)
-                            {
-                                // fire event forms:submit
-                                that.setFormsSubmitEvent();
-                                that.item.trigger('forms:submit');
-                            }
-                            else
-                            {
-                                //error from captcha
-                                that.item.trigger('forms:error', {
-                                    success: false,
-                                    nativeError: response
-                                });
-                            }
-                        },
-                        error: function(error)
-                        {
-                            that.item.trigger('forms:error', {
-                                success: false,
-                                nativeError: error
-                            });
-                        }
-                    });
-                }
-                else
-                {
-                    // fire event forms:submit
-                    that.setFormsSubmitEvent();
-                    that.item.trigger('forms:submit');
-                }
+                /*
+                 if($(that.item).find('[name=g-recaptcha-response]').length > 0 && $(event.target).find('[name=g-recaptcha-response]').val() != '')
+                 {
+                 $.ajax({
+                 url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
+                 type: 'POST',
+                 data: {
+                 '_token': $(event.target).find('[name=_token]').val(),
+                 'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
+                 },
+                 dataType: 'json',
+                 success: function(response)
+                 {
+                 if(response.success)
+                 {
+                 // fire event forms:submit
+                 that.setFormsSubmitEvent();
+                 that.item.trigger('forms:submit');
+                 }
+                 else
+                 {
+                 //error from captcha
+                 that.item.trigger('forms:error', {
+                 success: false,
+                 nativeError: response
+                 });
+                 }
+                 },
+                 error: function(error)
+                 {
+                 that.item.trigger('forms:error', {
+                 success: false,
+                 nativeError: error
+                 });
+                 }
+                 });
+                 }
+                 else
+                 {
+                 // fire event forms:submit
+                 that.setFormsSubmitEvent();
+                 that.item.trigger('forms:submit');
+                 }*/
+
+
+                that.setFormsSubmitEvent();
+                that.item.trigger('forms:submit');
             });
 
             return this;
@@ -158,23 +163,86 @@
             // check if handler was create
             if(!this.properties.hasHandlerFormsSubmit)
             {
-                // add handler event to only one execution
+                // add handler event to only one instance
                 $(this.item).on('forms:submit', function(event) {
                     if(!event.isDefaultPrevented())
                     {
-                        if(that.options.ajax)
+                        // check if form contain recaptcha element
+                        if($(that.item).find('[name=g-recaptcha-response]').length > 0 && $(event.target).find('[name=g-recaptcha-response]').val() != '')
                         {
-                            that.submit();
+                            $.ajax({
+                                url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
+                                type: 'POST',
+                                data: {
+                                    '_token': $(event.target).find('[name=_token]').val(),
+                                    'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
+                                },
+                                dataType: 'json',
+                                success: function(response)
+                                {
+                                    if(response.success)
+                                    {
+                                        //fire event submit
+                                        if(that.options.ajax)
+                                        {
+                                            that.submit();
+                                        }
+                                        else
+                                        {
+                                            that.item.off('submit');
+                                            that.item.submit();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //error from captcha
+                                        that.item.trigger('forms:error', {
+                                            success: false,
+                                            code: 0,
+                                            message: null,
+                                            nativeError: response
+                                        });
+                                        return false;
+                                    }
+                                },
+                                error: function(error)
+                                {
+                                    that.item.trigger('forms:error', {
+                                        success: false,
+                                        code: 0,
+                                        message: null,
+                                        nativeError: error
+                                    });
+                                    return false;
+                                }
+                            });
+                        }
+                        else if($(that.item).find('[name=g-recaptcha-response]').length > 0 && $(event.target).find('[name=g-recaptcha-response]').val() == '')
+                        {
+                            that.item.trigger('forms:error', {
+                                success: false,
+                                code: 1,
+                                message: 'reCaptcha input isn\'t checked' ,
+                                nativeError: null
+                            });
+                            return false;
                         }
                         else
                         {
-                            that.item.off('submit');
-                            that.item.submit();
+                            if(that.options.ajax)
+                            {
+                                that.submit();
+                            }
+                            else
+                            {
+                                that.item.off('submit');
+                                that.item.submit();
+                            }
                         }
-
-                        that.properties.hasHandlerFormsSubmit = true;
                     }
                 });
+
+                that.properties.hasHandlerFormsSubmit = true;
             }
         },
 
