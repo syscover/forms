@@ -26,6 +26,9 @@
         },
         callback: null,
         item: null,
+        properties: {
+            hasHandlerFormsSubmit: false
+        },
 
         init: function(options, callback, item)
         {
@@ -95,18 +98,84 @@
                 }
             });
 
-            if(this.options.ajax)
-            {
-                $(this.item).on('submit', function(event){
-                    event.preventDefault();
 
+            // set onSubmit handler
+            $(this.item).on('submit', function(event){
+                event.preventDefault();
+
+                // check if form contain recaptcha element
+                if($(that.item).find('[name=g-recaptcha-response]').length > 0)
+                {
+                    $.ajax({
+                        url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
+                        type: 'POST',
+                        data: {
+                            '_token': $(event.target).find('[name=_token]').val(),
+                            'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
+                        },
+                        dataType: 'json',
+                        success: function(response)
+                        {
+                            if(response.success)
+                            {
+                                // fire event forms:submit
+                                that.setFormsSubmitEvent();
+                                that.item.trigger('forms:submit');
+                            }
+                            else
+                            {
+                                //error from captcha
+                                that.item.trigger('forms:error', {
+                                    success: false,
+                                    nativeError: response
+                                });
+                            }
+                        },
+                        error: function(error)
+                        {
+                            that.item.trigger('forms:error', {
+                                success: false,
+                                nativeError: error
+                            });
+                        }
+                    });
+                }
+                else
+                {
                     // fire event forms:submit
+                    that.setFormsSubmitEvent();
                     that.item.trigger('forms:submit');
+                }
+            });
 
-                    that.submit();
+            return this;
+        },
+
+        setFormsSubmitEvent: function()
+        {
+            var that = this;
+
+            // check if handler was create
+            if(!this.properties.hasHandlerFormsSubmit)
+            {
+                // add handler event to only one execution
+                $(this.item).on('forms:submit', function(event) {
+                    if(!event.isDefaultPrevented())
+                    {
+                        if(that.options.ajax)
+                        {
+                            that.submit();
+                        }
+                        else
+                        {
+                            that.item.off('submit');
+                            that.item.submit();
+                        }
+
+                        that.properties.hasHandlerFormsSubmit = true;
+                    }
                 });
             }
-            return this;
         },
 
         submit: function(){
@@ -145,22 +214,6 @@
                     console.error(e);
                 }
             });
-        },
-
-        checkReCaptcha: function(){
-            $.ajax({
-                url:						'/' + this.options.appName + '/forms/forms/google/recaptcha/verify/',
-                data:                       {},
-                type:						'POST',
-                dataType:					'json',
-                success: function(response)
-                {
-
-                },
-                error: function(e){
-                    console.error(e);
-                }
-            });
         }
     };
 
@@ -191,4 +244,5 @@
             return this.data('forms');
         }
     };
+
 }( jQuery ));
