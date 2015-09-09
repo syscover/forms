@@ -10,7 +10,7 @@ return [
 	|
 	*/
 
-    'secretKey' => '6LfqXgwTAAAAAEBgTQH9OfTuHqRhanD6xJFEVmND',
+    'secretKey' => env('FORMS_SECRET_KEY', 'your secret key'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -21,5 +21,5 @@ return [
 	|
 	*/
 
-	'siteKey' => '6LfqXgwTAAAAAHBpvdXzpaRPpUP0jdwlwmzOpE08'
+	'siteKey' => env('FORMS_SITE_KEY', 'your site key')
 ];
