@@ -15,6 +15,7 @@ return [
     'package_name'                          => 'Forms',
     'push_notifications'                    => 'Notificaciones push',
     'view_forms'                            => 'Ver formularios',
+    'view_records'                          => 'Ver registros',
     'record_date'                           => 'Fecha registro',
     'change_state'                          => 'El estado del registro ha sido modificado',
     'notifications_account'                 => 'Cuenta de notificaciones',

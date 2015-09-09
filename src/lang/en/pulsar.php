@@ -15,6 +15,7 @@ return [
     'package_name'                          => 'Forms',
     'push_notifications'                    => 'Push notifications',
     'view_forms'                            => 'View forms',
+    'view_records'                          => 'View records',
     'record_date'                           => 'Record date',
     'change_state'                          => 'Registration status has been modified',
     'notifications_account'                 => 'Notifications account',
