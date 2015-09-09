@@ -4,6 +4,7 @@
                 @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'forms-form', 'access'))
                     <li{!! Miscellaneous::setCurrentPage(['forms-form', 'forms-record']) !!}><a href="{{ route('FormsForm') }}"><i class="fa fa-file-text-o"></i>{{ trans_choice('pulsar::pulsar.form', 2) }}</a></li>
                 @endif
+                @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'forms-state', 'access') || session('userAcl')->isAllowed(Auth::user()->profile_010, 'forms-preference', 'access'))
                 <li{!! Miscellaneous::setCurrentOpenPage(['forms-state','forms-preference']) !!}>
                     <a href="javascript:void(0);"><i class="icomoon-icon-grid"></i>{{ trans('pulsar::pulsar.master_tables') }}</a>
                     <ul class="sub-menu" >
@@ -15,5 +16,6 @@
                         @endif
                     </ul>
                 </li>
+                @endif
             </ul>
         </li>

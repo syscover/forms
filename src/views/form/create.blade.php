@@ -15,11 +15,11 @@
     @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.name'), 'name' => 'name', 'value' => Input::old('name'), 'maxLength' => '50', 'rangeLength' => '2,50', 'required' => true, 'fieldSize' => 5])
     @include('pulsar::includes.html.form_select_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'email', 'value' => Input::old('email'), 'objects' => $emails, 'idSelect' => 'id_013', 'nameSelect' => 'name_013', 'class' => 'form-control', 'fieldSize' => 5, 'required' => true])
     @include('pulsar::includes.html.form_checkbox_group', ['label' => trans('forms::pulsar.push_notifications'), 'name' => 'push', 'value' => 1, 'isChecked' => Input::old('push')])
-    @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.forward', 2), 'icon' => 'icon-share-alt'])
+    @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.forward', 2), 'icon' => 'fa fa-share'])
     @include('pulsar::includes.html.form_element_table_group', [
         'id' => 'forwards',
         'label' => trans_choice('pulsar::pulsar.forward', 1),
-        'icon'  => 'icon-share-alt',
+        'icon'  => 'fa fa-share',
         'thead' => [(object)['class' => null, 'data' => trans('pulsar::pulsar.name')], (object)['class' => null, 'data' => trans('pulsar::pulsar.email')], (object)['class' => 'align-center', 'data' => trans_choice('pulsar::pulsar.comment', 2)], (object)['class' => 'align-center', 'data' => trans_choice('pulsar::pulsar.state', 2)]],
         'tbody' => [
                 (object)['include' => 'pulsar::includes.html.form_text_group', 'properties' => ['label' => trans('pulsar::pulsar.name'), 'name' => 'name_402', 'required' => true, 'maxLength' => '100', 'rangeLength' => '2,100']],

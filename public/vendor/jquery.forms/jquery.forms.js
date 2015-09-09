@@ -1,5 +1,5 @@
 /*
- *	ElementTable v1.1 - 2015-09-1
+ *	Forms v1.1 - 2015-09-1
  *	(c) 2015 Syscover S.L. - http://www.syscover.com/
  *	All rights reserved
  */
@@ -98,57 +98,9 @@
                 }
             });
 
-
             // set onSubmit handler
             $(this.item).on('submit', function(event){
                 event.preventDefault();
-
-                // check if form contain recaptcha element
-                /*
-                 if($(that.item).find('[name=g-recaptcha-response]').length > 0 && $(event.target).find('[name=g-recaptcha-response]').val() != '')
-                 {
-                 $.ajax({
-                 url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
-                 type: 'POST',
-                 data: {
-                 '_token': $(event.target).find('[name=_token]').val(),
-                 'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
-                 },
-                 dataType: 'json',
-                 success: function(response)
-                 {
-                 if(response.success)
-                 {
-                 // fire event forms:submit
-                 that.setFormsSubmitEvent();
-                 that.item.trigger('forms:submit');
-                 }
-                 else
-                 {
-                 //error from captcha
-                 that.item.trigger('forms:error', {
-                 success: false,
-                 nativeError: response
-                 });
-                 }
-                 },
-                 error: function(error)
-                 {
-                 that.item.trigger('forms:error', {
-                 success: false,
-                 nativeError: error
-                 });
-                 }
-                 });
-                 }
-                 else
-                 {
-                 // fire event forms:submit
-                 that.setFormsSubmitEvent();
-                 that.item.trigger('forms:submit');
-                 }*/
-
-
                 that.setFormsSubmitEvent();
                 that.item.trigger('forms:submit');
             });
