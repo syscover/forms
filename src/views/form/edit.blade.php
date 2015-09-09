@@ -17,7 +17,7 @@
     @include('pulsar::includes.html.form_checkbox_group', ['label' => trans('forms::pulsar.push_notifications'), 'name' => 'push', 'value' => 1, 'isChecked' => $object->push_notification_401])
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.forward', 2), 'icon' => 'fa fa-share'])
     @include('pulsar::includes.html.form_element_table_group', [
-        'id' => 'forwards',
+        'id'        => 'forwards',
         'label'     => trans_choice('pulsar::pulsar.forward', 1),
         'icon'      => 'icon-share-alt',
         'dataJson'  => $forwards,
