@@ -55,14 +55,12 @@
                     dataType: 'json',
                     success: function(response)
                     {
-                        $.pnotify({
+                        new PNotify({
                             type:   'success',
                             title:  '{{ trans('pulsar::pulsar.action_successful') }}',
                             text:   '{{ trans('forms::pulsar.change_state') }}',
-                            icon:   'picon icon16 iconic-icon-check-alt white',
-                            opacity: 0.95,
-                            history: false,
-                            sticker: false
+                            opacity: .9,
+                            styling: 'fontawesome'
                         });
                     }
                 });
