@@ -38,7 +38,7 @@ class Cron {
         foreach($messages as $message)
         {
             Mail::send(['html' => $message->template_405, 'text' => $message->text_template_405], ['dataMessage' => $message, 'dataTextMessage' => json_decode($message->data_message_405), 'data' => json_decode($message->data_405)], function($m) use ($emailAccount, $message) {
-                $m->to($message->email_405, $message->name_405)->subject(trans($message->subject_405) . ' ' . json_decode($message->data_message_405)->name_form_405);
+                $m->to($message->email_405, $message->name_405)->subject(trans($message->subject_405) . ' ' . json_decode($message->data_message_405)->name_form_405 . ' ( ID. ' . json_decode($message->data_405)->id_403 . isset(json_decode($message->data_405)->email_403) && isset(json_decode($message->data_405)->email_403) != ''?  ' - ' . json_decode($message->data_405)->email_403 : null . ' )');
                 if($emailAccount->reply_to_013 != null) $m->replyTo($emailAccount->reply_to_013);
             });
 

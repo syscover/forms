@@ -38,7 +38,7 @@ return [
     'state_record'                          => 'Actualmente el estado del registro es',
     'state_transition'                      => 'El estado del registro ha cambiado de',
     'record_data'                           => 'Datos del registro',
-    'subject_email_record'                  => 'Nuevo registro del formulario:',
+    'subject_email_record'                  => 'Nuevo registro',
     'subject_change_state'                  => 'Un registro ha cambiado de estado, del formulario:',
     'subject_comment'                       => 'Hay un nuevo comentario de registro para este formulario:'
 ];

@@ -239,6 +239,7 @@ class RecordController extends Controller {
         $messages           = [];
         $recordDate         = date('U');
 
+        // test that, there are any form
         if($form == null)
         {
             $response = [
@@ -283,21 +284,21 @@ class RecordController extends Controller {
         $record = Record::create($dataRecord);
         $state  = $record->state;
 
+        // set data with array with decode information to make $dataRecord for message
+        $dataRecord['data_403'] = $data;
+
+        // set ID record
+        $dataRecord['id_403']   = $record->id_403;
+
         // set records unopened
         $form->n_unopened_401 = Record::where('form_403', $form->id_401)->where('opened_403', false)->count();
         $form->save();
 
-        // set data index to preparate $dataRecord to message
-        $dataRecord['data_403'] = $data;
-
-        // set recipients from forwards
         foreach($forwards as $forward)
         {
+            // set recipients from forwards to sow in the email message
             $names[] = $forward->name_402;
-        }
 
-        foreach($forwards as $forward)
-        {
             $recipients[] = [
                 'record_406'    => $record->id_403,
                 'forward_406'   => true,

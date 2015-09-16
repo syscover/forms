@@ -38,7 +38,7 @@ return [
     'state_record'                          => 'Currently the registration status is',
     'state_transition'                      => 'Registration status has changed from',
     'record_data'                           => 'Record data',
-    'subject_email_record'                  => 'New record for this form:',
+    'subject_email_record'                  => 'New record:',
     'subject_change_state'                  => 'State record has been changed for this form:',
     'subject_comment'                       => 'New record comment for this form:'
 ];
