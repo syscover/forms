@@ -1,13 +1,17 @@
-# Pulsar App to Laravel 5
+# Forms App to Laravel 5
 
-Pulsar is an application that generates a control panel where you start creating custom solutions, provides the resources necessary for any web application.
+Forms es una aplicación que gestiona formularios, registrar cualquier formulario en una base de datos, las características más destacadas de forms son:
+- Reenvío de formularios a tantos correos como se desee
+-
 
 ---
 - [Installation](#installation)
 
 
 ## Installation
-
+---
+Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar https://github.com/syscover/pulsar en caso de no tenerlo instalado
+---
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
 "syscover/forms": "dev-master"
