@@ -102,7 +102,7 @@ data-length: Tamaño del campo que tendrá en el panel de control
 data-label: Título del campo que se le asignará
 ```
 
-Configura en tu fichero de variables de entorno las siguientes variables si usas Google ReCaptcha
+Configura en tu fichero de variables de entorno las siguientes variables, si usas Google ReCaptcha
 ```
 FORMS_SECRET_KEY=your secret key
 FORMS_SITE_KEY=your site key
