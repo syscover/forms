@@ -5,7 +5,7 @@ Forms es una aplicación que gestiona formularios, registrar cualquier formulari
 * Crear estados personalizados
 * Asignar estados a cada registro de cada formulario
 * Crear comentarios para cada registro
-* Mantener informado vía email de cada cambio de estado o nuevo comentario a los usuarios que deseemos
+* Mantener informado vía email, de cada cambio de estado o nuevo comentario realzado sobre un registro
 
 ---
 - [Installation](#installation)
