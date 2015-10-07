@@ -69,7 +69,7 @@ Para realizar la implementación en javascript hay que añadir la siguiente libr
 
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
 ```
-$('#contact-form').forms({
+$('#form').forms({
     id: 1,
     debug: false,
     ajax: true,
