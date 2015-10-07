@@ -8,8 +8,6 @@ Forms es una aplicación que gestiona formularios, registrar cualquier formulari
 * Mantener informado vía email, de cada cambio de estado o nuevo comentario realzado sobre un registro
 
 ---
-- [Installation](#installation)
-
 
 ## Installation
 Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar el repositorio de [Pulsar](https://github.com/syscover/pulsar) en caso de no tenerlo instalado.
