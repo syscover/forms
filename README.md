@@ -10,8 +10,8 @@ Forms es una aplicación que gestiona formularios, registrar cualquier formulari
 
 ## Installation
 ---
-Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar https://github.com/syscover/pulsar en caso de no tenerlo instalado
----
+Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar el repositorio de [Pulsar](https://github.com/syscover/pulsar) en caso de no tenerlo instalado
+
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
 "syscover/forms": "dev-master"
