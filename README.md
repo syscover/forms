@@ -1,4 +1,4 @@
-# Forms App to Laravel 5
+# Forms App to Pulsar / Laravel 5
 
 Forms es una aplicación que gestiona formularios, registrar cualquier formulario en una base de datos, las características más destacadas de forms son:
 * Reenvío de formularios a tantos correos como se desee
