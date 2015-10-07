@@ -58,7 +58,7 @@ php artisan db:seed --class="ResourceFormsTableSeeder"
 
 Si estás logueado dentro de Pulsar, haz un logout de pulsar y logueate otra vez, para cargar los nuevos recursos.<br>
 Accede a la sección **Administration -> Packages**, enable Forms package.<br>
-Para finalizar, da obten los permisos del nuevo paquete, accede a **Administration -> Permissions -> Profiles**, selecciona tu perfil y haz click en el botón del candado "Set all permissions"
+Para finalizar, da obten los permisos del nuevo paquete, accede a **Administration -> Permissions -> Profiles**, selecciona tu perfil y haz click en el botón del candado *Set all permissions*
 
 **8 - Javascript implementation**
 
