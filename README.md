@@ -2,15 +2,17 @@
 
 Forms es una aplicación que gestiona formularios, registrar cualquier formulario en una base de datos, las características más destacadas de forms son:
 * Reenvío de formularios a tantos correos como se desee
-*
+* Crear estados personalizados
+* Asignar estados a cada registro de cada formulario
+* Crear comentarios para cada registro
+* Mantener informado vía email de cada cambio de estado o nuevo comentario a los usuarios que deseemos
 
 ---
 - [Installation](#installation)
 
 
 ## Installation
----
-Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar el repositorio de [Pulsar](https://github.com/syscover/pulsar) en caso de no tenerlo instalado
+Para instalar este módulo es necesario tener instalado previamente el módulo pulsar, visitar el repositorio de [Pulsar](https://github.com/syscover/pulsar) en caso de no tenerlo instalado.
 
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
