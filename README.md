@@ -69,6 +69,30 @@ Para realizar la implementación en javascript hay que añadir la siguiente libr
 
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
 ```
+$('#contact-form').forms({
+    id: 1,
+    debug: false,
+    ajax: true,
+    fields: {
+        name: 'name',
+        email: 'email',
+        subject: 'subject',
+        data: ['message','field-1','field-2','field-3', ...] // here you can add fields
+    }
+}, function(response){
+
+    if(response.success)
+    {
+        // form submit successful
+    }
+
+}).on('forms:submit', function(event){
+    // here check your form, if are any error to stop execution use event.preventDefault();
+
+}).on('forms:error', function(event, error) {
+    console.log(event);
+    console.log(error);
+});
 
 ```
 
