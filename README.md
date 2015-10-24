@@ -49,8 +49,7 @@ php artisan migrate
 **6 - Run seed database**
 
 ```
-php artisan db:seed --class="CronjobFormsTableSeeder"
-php artisan db:seed --class="ResourceFormsTableSeeder"
+php artisan db:seed --class="FormsTableSeeder"
 
 ```
 
