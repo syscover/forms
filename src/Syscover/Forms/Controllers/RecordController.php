@@ -265,7 +265,7 @@ class RecordController extends Controller {
             $data[] = $obj;
         }
 
-        $defaultState   = Preference::getValue('defaultStateForms', 4);
+        $defaultState   = Preference::getValue('formsDefaultState', 4);
 
 
         $dataRecord     = [
