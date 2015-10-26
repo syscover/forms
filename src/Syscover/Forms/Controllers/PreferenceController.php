@@ -24,8 +24,8 @@ class PreferenceController extends Controller {
     protected $routeSuffix  = 'FormsPreference';
     protected $folder       = 'preference';
     protected $package      = 'forms';
-    protected $aColumns     = ['id_200', 'name_200'];
-    protected $nameM        = 'name_200';
+    protected $aColumns     = [];
+    protected $nameM        = null;
     protected $model        = '\Syscover\Pulsar\Models\Preference';
     protected $icon         = 'fa fa-cog';
     protected $objectTrans  = 'preference';
