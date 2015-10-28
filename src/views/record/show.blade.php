@@ -117,7 +117,7 @@
             @elseif($field->type == 'textarea')
                 @include('pulsar::includes.html.form_textarea_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'labelSize' => 2, 'fieldSize' => 10, 'readOnly' => true])
             @elseif($field->type == 'checkbox')
-                @include('pulsar::includes.html.form_checkbox_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'isChecked' => $field->value, 'disabled' => true])
+                @include('pulsar::includes.html.form_checkbox_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'checked' => $field->value, 'disabled' => true])
             @endif
         @endforeach
     @include('pulsar::includes.html.form_record_footer', ['action' => 'show'])
