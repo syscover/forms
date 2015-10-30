@@ -25,11 +25,6 @@ class FormsServiceProvider extends ServiceProvider
 			realpath(__DIR__ . '/../../../public') => public_path('/packages/syscover/forms')
 		]);
 
-		// register config files
-		$this->publishes([
-			realpath(__DIR__ . '/../../config/forms.php') => config_path('forms.php')
-		]);
-
         // register migrations
         $this->publishes([
             __DIR__.'/../../database/migrations/' => base_path('/database/migrations'),
