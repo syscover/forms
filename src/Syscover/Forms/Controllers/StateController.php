@@ -28,7 +28,7 @@ class StateController extends Controller {
     protected $icon         = 'fa fa-fire';
     protected $objectTrans  = 'state';
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         State::create([
             'id_400'    => Request::input('id'),
@@ -37,7 +37,7 @@ class StateController extends Controller {
         ]);
     }
     
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         State::where('id_400', $parameters['id'])->update([
             'name_400'  => Request::input('name'),

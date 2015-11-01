@@ -63,14 +63,14 @@ class FormController extends Controller {
         return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_records') . '">' . $unOpened . '<i class="fa fa-eye"></i></a>' : null;
     }
 
-    public function createCustomRecord($parameters)
+    public function createCustomRecord($request, $parameters)
     {
         $parameters['emails'] = EmailAccount::all();
 
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
 
         $form = Form::create([
@@ -98,7 +98,7 @@ class FormController extends Controller {
         }
     }
 
-    public function editCustomRecord($parameters)
+    public function editCustomRecord($request, $parameters)
     {
         $parameters['emails'] = EmailAccount::all();
         $parameters['forwards'] = json_encode($parameters['object']->forwards);
@@ -106,7 +106,7 @@ class FormController extends Controller {
         return $parameters;
     }
     
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Form::where('id_401', $parameters['id'])->update([
             'name_401'              => Request::input('name'),

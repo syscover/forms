@@ -44,7 +44,7 @@ class CommentController extends Controller {
         return $actionUrlParameters;
     }
 
-    public function storeCustomRecord($parameters)
+    public function storeCustomRecord($request, $parameters)
     {
         $record             = Record::find(Request::input('ref'));
         $record->data_403   = json_decode($record->data_403);
@@ -158,7 +158,7 @@ class CommentController extends Controller {
         return $parameters;
     }
     
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         if(Request::input('favorite')) Address::resetFavorite(Request::input('ref'));
 
