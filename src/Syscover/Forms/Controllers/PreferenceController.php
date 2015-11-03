@@ -43,7 +43,7 @@ class PreferenceController extends Controller {
     
     public function updateCustomRecord()
     {
-        Preference::setValue('formsDefaultState', Request::input('defaultState'), 4);
-        Preference::setValue('formsNotificationsAccount', Request::input('notificationsAccount'), 4);
+        Preference::setValue('formsDefaultState', 4, Request::input('defaultState'));
+        Preference::setValue('formsNotificationsAccount', 4, Request::input('notificationsAccount'));
     }
 }
