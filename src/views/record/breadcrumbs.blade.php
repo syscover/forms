@@ -1,6 +1,6 @@
 <!-- forms::records.breadcrumbs -->
 <li>
-    <a href="javascript:void(0);">{{ trans('forms::pulsar.package_name') }}</a>
+    <a href="javascript:void(0)">{{ trans('forms::pulsar.package_name') }}</a>
 </li>
 <li>
     <a href="{{ route('FormsForm') }}">{{ trans('forms::pulsar.package_name') }}</a>

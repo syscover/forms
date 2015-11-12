@@ -18,6 +18,10 @@ Para instalar este módulo es necesario tener instalado previamente el módulo p
 "syscover/forms": "dev-master"
 
 ```
+and execute on console:
+```
+composer update
+```
 
 **2 - Register service provider, on file config/app.php add to providers array**
 
@@ -26,40 +30,25 @@ Syscover\Forms\FormsServiceProvider::class,
 
 ```
 
-**3 - To publish package, you must type on console**
+**3 - To publish package and migrate**
 
+and execute composer update again:
 ```
-php artisan vendor:publish --force
-
-```
-
-**4 - Optimized class loader**
-
-```
-php artisan optimize
-
+composer update
 ```
 
-**5 - Run migrate database**
-
-```
-php artisan migrate
-```
-
-**6 - Run seed database**
+**4 - Run seed database**
 
 ```
 php artisan db:seed --class="FormsTableSeeder"
-
 ```
 
-**7 - Activate package form**
 
-Si estás logueado dentro de Pulsar, haz un logout de pulsar y logueate otra vez, para cargar los nuevos recursos.<br>
-Accede a la sección **Administration -> Packages**, enable Forms package.<br>
-Para finalizar, da obten los permisos del nuevo paquete, accede a **Administration -> Permissions -> Profiles**, selecciona tu perfil y haz click en el botón del candado *Set all permissions*
+**5 - Activate package**
 
-**8 - Javascript implementation**
+Access to Pulsar Panel, and go to Administration -> Permissions -> Profiles, and set all permissions to your profile by clicking on the open lock.
+
+**6 - Javascript implementation**
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
 ```

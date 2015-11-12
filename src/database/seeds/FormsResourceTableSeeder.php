@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Pulsar\Models\Resource;
 
-class ResourceFormsTableSeeder extends Seeder {
+class FormsResourceTableSeeder extends Seeder {
 
     public function run()
     {
@@ -21,5 +21,5 @@ class ResourceFormsTableSeeder extends Seeder {
 
 /*
  * Command to run:
- * php artisan db:seed --class="ResourceFormsTableSeeder"
+ * php artisan db:seed --class="FormsResourceTableSeeder"
  */

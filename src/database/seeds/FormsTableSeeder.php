@@ -9,8 +9,9 @@ class FormsTableSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(ResourceFormsTableSeeder::class);
-        $this->call(CronjobFormsTableSeeder::class);
+        $this->call(FormsPackageTableSeeder::class);
+        $this->call(FormsResourceTableSeeder::class);
+        $this->call(FormsCronjobTableSeeder::class);
     }
 }
 
