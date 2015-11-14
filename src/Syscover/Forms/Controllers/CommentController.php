@@ -173,7 +173,7 @@ class CommentController extends Controller {
         return $parameters;
     }
 
-    public function deleteCustomRecordRedirect($object, $parameters)
+    public function deleteCustomRecordRedirect($request, $object, $parameters)
     {
         $parameters['tab'] = 0;
 
@@ -183,7 +183,7 @@ class CommentController extends Controller {
         ]);
     }
 
-    public function deleteCustomRecordsRedirect($parameters)
+    public function deleteCustomRecordsRedirect($request, $parameters)
     {
         $parameters['tab'] = 0;
 
