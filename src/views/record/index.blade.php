@@ -19,7 +19,7 @@
                     'aaSorting': [[ 0, 'desc' ]],
                     'bProcessing': true,
                     'bServerSide': true,
-                    'sAjaxSource': "{{ route('jsonData' . $routeSuffix, ['form' => $form]) }}"
+                    'sAjaxSource': "{{ route('jsonData' . ucfirst($routeSuffix), ['form' => $form]) }}"
                 }).fnSetFilteringDelay();
             }
         });
