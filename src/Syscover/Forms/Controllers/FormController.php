@@ -11,9 +11,7 @@
  */
 
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Http\Request;
 use Syscover\Forms\Models\Forward;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
@@ -33,7 +31,7 @@ class FormController extends Controller {
     protected $icon         = 'fa fa-file-text-o';
     protected $objectTrans  = 'form';
 
-    public function initForm(HttpRequest $request)
+    public function initForm(Request $request)
     {
         $form = Form::find($request->route()->parameters()['id']);
 
@@ -57,10 +55,10 @@ class FormController extends Controller {
         return response()->json($response);
     }
 
-    public function jsonCustomDataBeforeActions($aObject)
+    public function jsonCustomDataBeforeActions($request, $aObject)
     {
         $unOpened = $aObject['n_unopened_401'] > 0? '<span class="badge bg-red">' . $aObject['n_unopened_401'] . '</span> ' : null;
-        return session('userAcl')->isAllowed(Auth::user()->profile_010, $this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_records') . '">' . $unOpened . '<i class="fa fa-eye"></i></a>' : null;
+        return session('userAcl')->isAllowed($request->user()->profile_010, $this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('FormsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_records') . '">' . $unOpened . '<i class="fa fa-eye"></i></a>' : null;
     }
 
     public function createCustomRecord($request, $parameters)
@@ -74,12 +72,12 @@ class FormController extends Controller {
     {
 
         $form = Form::create([
-            'name_401'              => Request::input('name'),
-            'email_account_401'     => Request::input('email'),
-            'push_notification_401' => Request::input('push', 0)
+            'name_401'              => $request->input('name'),
+            'email_account_401'     => $request->input('email'),
+            'push_notification_401' => $request->input('push', 0)
         ]);
 
-        $forwardsData = json_decode(Request::input('forwardsData'));
+        $forwardsData = json_decode($request->input('forwardsData'));
 
         foreach($forwardsData as $forwardData)
         {
@@ -100,7 +98,7 @@ class FormController extends Controller {
 
     public function editCustomRecord($request, $parameters)
     {
-        $parameters['emails'] = EmailAccount::all();
+        $parameters['emails']   = EmailAccount::all();
         $parameters['forwards'] = json_encode($parameters['object']->forwards);
 
         return $parameters;
@@ -109,12 +107,12 @@ class FormController extends Controller {
     public function updateCustomRecord($request, $parameters)
     {
         Form::where('id_401', $parameters['id'])->update([
-            'name_401'              => Request::input('name'),
-            'email_account_401'     => Request::input('email'),
-            'push_notification_401' => Request::input('push', 0)
+            'name_401'              => $request->input('name'),
+            'email_account_401'     => $request->input('email'),
+            'push_notification_401' => $request->input('push', 0)
         ]);
 
-        $forwardsData = json_decode(Request::input('forwardsData'));
+        $forwardsData = json_decode($request->input('forwardsData'));
 
         $ids = [];
         foreach($forwardsData as $forwardData)
