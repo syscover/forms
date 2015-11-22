@@ -31,7 +31,7 @@ class Comment extends Model {
         return Validator::make($data, static::$rules);
 	}
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
             ->where('record_404', $parameters['ref'])->newQuery();

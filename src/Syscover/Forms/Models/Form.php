@@ -37,7 +37,7 @@ class Form extends Model {
         return Form::hasMany('Syscover\Forms\Models\Forward','form_402');
     }
 
-    public static function getCustomRecordsLimit()
+    public static function addToGetRecordsLimit()
     {
         return Form::join('001_013_email_account', '004_401_form.email_account_401', '=', '001_013_email_account.id_013')
             ->newQuery();

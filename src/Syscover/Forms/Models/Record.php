@@ -53,7 +53,7 @@ class Record extends Model {
         return $this->hasMany('Syscover\Forms\Models\Recipient', 'record_406');
     }
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         return Record::leftJoin('004_400_state', '004_403_record.state_403', '=', '004_400_state.id_400')
             ->where('form_403', $parameters['form'])->newQuery();

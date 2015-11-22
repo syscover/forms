@@ -32,7 +32,7 @@ class Forward extends Model {
         return Validator::make($data, static::$rules);
 	}
 
-    public static function getCustomRecordsLimit()
+    public static function addToGetRecordsLimit()
     {
         return Forward::join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401')
             ->newQuery();
