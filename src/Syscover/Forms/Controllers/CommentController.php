@@ -11,7 +11,6 @@
  */
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
@@ -46,7 +45,7 @@ class CommentController extends Controller {
 
     public function storeCustomRecord($request, $parameters)
     {
-        $record             = Record::find(Request::input('ref'));
+        $record             = Record::find($request->input('ref'));
         $record->data_403   = json_decode($record->data_403);
         $form               = $record->form;
         $state              = $record->state;
@@ -55,18 +54,18 @@ class CommentController extends Controller {
         $messages           = [];
 
         $comment = Comment::create([
-            'record_404'                => Request::input('ref'),
+            'record_404'                => $request->input('ref'),
             'user_404'                  => Auth::user()->id_010,
             'date_404'                  => date('U'),
-            'subject_404'               => Request::input('subject'),
-            'comment_404'               => Request::input('comment')
+            'subject_404'               => $request->input('subject'),
+            'comment_404'               => $request->input('comment')
         ]);
 
         // check new recipients
         Miscellaneous::checkRecipients($record, $form);
 
         // get recipient emails to compare with new user email
-        $recipients = Recipient::where('record_406', Request::input('ref'))->where('comments_406', true)->get();
+        $recipients = Recipient::where('record_406', $request->input('ref'))->where('comments_406', true)->get();
 
         // set recipients
         foreach($recipients as $recipient)
@@ -160,12 +159,12 @@ class CommentController extends Controller {
     
     public function updateCustomRecord($request, $parameters)
     {
-        if(Request::input('favorite')) Address::resetFavorite(Request::input('ref'));
+        if($request->input('favorite')) Address::resetFavorite($request->input('ref'));
 
         Comment::where('id_404', $parameters['id'])->update([
             'date_404'                  => date('U'),
-            'subject_404'               => Request::input('subject'),
-            'comment_404'               => Request::input('comment')
+            'subject_404'               => $request->input('subject'),
+            'comment_404'               => $request->input('comment')
         ]);
 
         $parameters['modal'] = 1;
