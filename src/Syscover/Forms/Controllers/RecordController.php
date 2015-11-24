@@ -92,7 +92,7 @@ class RecordController extends Controller {
         }
     }
 
-    public function deleteCustomRecords($request, $ids)
+    public function addToDeleteRecordsSelect($request, $ids)
     {
         $nUnopenedToDelete = Record::where('opened_403', false)->whereIn('id_403', $ids)->count();
         // set records unopened
