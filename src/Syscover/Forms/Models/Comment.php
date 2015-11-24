@@ -42,7 +42,7 @@ class Comment extends Model {
         return Comment::where('record_404', $parameters['ref'])->newQuery();
     }
 
-    public static function getCustomRecord($parameters)
+    public static function getRecord($parameters)
     {
         return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
             ->find($parameters['id']);
