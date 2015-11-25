@@ -22,9 +22,9 @@ class FormsCreateTableComment extends Migration {
             $table->string('subject_404', 255);
             $table->text('comment_404');
 
-            $table->foreign('record_404')->references('id_403')->on('004_403_record')
+            $table->foreign('record_404', 'fk01_004_404_comment')->references('id_403')->on('004_403_record')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_404')->references('id_010')->on('001_010_user')
+            $table->foreign('user_404', 'fk02_004_404_comment')->references('id_010')->on('001_010_user')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
     }

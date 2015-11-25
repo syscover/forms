@@ -22,7 +22,7 @@ class FormsCreateTableForward extends Migration {
             $table->boolean('comments_402')->default(false);
             $table->boolean('states_402')->default(false);
 
-            $table->foreign('form_402')->references('id_401')->on('004_401_form')
+            $table->foreign('form_402', 'fk01_004_402_forward')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }

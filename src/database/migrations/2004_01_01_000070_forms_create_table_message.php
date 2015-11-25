@@ -41,13 +41,13 @@ class FormsCreateTableMessage extends Migration {
             $table->text('data_message_405');
             $table->text('data_405');
 
-            $table->foreign('form_405')->references('id_401')->on('004_401_form')
+            $table->foreign('form_405', 'fk01_004_405_message')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('record_405')->references('id_403')->on('004_403_record')
+            $table->foreign('record_405', 'fk02_004_405_message')->references('id_403')->on('004_403_record')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_405')->references('id_010')->on('001_010_user')
+            $table->foreign('user_405', 'fk03_004_405_message')->references('id_010')->on('001_010_user')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('recipient_405')->references('id_406')->on('004_406_recipient')
+            $table->foreign('recipient_405', 'fk04_004_405_message')->references('id_406')->on('004_406_recipient')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }

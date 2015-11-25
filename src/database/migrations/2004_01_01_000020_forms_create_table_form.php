@@ -22,7 +22,7 @@ class FormsCreateTableForm extends Migration {
             $table->integer('n_unopened_401')->unsigned()->default(0);
 
             // correos de reenvío
-            $table->foreign('email_account_401')->references('id_013')->on('001_013_email_account')
+            $table->foreign('email_account_401', 'fk01_004_401_form')->references('id_013')->on('001_013_email_account')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
     }

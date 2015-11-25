@@ -23,7 +23,7 @@ class FormsCreateTableRecipient extends Migration {
             $table->boolean('comments_406')->default(false);
             $table->boolean('states_406')->default(false);
 
-            $table->foreign('record_406')->references('id_403')->on('004_403_record')
+            $table->foreign('record_406', 'fk01_004_406_recipient')->references('id_403')->on('004_403_record')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
