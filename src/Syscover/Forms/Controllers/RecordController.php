@@ -83,7 +83,7 @@ class RecordController extends Controller {
         return $parameters;
     }
 
-    public function deleteCustomRecord($request, $record)
+    public function addToDeleteRecord($request, $record)
     {
         // set records unopened
         if(!$record->opened_403)
