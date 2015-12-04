@@ -50,15 +50,9 @@ Access to Pulsar Panel, and go to Administration -> Permissions -> Profiles, and
 
 **6 - Implementation**
 
-Una vez instalado y activado el package, debemos de instanciar una cuenta de envío dentro:
+Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro <i>Administración -> Cuentas</i>, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
 
-Administración -> Cuentas
-
-Para ello necesitaremos tanto datos del servidor como usuario y contraseña.
-
-Una vez creada la cuenta de correo nos vamos a la sección:
-
-Forms -> Master tables -> Preferences
+Una vez creada la cuenta de correo nos vamos a la sección <i>Forms -> Master tables -> Preferences</i>
 
 Seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección Forms -> Master tables -> States, y la cuenta desde la que se enviarán las notificaciones.
 
