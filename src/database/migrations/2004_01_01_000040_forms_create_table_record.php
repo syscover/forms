@@ -37,17 +37,17 @@ class FormsCreateTableRecord extends Migration {
 
             $table->json('data_403');
 
-            $table->foreign('form_403', 'fk01_004_402_forward')->references('id_401')->on('004_401_form')
+            $table->foreign('form_403', 'fk01_004_403_record')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('state_403', 'fk02_004_402_forward')->references('id_400')->on('004_400_state')
+            $table->foreign('state_403', 'fk02_004_403_record')->references('id_400')->on('004_400_state')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('country_403', 'fk03_004_402_forward')->references('id_002')->on('001_002_country')
+            $table->foreign('country_403', 'fk03_004_403_record')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_1_403', 'fk04_004_402_forward')->references('id_003')->on('001_003_territorial_area_1')
+            $table->foreign('territorial_area_1_403', 'fk04_004_403_record')->references('id_003')->on('001_003_territorial_area_1')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_2_403', 'fk05_004_402_forward')->references('id_004')->on('001_004_territorial_area_2')
+            $table->foreign('territorial_area_2_403', 'fk05_004_403_record')->references('id_004')->on('001_004_territorial_area_2')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_3_403', 'fk06_004_402_forward')->references('id_005')->on('001_005_territorial_area_3')
+            $table->foreign('territorial_area_3_403', 'fk06_004_403_record')->references('id_005')->on('001_005_territorial_area_3')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
     }
