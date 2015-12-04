@@ -50,13 +50,13 @@ Access to Pulsar Panel, and go to Administration -> Permissions -> Profiles, and
 
 **6 - Implementation**
 
-Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro <i>Administración -> Cuentas</i>, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
+Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro _Administración -> Cuentas_, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
 
 Una vez creada la cuenta de correo nos vamos a la sección <i>Forms -> Master tables -> Preferences</i>
 
 Seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección Forms -> Master tables -> States, y la cuenta desde la que se enviarán las notificaciones.
 
-Por último deberemos dar de alta un formulario dentro de  Forms -> Forms, el id del formulario nos servirá para asociar los registros al formulario, indicando el id en la rutina de javascript
+Por último deberemos dar de alta un formulario dentro de  <i>Forms -> Forms</i>, el id del formulario nos servirá para asociar los registros al formulario, indicando el id en la rutina de javascript
 
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
