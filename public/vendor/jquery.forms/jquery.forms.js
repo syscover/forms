@@ -123,10 +123,10 @@
                         if($(that.item).find('[name=g-recaptcha-response]').length > 0 && $(event.target).find('[name=g-recaptcha-response]').val() != '')
                         {
                             $.ajax({
+                                headers: { 'X-CSRF-TOKEN': $(event.target).find('[name=_token]').val() },
                                 url:  '/' + that.options.appName + '/forms/google/recaptcha/verify',
                                 type: 'POST',
                                 data: {
-                                    '_token': $(event.target).find('[name=_token]').val(),
                                     'g-recaptcha-response': $(event.target).find('[name=g-recaptcha-response]').val()
                                 },
                                 dataType: 'json',

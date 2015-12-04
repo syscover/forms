@@ -48,7 +48,18 @@ php artisan db:seed --class="FormsTableSeeder"
 
 Access to Pulsar Panel, and go to Administration -> Permissions -> Profiles, and set all permissions to your profile by clicking on the open lock.
 
-**6 - Javascript implementation**
+**6 - Implementation**
+
+Una vez instalado y activado el package, debemos de instanciar una cuenta de envío dentro:
+
+Administración -> Cuentas
+
+Para ello necesitaremos tanto datos del servidor como usuario y contraseña.
+
+
+Tambien necesitaremos crear
+
+
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
 ```

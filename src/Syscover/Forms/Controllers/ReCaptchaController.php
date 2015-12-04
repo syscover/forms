@@ -20,7 +20,7 @@ class ReCaptchaController extends Controller {
      */
     public function verify(Request $request)
     {
-        $recaptcha = new ReCaptcha(config('pulsar.googleRecaptchaSecretKey'));
+        $recaptcha = new ReCaptcha(config('api.googleRecaptchaSecretKey'));
 
         $resp = $recaptcha->verify($request->input('g-recaptcha-response'), $request->getClientIp());
 
