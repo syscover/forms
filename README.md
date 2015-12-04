@@ -56,9 +56,13 @@ Administración -> Cuentas
 
 Para ello necesitaremos tanto datos del servidor como usuario y contraseña.
 
+Una vez creada la cuenta de correo nos vamos a la sección:
 
-Tambien necesitaremos crear
+Forms -> Master tables -> Preferences
 
+Seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección Forms -> Master tables -> States, y la cuenta desde la que se enviarán las notificaciones.
+
+Por último deberemos dar de alta un formulario dentro de  Forms -> Forms, el id del formulario nos servirá para asociar los registros al formulario, indicando el id en la rutina de javascript
 
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
@@ -69,7 +73,7 @@ Para realizar la implementación en javascript hay que añadir la siguiente libr
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
 ```
 $('#form').forms({
-    id: 1,
+    id: 1, // ID del registro del formulario
     debug: false,
     ajax: true,
     fields: {
@@ -106,3 +110,10 @@ Configura en tu fichero de variables de entorno las siguientes variables, si usa
 GOOGLE_RECAPTCHA_SECRET_KEY=your secret key
 GOOGLE_RECAPTCHA_SITE_KEY=your site key
 ```
+
+Para usar Google Recapcha debes de añadir la siguiente etiqueta a tu formulario:
+```
+<div class="g-recaptcha" data-sitekey="XXXXXXXXXXXXXX"></div>
+```
+
+Forms se encargará de la validación
