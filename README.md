@@ -112,7 +112,7 @@ Forms se encargará de la validación, devolviendo el error al evento 'forms:err
 
 Posibles errores que te puede devolver detro del objeto error:
 
-** Error general  **
+**Error general**
 ```
 {
     success: false,
@@ -122,7 +122,7 @@ Posibles errores que te puede devolver detro del objeto error:
 }
 ```
 
-** Error por no haber pulsado el recapcha **
+**Error por no haber pulsado el recapcha**
 ```
 {
     success: false,
