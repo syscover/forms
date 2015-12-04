@@ -46,15 +46,15 @@ php artisan db:seed --class="FormsTableSeeder"
 
 **5 - Activate package**
 
-Access to Pulsar Panel, and go to _Administration->Permissions-> Profiles_, and set all permissions to your profile by clicking on the open lock.
+Access to Pulsar Panel, and go to **_Administration->Permissions->Profiles_**, and set all permissions to your profile by clicking on the open lock.
 
 **6 - Implementation**
 
 Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro **_Administración->Cuentas_**, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
 
-Una vez creada la cuenta de correo nos vamos a la sección **_Forms->Master tables->Preferences_**, seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección **_Forms->Master tables->States**, y la cuenta desde la que se enviarán las notificaciones.
+Una vez creada la cuenta de correo nos vamos a la sección **_Forms->Master tables->Preferences_**, seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección **_Forms->Master tables->States_**, y la cuenta desde la que se enviarán las notificaciones.
 
-Por último deberemos dar de alta un formulario dentro de **_Forms->Forms_**, el id del formulario nos servirá para asociar los registros al formulario, indicando el id en la rutina de javascript
+Por último deberemos dar de alta un formulario dentro de **_Forms->Forms_**, el id del formulario nos servirá para asociar los registros al formulario, indicando el id en la rutina de javascript.
 
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
@@ -65,7 +65,7 @@ Para realizar la implementación en javascript hay que añadir la siguiente libr
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
 ```
 $('#form').forms({
-    id: 1, // ID del registro del formulario
+    id: 1, // Aquí el ID del registro del formulario que has creada en la sección Forms->Forms
     debug: false,
     ajax: true,
     fields: {
@@ -108,4 +108,26 @@ Para usar Google Recapcha debes de añadir la siguiente etiqueta a tu formulario
 <div class="g-recaptcha" data-sitekey="XXXXXXXXXXXXXX"></div>
 ```
 
-Forms se encargará de la validación
+Forms se encargará de la validación, devolviendo el error al evento 'forms:error'
+
+Posibles errores que te puede devolver detro del objeto error:
+
+** Error general  **
+```
+{
+    success: false,
+    code: 0,
+    message: "",
+    nativeError: Object
+}
+```
+
+** Error por no haber pulsado el recapcha **
+```
+{
+    success: false,
+    code: 1,
+    message: "reCaptcha input isn't checked",
+    nativeError: null
+}
+```
