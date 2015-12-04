@@ -1,20 +1,15 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Forms
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Traits\TraitController;
+
+/**
+ * Class PreferenceController
+ * @package Syscover\Forms\Controllers
+ */
 
 class PreferenceController extends Controller {
 
@@ -25,7 +20,7 @@ class PreferenceController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = [];
     protected $nameM        = null;
-    protected $model        = '\Syscover\Pulsar\Models\Preference';
+    protected $model        = \Syscover\Pulsar\Models\Preference::class;
     protected $icon         = 'fa fa-cog';
     protected $objectTrans  = 'preference';
 

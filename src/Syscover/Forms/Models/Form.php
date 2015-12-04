@@ -1,27 +1,33 @@
 <?php namespace Syscover\Forms\Models;
 
-/*
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
-use Illuminate\Database\Eloquent\Model;
+use Syscover\Pulsar\Models\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\TraitModel;
+use Sofa\Eloquence\Eloquence;
+use Sofa\Eloquence\Mappable;
+
+/**
+ * Class Form
+ *
+ * Model with properties
+ * <br><b>[id, name, email_account, push_notification]</b>
+ *
+ * @package     Syscover\Forms\Models
+ */
 
 class Form extends Model {
 
     use TraitModel;
+    use Eloquence, Mappable;
 
 	protected $table        = '004_401_form';
     protected $primaryKey   = 'id_401';
     public $timestamps      = false;
     protected $fillable     = ['id_401', 'name_401', 'email_account_401', 'push_notification_401'];
+    protected $maps         = [];
+    protected $relationMaps = [
+        'email_account'      => \Syscover\Pulsar\Models\EmailAccount::class,
+    ];
     private static $rules   = [
         'name'  => 'required|between:2,50',
         'email' => 'required'
@@ -32,14 +38,18 @@ class Form extends Model {
         return Validator::make($data, static::$rules);
 	}
 
-    public function forwards()
+    public function scopeBuilder($query)
+    {
+        return $query->join('001_013_email_account', '004_401_form.email_account_401', '=', '001_013_email_account.id_013');
+    }
+
+    public function getForwards()
     {
         return Form::hasMany('Syscover\Forms\Models\Forward','form_402');
     }
 
     public static function addToGetRecordsLimit()
     {
-        return Form::join('001_013_email_account', '004_401_form.email_account_401', '=', '001_013_email_account.id_013')
-            ->newQuery();
+        return Form::builder();
     }
 }

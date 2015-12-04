@@ -1,27 +1,33 @@
 <?php namespace Syscover\Forms\Models;
 
-/*
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
-use Illuminate\Database\Eloquent\Model;
+use Syscover\Pulsar\Models\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\TraitModel;
+use Sofa\Eloquence\Eloquence;
+use Sofa\Eloquence\Mappable;
+
+/**
+ * Class Forward
+ *
+ * Model with properties
+ * <br><b>[id, form, name, email, comments, states]</b>
+ *
+ * @package     Syscover\Forms\Models
+ */
 
 class Forward extends Model {
 
     use TraitModel;
+    use Eloquence, Mappable;
 
 	protected $table        = '004_402_forward';
     protected $primaryKey   = 'id_402';
     public $timestamps      = false;
     protected $fillable     = ['id_402', 'form_402', 'name_402', 'email_402', 'comments_402', 'states_402'];
+    protected $maps         = [];
+    protected $relationMaps = [
+        'form'      => \Syscover\Forms\Models\Form::class,
+    ];
     private static $rules   = [
         'name'  => 'required|between:2,50',
         'email' => 'required'
@@ -32,14 +38,13 @@ class Forward extends Model {
         return Validator::make($data, static::$rules);
 	}
 
-    public static function addToGetRecordsLimit()
+    public function scopeBuilder($query)
     {
-        return Forward::join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401')
-            ->newQuery();
+        return $query->join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401');
     }
 
-    public static function deleteRecordsNotIn($ids)
+    public static function addToGetRecordsLimit()
     {
-        Forward::whereNotIn('id_402', $ids)->delete();
+        return Forward::builder();
     }
 }

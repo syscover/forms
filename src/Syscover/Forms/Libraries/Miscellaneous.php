@@ -24,7 +24,7 @@ class Miscellaneous
      */
     public static function checkRecipients($record, $form)
     {
-        $forwards       = $form->forwards;
+        $forwards       = $form->getForwards;
         $newRecipients  = [];
         $oldRecipients  = [];
         $recipients     = Recipient::where('record_406', $record->id_403)->where('forward_406', true)->get();

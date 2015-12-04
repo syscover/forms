@@ -1,18 +1,13 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\State;
+
+/**
+ * Class StateController
+ * @package Syscover\Forms\Controllers
+ */
 
 class StateController extends Controller {
 
@@ -23,7 +18,7 @@ class StateController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];
     protected $nameM        = 'name_400';
-    protected $model        = '\Syscover\Forms\Models\State';
+    protected $model        = \Syscover\Forms\Models\State::class;
     protected $icon         = 'fa fa-fire';
     protected $objectTrans  = 'state';
 

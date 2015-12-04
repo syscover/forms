@@ -1,18 +1,13 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Illuminate\Http\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use ReCaptcha\ReCaptcha;
+
+/**
+ * Class ReCaptchaController
+ * @package Syscover\Forms\Controllers
+ */
 
 class ReCaptchaController extends Controller {
 

@@ -1,15 +1,5 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request as HttpRequest;
 use Syscover\Forms\Libraries\Miscellaneous;
@@ -24,6 +14,11 @@ use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
 
+/**
+ * Class RecordController
+ * @package Syscover\Forms\Controllers
+ */
+
 class RecordController extends Controller {
 
     use TraitController;
@@ -33,7 +28,7 @@ class RecordController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'date_text_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM        = 'id_403';
-    protected $model        = '\Syscover\Forms\Models\Record';
+    protected $model        = \Syscover\Forms\Models\Record::class;
     protected $icon         = 'icon-file-text-alt';
     protected $objectTrans  = 'record';
     protected $jsonParam    = ['edit' => false, 'show' => true];
@@ -74,7 +69,7 @@ class RecordController extends Controller {
             $parameters['object']->opened_403 = true;
             $parameters['object']->save();
 
-            $form = $parameters['object']->form;
+            $form = $parameters['object']->getForm;
             $form->decrement('n_unopened_401');
         }
 
@@ -88,7 +83,7 @@ class RecordController extends Controller {
         // set records unopened
         if(!$record->opened_403)
         {
-            $record->form->decrement('n_unopened_401');
+            $record->getForm->decrement('n_unopened_401');
         }
     }
 
@@ -99,7 +94,7 @@ class RecordController extends Controller {
         if($nUnopenedToDelete > 0)
         {
             $record = Record::find($ids[0]);
-            $record->form->decrement('n_unopened_401', $nUnopenedToDelete);
+            $record->getForm->decrement('n_unopened_401', $nUnopenedToDelete);
         }
     }
 
@@ -138,8 +133,8 @@ class RecordController extends Controller {
     {
         $record             = Record::find($request->input('record'));
         $record->data_403   = json_decode($record->data_403);
-        $form               = $record->form;
-        $oldState           = $record->state;
+        $form               = $record->getForm;
+        $oldState           = $record->getState;
         $state              = State::find($request->input('value'));
         $names              = [];
         $usersEmails        = [];
@@ -233,7 +228,7 @@ class RecordController extends Controller {
     {
         $fields             = json_decode($request->input('_fields'));
         $form               = Form::find(Crypt::decrypt($request->input('_tokenForm')));
-        $forwards           = $form->forwards;
+        $forwards           = $form->getForwards;
         $recipients         = [];
         $names              = [];
         $messages           = [];
@@ -282,7 +277,7 @@ class RecordController extends Controller {
         ];
 
         $record = Record::create($dataRecord);
-        $state  = $record->state;
+        $state  = $record->getState;
 
         // set data with array with decode information to make $dataRecord for message
         $dataRecord['data_403'] = $data;
@@ -312,7 +307,7 @@ class RecordController extends Controller {
         if(count($recipients) > 0)  Recipient::insert($recipients);
 
         // get recipient emails to compare with new user email
-        $recipients = $record->recipients;
+        $recipients = $record->getRecipients;
 
         foreach($recipients as $recipient)
         {

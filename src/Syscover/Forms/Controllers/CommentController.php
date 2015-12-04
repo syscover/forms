@@ -1,16 +1,5 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
-use Illuminate\Support\Facades\Auth;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
@@ -21,6 +10,11 @@ use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Comment;
 
+/**
+ * Class CommentController
+ * @package Syscover\Forms\Controllers
+ */
+
 class CommentController extends Controller {
 
     use TraitController;
@@ -30,7 +24,7 @@ class CommentController extends Controller {
     protected $package          = 'forms';
     protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';
-    protected $model            = '\Syscover\Forms\Models\Comment';
+    protected $model            = \Syscover\Forms\Models\Comment::class;
     protected $icon             = 'icon-comments';
     protected $objectTrans      = 'comment';
     protected $jsonParam        = ['onlyEditOwner' => 'user_404', 'showIfNotEdit' => true, 'show' => true];
@@ -47,15 +41,15 @@ class CommentController extends Controller {
     {
         $record             = Record::find($request->input('ref'));
         $record->data_403   = json_decode($record->data_403);
-        $form               = $record->form;
-        $state              = $record->state;
+        $form               = $record->getForm;
+        $state              = $record->getState;
         $names              = [];
         $usersEmails        = [];
         $messages           = [];
 
         $comment = Comment::create([
             'record_404'                => $request->input('ref'),
-            'user_404'                  => Auth::user()->id_010,
+            'user_404'                  => $request->user()->id_010,
             'date_404'                  => date('U'),
             'subject_404'               => $request->input('subject'),
             'comment_404'               => $request->input('comment')
@@ -70,7 +64,7 @@ class CommentController extends Controller {
         // set recipients
         foreach($recipients as $recipient)
         {
-            if($recipient->email_406 != Auth::user()->email_010)
+            if($recipient->email_406 != $request->user()->email_010)
             {
                 $names[]        = $recipient->name_406;
                 $usersEmails[]  = $recipient->email_406;
@@ -82,7 +76,7 @@ class CommentController extends Controller {
         $matchAuthor = false;
         foreach($recipients as $recipient)
         {
-            if($recipient->email_406 == Auth::user()->email_010)
+            if($recipient->email_406 == $request->user()->email_010)
             {
                 $matchAuthor = true;
             }
@@ -120,7 +114,7 @@ class CommentController extends Controller {
                     'text_template_405'         => 'forms::emails.text_comment',
                     'data_message_405'          => json_encode([
                         'name_form_405'             => $form->name_401,
-                        'author_comment_405'        => Auth::user()->name_010 . ' ' .  Auth::user()->surname_010,
+                        'author_comment_405'        => $request->user()->name_010 . ' ' .  $request->user()->surname_010,
                         'date_comment_405'          => date(config('pulsar.datePattern')),
                         'subject_comment_405'       => $comment->subject_404,
                         'comment_405'               => $comment->comment_404,
@@ -143,8 +137,8 @@ class CommentController extends Controller {
             Recipient::create([
                 'record_406'    => $record->id_403,
                 'forward_406'   => false,
-                'name_406'      => Auth::user()->name_010 . ' ' .  Auth::user()->surname_010,
-                'email_406'     => Auth::user()->email_010,
+                'name_406'      => $request->user()->name_010 . ' ' .  $request->user()->surname_010,
+                'email_406'     => $request->user()->email_010,
                 'comments_406'  => true,
                 'states_406'    => true
             ]);

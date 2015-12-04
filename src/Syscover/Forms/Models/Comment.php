@@ -1,27 +1,33 @@
 <?php namespace Syscover\Forms\Models;
 
-/**
- * @package	    Forms
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
-use Illuminate\Database\Eloquent\Model;
+use Syscover\Pulsar\Models\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\TraitModel;
+use Sofa\Eloquence\Eloquence;
+use Sofa\Eloquence\Mappable;
+
+/**
+ * Class Comment
+ *
+ * Model with properties
+ * <br><b>[id, record, user, date, subject, comment]</b>
+ *
+ * @package     Syscover\Forms\Models
+ */
 
 class Comment extends Model {
 
     use TraitModel;
+    use Eloquence, Mappable;
 
 	protected $table        = '004_404_comment';
     protected $primaryKey   = 'id_404';
     public $timestamps      = false;
     protected $fillable     = ['id_404', 'record_404', 'user_404', 'date_404', 'subject_404', 'comment_404'];
+    protected $maps         = [];
+    protected $relationMaps = [
+        'user'      => \Syscover\Pulsar\Models\User::class,
+    ];
     private static $rules   = [
         'subject'       => 'required|between:2,255'
     ];
@@ -31,9 +37,14 @@ class Comment extends Model {
         return Validator::make($data, static::$rules);
 	}
 
+    public function scopeBuilder($query)
+    {
+        return $query->join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010');
+    }
+
     public static function addToGetRecordsLimit($parameters)
     {
-        return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
+        return Comment::builder()
             ->where('record_404', $parameters['ref'])->newQuery();
     }
 
@@ -42,9 +53,12 @@ class Comment extends Model {
         return Comment::where('record_404', $parameters['ref'])->newQuery();
     }
 
+    /**
+     * @deprecated
+     */
     public static function getRecord($parameters)
     {
-        return Comment::join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010')
+        return Comment::builder()
             ->find($parameters['id']);
     }
 }

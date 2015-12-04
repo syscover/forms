@@ -1,15 +1,5 @@
 <?php namespace Syscover\Forms\Controllers;
 
-/**
- * @package	    Pulsar
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Syscover\Forms\Models\Forward;
@@ -17,6 +7,11 @@ use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Form;
+
+/**
+ * Class FormController
+ * @package Syscover\Forms\Controllers
+ */
 
 class FormController extends Controller {
 
@@ -27,7 +22,7 @@ class FormController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
     protected $nameM        = 'name_401';
-    protected $model        = '\Syscover\Forms\Models\Form';
+    protected $model        = \Syscover\Forms\Models\Form::class;
     protected $icon         = 'fa fa-file-text-o';
     protected $objectTrans  = 'form';
 
@@ -99,7 +94,7 @@ class FormController extends Controller {
     public function editCustomRecord($request, $parameters)
     {
         $parameters['emails']   = EmailAccount::all();
-        $parameters['forwards'] = json_encode($parameters['object']->forwards);
+        $parameters['forwards'] = json_encode($parameters['object']->getForwards);
 
         return $parameters;
     }
@@ -143,7 +138,7 @@ class FormController extends Controller {
         if(count($ids) > 0)
         {
             // to delete forwards the we have delete
-            Forward::deleteRecordsNotIn($ids);
+            Forward::whereNotIn('id_402', $ids)->delete();
         }
 
         if(isset($forwards) && count($forwards) > 0)
