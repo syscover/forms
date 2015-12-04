@@ -1,0 +1,44 @@
+{
+    "name": "Syscover\\Forms\\Libraries\\Cron",
+    "line": 19,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Syscover\\Forms\\Libraries",
+    "file": "src\/Syscover\/Forms\/Libraries\/Cron.php",
+    "relative_file": "\/Syscover\/Forms\/Libraries\/Cron.php",
+    "hash": "e901de82dd5dd9b391b7df4fa7044fdf7391ed6f",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Crypt": "Illuminate\\Support\\Facades\\Crypt",
+        "Mail": "Illuminate\\Support\\Facades\\Mail",
+        "Message": "Syscover\\Forms\\Models\\Message",
+        "EmailAccount": "Syscover\\Pulsar\\Models\\EmailAccount",
+        "Preference": "Syscover\\Pulsar\\Models\\Preference"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "checkMessageToSend": {
+            "name": "checkMessageToSend",
+            "line": 21,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

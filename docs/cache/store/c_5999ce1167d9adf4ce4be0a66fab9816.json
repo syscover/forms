@@ -1,0 +1,101 @@
+{
+    "name": "Syscover\\Forms\\Controllers\\PreferenceController",
+    "line": 14,
+    "short_desc": "Class PreferenceController",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "Syscover\\Forms\\Controllers"
+            ]
+        ]
+    },
+    "namespace": "Syscover\\Forms\\Controllers",
+    "file": "src\/Syscover\/Forms\/Controllers\/PreferenceController.php",
+    "relative_file": "\/Syscover\/Forms\/Controllers\/PreferenceController.php",
+    "hash": "b3f5563bee82eef317e8b6c57ae7c65bee71975b",
+    "parent": "Syscover\\Pulsar\\Controllers\\Controller",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "State": "Syscover\\Forms\\Models\\State",
+        "Controller": "Syscover\\Pulsar\\Controllers\\Controller",
+        "EmailAccount": "Syscover\\Pulsar\\Models\\EmailAccount",
+        "Preference": "Syscover\\Pulsar\\Models\\Preference",
+        "TraitController": "Syscover\\Pulsar\\Traits\\TraitController"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Syscover\\Pulsar\\Traits\\TraitController": "Syscover\\Pulsar\\Traits\\TraitController"
+    },
+    "properties": [],
+    "methods": {
+        "indexCustom": {
+            "name": "indexCustom",
+            "line": 27,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "parameters": {
+                    "name": "parameters",
+                    "line": 27,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "updateCustomRecord": {
+            "name": "updateCustomRecord",
+            "line": 38,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 38,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "parameters": {
+                    "name": "parameters",
+                    "line": 38,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

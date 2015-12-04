@@ -1,0 +1,84 @@
+{
+    "name": "Syscover\\Forms\\Libraries\\Miscellaneous",
+    "line": 15,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Syscover\\Forms\\Libraries",
+    "file": "src\/Syscover\/Forms\/Libraries\/Miscellaneous.php",
+    "relative_file": "\/Syscover\/Forms\/Libraries\/Miscellaneous.php",
+    "hash": "f892767b4ef0ccf6e5833bff8703d9cf9522118d",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Recipient": "Syscover\\Forms\\Models\\Recipient"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "checkRecipients": {
+            "name": "checkRecipients",
+            "line": 25,
+            "short_desc": "Funtion to check news recipients",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "access": [
+                    [
+                        "public"
+                    ]
+                ]
+            },
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "record": {
+                    "name": "record",
+                    "line": 25,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Syscover\\Forms\\Models\\Record",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "form": {
+                    "name": "form",
+                    "line": 25,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Syscover\\Forms\\Models\\Form",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

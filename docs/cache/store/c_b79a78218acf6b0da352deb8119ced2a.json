@@ -1,0 +1,110 @@
+{
+    "name": "Syscover\\Forms\\Controllers\\StateController",
+    "line": 12,
+    "short_desc": "Class StateController",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "Syscover\\Forms\\Controllers"
+            ]
+        ]
+    },
+    "namespace": "Syscover\\Forms\\Controllers",
+    "file": "src\/Syscover\/Forms\/Controllers\/StateController.php",
+    "relative_file": "\/Syscover\/Forms\/Controllers\/StateController.php",
+    "hash": "cca1a2fefcfeac6c99e6d58f5b1120da1d79d1e0",
+    "parent": "Syscover\\Pulsar\\Controllers\\Controller",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Controller": "Syscover\\Pulsar\\Controllers\\Controller",
+        "TraitController": "Syscover\\Pulsar\\Traits\\TraitController",
+        "State": "Syscover\\Forms\\Models\\State"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Syscover\\Pulsar\\Traits\\TraitController": "Syscover\\Pulsar\\Traits\\TraitController"
+    },
+    "properties": [],
+    "methods": {
+        "storeCustomRecord": {
+            "name": "storeCustomRecord",
+            "line": 25,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 25,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "parameters": {
+                    "name": "parameters",
+                    "line": 25,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "updateCustomRecord": {
+            "name": "updateCustomRecord",
+            "line": 34,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 34,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "parameters": {
+                    "name": "parameters",
+                    "line": 34,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

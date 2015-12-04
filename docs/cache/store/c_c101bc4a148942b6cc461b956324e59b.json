@@ -1,0 +1,85 @@
+{
+    "name": "Syscover\\Forms\\Models\\Message",
+    "line": 18,
+    "short_desc": "Class Message",
+    "long_desc": "Model with properties\n<br><b>[id, type, record, date, send_date, dispatched, forward, name, email, form, name_form, name_state, color_state, names, user, permission_state, permission_comment, permission_forward, permission_record, template, text_template, data]<\/b>",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "Syscover\\Forms\\Models"
+            ]
+        ]
+    },
+    "namespace": "Syscover\\Forms\\Models",
+    "file": "src\/Syscover\/Forms\/Models\/Message.php",
+    "relative_file": "\/Syscover\/Forms\/Models\/Message.php",
+    "hash": "014e22418dcd05ba30c24900a6d41b0507d84089",
+    "parent": "Syscover\\Pulsar\\Models\\Model",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Model": "Syscover\\Pulsar\\Models\\Model",
+        "Validator": "Illuminate\\Support\\Facades\\Validator",
+        "TraitModel": "Syscover\\Pulsar\\Traits\\TraitModel",
+        "Eloquence": "Sofa\\Eloquence\\Eloquence",
+        "Mappable": "Sofa\\Eloquence\\Mappable"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Syscover\\Pulsar\\Traits\\TraitModel": "Syscover\\Pulsar\\Traits\\TraitModel",
+        "Sofa\\Eloquence\\Eloquence": "Sofa\\Eloquence\\Eloquence",
+        "Sofa\\Eloquence\\Mappable": "Sofa\\Eloquence\\Mappable"
+    },
+    "properties": {
+        "timestamps": {
+            "name": "timestamps",
+            "line": 25,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "name": {
+                    "parts": [
+                        "false"
+                    ]
+                }
+            },
+            "errors": []
+        }
+    },
+    "methods": {
+        "validate": {
+            "name": "validate",
+            "line": 31,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 31,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

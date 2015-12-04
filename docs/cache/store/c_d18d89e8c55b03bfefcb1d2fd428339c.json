@@ -1,0 +1,195 @@
+{
+    "name": "Syscover\\Forms\\Models\\Comment",
+    "line": 18,
+    "short_desc": "Class Comment",
+    "long_desc": "Model with properties\n<br><b>[id, record, user, date, subject, comment]<\/b>",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "Syscover\\Forms\\Models"
+            ]
+        ]
+    },
+    "namespace": "Syscover\\Forms\\Models",
+    "file": "src\/Syscover\/Forms\/Models\/Comment.php",
+    "relative_file": "\/Syscover\/Forms\/Models\/Comment.php",
+    "hash": "53833b9a0876fc6013cf435331497e202091d72a",
+    "parent": "Syscover\\Pulsar\\Models\\Model",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Model": "Syscover\\Pulsar\\Models\\Model",
+        "Validator": "Illuminate\\Support\\Facades\\Validator",
+        "TraitModel": "Syscover\\Pulsar\\Traits\\TraitModel",
+        "Eloquence": "Sofa\\Eloquence\\Eloquence",
+        "Mappable": "Sofa\\Eloquence\\Mappable"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Syscover\\Pulsar\\Traits\\TraitModel": "Syscover\\Pulsar\\Traits\\TraitModel",
+        "Sofa\\Eloquence\\Eloquence": "Sofa\\Eloquence\\Eloquence",
+        "Sofa\\Eloquence\\Mappable": "Sofa\\Eloquence\\Mappable"
+    },
+    "properties": {
+        "timestamps": {
+            "name": "timestamps",
+            "line": 25,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "name": {
+                    "parts": [
+                        "false"
+                    ]
+                }
+            },
+            "errors": []
+        }
+    },
+    "methods": {
+        "validate": {
+            "name": "validate",
+            "line": 35,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 35,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "scopeBuilder": {
+            "name": "scopeBuilder",
+            "line": 40,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "query": {
+                    "name": "query",
+                    "line": 40,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "addToGetRecordsLimit": {
+            "name": "addToGetRecordsLimit",
+            "line": 45,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "parameters": {
+                    "name": "parameters",
+                    "line": 45,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "customCount": {
+            "name": "customCount",
+            "line": 51,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "parameters": {
+                    "name": "parameters",
+                    "line": 51,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getRecord": {
+            "name": "getRecord",
+            "line": 59,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": {
+                "deprecated": [
+                    [
+                        ""
+                    ]
+                ]
+            },
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "parameters": {
+                    "name": "parameters",
+                    "line": 59,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}
