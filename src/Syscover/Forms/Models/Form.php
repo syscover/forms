@@ -48,7 +48,7 @@ class Form extends Model {
         return Form::hasMany('Syscover\Forms\Models\Forward','form_402');
     }
 
-    public static function addToGetRecordsLimit()
+    public static function addToGetIndexRecords($parameters)
     {
         return Form::builder();
     }

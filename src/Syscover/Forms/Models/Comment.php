@@ -42,7 +42,7 @@ class Comment extends Model {
         return $query->join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010');
     }
 
-    public static function addToGetRecordsLimit($parameters)
+    public static function addToGetIndexRecords($parameters)
     {
         return Comment::builder()
             ->where('record_404', $parameters['ref'])->newQuery();
