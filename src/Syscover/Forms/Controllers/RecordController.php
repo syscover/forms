@@ -9,7 +9,7 @@ use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Forms\Models\State;
 use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Libraries\PulsarAcl;
+use Syscover\Pulsar\Libraries\AclLibrary;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
@@ -174,7 +174,7 @@ class RecordController extends Controller {
 
             if($matchUser != null)
             {
-                $userAcl = PulsarAcl::getProfileAcl($matchUser->profile_010);
+                $userAcl = AclLibrary::getProfileAcl($matchUser->profile_010);
             }
 
             $messages[] = [
@@ -197,10 +197,10 @@ class RecordController extends Controller {
                     'name_state_405'            => $state->name_400,
                     'color_state_405'           => $state->color_400,
                     'names_405'                 => implode (", ", $names),
-                    'permission_state_405'      => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'edit'),
-                    'permission_comment_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-comment', 'create'),
-                    'permission_forward_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-form', 'edit'),
-                    'permission_record_405'     => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'show'),
+                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_010),
+                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_010),
+                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_010),
+                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_010),
                 ]),
                 'data_405'                  => json_encode($record->toArray())
             ];
@@ -315,7 +315,7 @@ class RecordController extends Controller {
             $user = User::where('email_010', $recipient->email_406)->first();
             if($user != null)
             {
-                $userAcl = PulsarAcl::getProfileAcl($user->profile_010);
+                $userAcl = AclLibrary::getProfileAcl($user->profile_010);
             }
 
             $messages[] = [
@@ -336,10 +336,10 @@ class RecordController extends Controller {
                     'name_state_405'            => $state->name_400,
                     'color_state_405'           => $state->color_400,
                     'names_405'                 => implode (", ", $names),
-                    'permission_state_405'      => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'edit'),
-                    'permission_comment_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-comment', 'create'),
-                    'permission_forward_405'    => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-form', 'edit'),
-                    'permission_record_405'     => $user == null? false : $userAcl->isAllowed($user->profile_010, 'forms-record', 'show'),
+                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_010),
+                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_010),
+                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_010),
+                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_010),
                 ]),
                 'data_405'                  => json_encode($dataRecord)
             ];

@@ -5,7 +5,7 @@ use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Libraries\PulsarAcl;
+use Syscover\Pulsar\Libraries\AclLibrary;
 use Syscover\Pulsar\Models\User;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Comment;
@@ -96,7 +96,7 @@ class CommentController extends Controller {
 
                 if($matchUser != null)
                 {
-                    $userAcl = PulsarAcl::getProfileAcl($matchUser->profile_010);
+                    $userAcl = AclLibrary::getProfileAcl($matchUser->profile_010);
                 }
 
                 $messages[] = [
@@ -121,10 +121,10 @@ class CommentController extends Controller {
                         'name_state_405'            => $state->name_400,
                         'color_state_405'           => $state->color_400,
                         'names_405'                 => implode (", ", $names),
-                        'permission_state_405'      => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-record', 'edit'),
-                        'permission_comment_405'    => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-comment', 'create'),
-                        'permission_forward_405'    => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-form', 'edit'),
-                        'permission_record_405'     => $matchUser == null? false : $userAcl->isAllowed($matchUser->profile_010, 'forms-record', 'show'),
+                        'permission_state_405'      => $matchUser == null? false : $userAcl->allows('forms-record', 'edit', $matchUser->profile_010),
+                        'permission_comment_405'    => $matchUser == null? false : $userAcl->allows('forms-comment', 'create', $matchUser->profile_010),
+                        'permission_forward_405'    => $matchUser == null? false : $userAcl->allows('forms-form', 'edit', $matchUser->profile_010),
+                        'permission_record_405'     => $matchUser == null? false : $userAcl->allows('forms-record', 'show', $matchUser->profile_010),
                     ]),
                     'data_405'                  => json_encode($record->toArray())
                 ];
