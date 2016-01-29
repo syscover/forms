@@ -10,16 +10,19 @@
 |
 */
 
-Route::get(config('pulsar.appName') . '/forms/forms/init/form/{id}',                            ['as'=>'initFormsForm',         'uses'=>'Syscover\Forms\Controllers\FormController@initForm']);
-Route::post(config('pulsar.appName') . '/forms/records/record/form',                            ['as'=>'recordFormsRecord',     'uses'=>'Syscover\Forms\Controllers\RecordController@recordForm']);
+Route::group(['middleware' => ['noCsrWeb']], function() {
 
-/*
-|--------------------------------------------------------------------------
-| Google ReCaptcha
-|--------------------------------------------------------------------------
-*/
-Route::post(config('pulsar.appName') . '/forms/google/recaptcha/verify',                        ['as'=>'googleReCaptcha',       'uses'=>'Syscover\Forms\Controllers\ReCaptchaController@verify']);
+    Route::get(config('pulsar.appName') . '/forms/forms/init/form/{id}',                                            ['as'=>'initFormsForm',         'uses'=>'Syscover\Forms\Controllers\FormController@initForm']);
+    Route::post(config('pulsar.appName') . '/forms/records/record/form',                                            ['as'=>'recordFormsRecord',     'uses'=>'Syscover\Forms\Controllers\RecordController@recordForm']);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Google ReCaptcha
+    |--------------------------------------------------------------------------
+    */
+    Route::post(config('pulsar.appName') . '/forms/google/recaptcha/verify',                                        ['as'=>'googleReCaptcha',       'uses'=>'Syscover\Forms\Controllers\ReCaptchaController@verify']);
+
+});
 
 Route::group(['middleware' => ['web', 'pulsar']], function() {
 
@@ -28,7 +31,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | RECIPIENTS
     |--------------------------------------------------------------------------
     */
-    Route::get(config('pulsar.appName') . '/forms/recipients/delete/{id}/{offset}',             ['as'=>'deteleFormsRecipient',  'uses'=>'Syscover\Forms\Controllers\RecordController@deleteRecipient',   'resource' => 'forms-record',   'action' => 'delete']);
+    Route::get(config('pulsar.appName') . '/forms/recipients/delete/{id}/{offset}',                                 ['as'=>'deteleFormsRecipient',  'uses'=>'Syscover\Forms\Controllers\RecordController@deleteRecipient',   'resource' => 'forms-record',   'action' => 'delete']);
 
     /*
     |--------------------------------------------------------------------------
