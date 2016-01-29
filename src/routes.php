@@ -18,10 +18,10 @@ Route::post(config('pulsar.appName') . '/forms/records/record/form',            
 | Google ReCaptcha
 |--------------------------------------------------------------------------
 */
-Route::post(config('pulsar.appName') . '/forms/google/recaptcha/verify',                   ['as'=>'googleReCaptcha',       'uses'=>'Syscover\Forms\Controllers\ReCaptchaController@verify']);
+Route::post(config('pulsar.appName') . '/forms/google/recaptcha/verify',                        ['as'=>'googleReCaptcha',       'uses'=>'Syscover\Forms\Controllers\ReCaptchaController@verify']);
 
 
-Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar']], function() {
+Route::group(['middleware' => ['web', 'pulsar']], function() {
 
     /*
     |--------------------------------------------------------------------------
