@@ -10,7 +10,7 @@ return [
 	|
 	*/
 
-    'secretKey' => env('FORMS_SECRET_KEY', 'your secret key'),
+    'secretKey' => env('GOOGLE_RECAPTCHA_SECRET_KEY', 'your secret key'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -21,5 +21,5 @@ return [
 	|
 	*/
 
-	'siteKey' => env('FORMS_SITE_KEY', 'your site key')
+	'siteKey' => env('GOOGLE_RECAPTCHA_SITE_KEY', 'your site key')
 ];
