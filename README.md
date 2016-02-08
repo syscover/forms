@@ -1,4 +1,4 @@
-# Forms App to Pulsar / Laravel 5.1
+# Forms App to Pulsar / Laravel 5.2
 
 Forms es una aplicación que gestiona formularios, registra cualquier formulario en una base de datos, las características más destacadas de forms son:
 * Envío de formularios tanto por ajax como por submit
@@ -65,11 +65,13 @@ Para realizar la implementación en javascript hay que añadir la siguiente libr
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
 ```
 $('#form').forms({
-    id: 1, // Aquí el ID del registro del formulario que has creada en la sección Forms->Forms
+    id: 1, // Aquí el ID del registro del formulario que has creada en la sección Forms -> Forms
     debug: false,
     ajax: true,
     fields: {
         name: 'name',
+        surname: 'surname',
+        company: 'company',
         email: 'email',
         subject: 'subject',
         data: ['message','field-1','field-2','field-3', ...] // here you can add fields
@@ -93,7 +95,7 @@ $('#form').forms({
 
 Puerdes añadir propiedades a tu formulario mediante atributos data
 ```
-data-length: Tamaño del campo que tendrá en el panel de control
+data-length: Tamaño del campo que tendrá en el panel de control, de 1 a 10
 data-label: Título del campo que se le asignará
 ```
 
@@ -105,7 +107,7 @@ GOOGLE_RECAPTCHA_SITE_KEY=your site key
 
 Para usar Google Recapcha debes de añadir la siguiente etiqueta a tu formulario:
 ```
-<div class="g-recaptcha" data-sitekey="XXXXXXXXXXXXXX"></div>
+<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}"></div>
 ```
 
 Forms se encargará de la validación, devolviendo el error al evento 'forms:error'
