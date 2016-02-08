@@ -35,7 +35,7 @@ class FormsCreateTableRecord extends Migration {
             $table->boolean('opened_403')->default(false);
             $table->boolean('dispatched_403')->default(false);
 
-            $table->json('data_403');
+            $table->text('data_403');
 
             $table->foreign('form_403', 'fk01_004_403_record')->references('id_401')->on('004_401_form')
                 ->onDelete('cascade')->onUpdate('cascade');
