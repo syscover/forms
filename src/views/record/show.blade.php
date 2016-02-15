@@ -31,7 +31,9 @@
                     "sAjaxSource": "{{ route('jsonDataFormsComment', ['ref' => $object->id_403, 'modal' => 0]) }}"
                 }).fnSetFilteringDelay().on('xhr.dt', function (e, settings, json)
                 {
-                    $('[name="urlTarget"]').val('{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form]) }}/' + settings._iDisplayStart + '/0');
+                    var url = '{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form, 'offset' => '%offset%', 'tab' => 0]) }}';
+
+                    $('[name="urlTarget"]').val(url.replace('%offset%', settings._iDisplayStart));
                 });
             }
 
