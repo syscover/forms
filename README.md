@@ -59,7 +59,7 @@ Por último deberemos dar de alta un formulario dentro de **_Forms->Forms_**, el
 
 Para realizar la implementación en javascript hay que añadir la siguiente librería en la página donde vayas a implementar tu formulario
 ```
-<script type="text/javascript" src="{{ asset('packages/syscover/forms/vendor/jquery.forms/jquery.forms.js') }}"></script>
+<script src="{{ asset('packages/syscover/forms/vendor/jquery.forms/jquery.forms.js') }}"></script>
 ```
 
 Después tienes que declarar el plugin de javascript que adaptará tu formulario para que sea enviado y registrado en la base de datos
@@ -101,8 +101,8 @@ data-label: Título del campo que se le asignará
 
 Configura en tu fichero de variables de entorno las siguientes variables, si usas Google ReCaptcha
 ```
-GOOGLE_RECAPTCHA_SECRET_KEY=your secret key
 GOOGLE_RECAPTCHA_SITE_KEY=your site key
+GOOGLE_RECAPTCHA_SECRET_KEY=your secret key
 ```
 
 Para usar Google Recapcha debes de añadir la siguiente etiqueta a tu formulario:
