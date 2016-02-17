@@ -12,19 +12,21 @@ class FormsCreateTableForward extends Migration {
      */
     public function up()
     {
-        Schema::create('004_402_forward', function(Blueprint $table)
+        if(!Schema::hasTable('004_402_forward'))
         {
-            $table->engine = 'InnoDB';
-            $table->increments('id_402')->unsigned();
-            $table->integer('form_402')->unsigned();
-            $table->string('name_402', 100);
-            $table->string('email_402', 50);
-            $table->boolean('comments_402')->default(false);
-            $table->boolean('states_402')->default(false);
+            Schema::create('004_402_forward', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id_402')->unsigned();
+                $table->integer('form_402')->unsigned();
+                $table->string('name_402', 100);
+                $table->string('email_402', 50);
+                $table->boolean('comments_402')->default(false);
+                $table->boolean('states_402')->default(false);
 
-            $table->foreign('form_402', 'fk01_004_402_forward')->references('id_401')->on('004_401_form')
-                ->onDelete('cascade')->onUpdate('cascade');
-        });
+                $table->foreign('form_402', 'fk01_004_402_forward')->references('id_401')->on('004_401_form')
+                    ->onDelete('cascade')->onUpdate('cascade');
+            });
+        }
     }
 
     /**
