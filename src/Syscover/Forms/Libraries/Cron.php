@@ -16,8 +16,8 @@ use Syscover\Forms\Models\Message;
 use Syscover\Pulsar\Models\EmailAccount;
 use Syscover\Pulsar\Models\Preference;
 
-class Cron {
-
+class Cron
+{
     public static function checkMessageToSend()
     {
         $notificationsAccount   = Preference::getValue('formsNotificationsAccount', 4);
