@@ -28,7 +28,7 @@ class RecordController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'date_text_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM        = 'id_403';
-    protected $model        = \Syscover\Forms\Models\Record::class;
+    protected $model        = Record::class;
     protected $icon         = 'icon-file-text-alt';
     protected $objectTrans  = 'record';
     protected $jsonParam    = ['edit' => false, 'show' => true];

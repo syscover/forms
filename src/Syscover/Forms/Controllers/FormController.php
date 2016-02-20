@@ -22,7 +22,7 @@ class FormController extends Controller {
     protected $package      = 'forms';
     protected $aColumns     = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
     protected $nameM        = 'name_401';
-    protected $model        = \Syscover\Forms\Models\Form::class;
+    protected $model        = Form::class;
     protected $icon         = 'fa fa-file-text-o';
     protected $objectTrans  = 'form';
 

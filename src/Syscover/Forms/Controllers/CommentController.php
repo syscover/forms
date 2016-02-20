@@ -24,7 +24,7 @@ class CommentController extends Controller {
     protected $package          = 'forms';
     protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';
-    protected $model            = \Syscover\Forms\Models\Comment::class;
+    protected $model            = Comment::class;
     protected $icon             = 'icon-comments';
     protected $objectTrans      = 'comment';
     protected $jsonParam        = ['onlyEditOwner' => 'user_404', 'showIfNotEdit' => true, 'show' => true];
