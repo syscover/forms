@@ -1,6 +1,6 @@
 @extends('pulsar::layouts.form', ['action' => 'store', 'newTrans' => 'new', 'modal' => true])
 
-@section('script')
+@section('head')
     @parent
     <!-- octopus::comments.create -->
     <script type="text/javascript">

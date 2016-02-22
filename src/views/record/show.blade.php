@@ -1,6 +1,6 @@
 @extends('pulsar::layouts.tab', ['tabs' => [['id' => 'box_tab1', 'name' => trans_choice('pulsar::pulsar.record', 1)], ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.comment', 2)]]])
 
-@section('script')
+@section('head')
     @parent
     <!-- forms::records.show -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">

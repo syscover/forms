@@ -1,6 +1,6 @@
 @extends('pulsar::layouts.form', ['action' => 'store'])
 
-@section('script')
+@section('head')
     @parent
     <!-- forms::forms.create -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">

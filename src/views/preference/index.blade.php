@@ -1,6 +1,6 @@
 @extends('pulsar::layouts.form', ['action' => 'update', 'cancelButton' => false])
 
-@section('script')
+@section('head')
     @parent
     <!-- forms::preferences.index -->
     @include('pulsar::includes.js.success_message')

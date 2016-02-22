@@ -1,6 +1,6 @@
 @extends('pulsar::layouts.form', ['action' => 'store'])
 
-@section('script')
+@section('head')
     @parent
     <link href="{{ asset('packages/syscover/pulsar/vendor/colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
