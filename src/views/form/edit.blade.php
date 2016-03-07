@@ -19,7 +19,7 @@
     @include('pulsar::includes.html.form_element_table_group', [
         'id'        => 'forwards',
         'label'     => trans_choice('pulsar::pulsar.forward', 1),
-        'icon'      => 'icon-share-alt',
+        'icon'      => 'fa fa-share',
         'dataJson'  => $forwards,
         'thead'     => [(object)['class' => null, 'data' => trans('pulsar::pulsar.name')], (object)['class' => null, 'data' => trans('pulsar::pulsar.email')], (object)['class' => 'align-center', 'data' => trans_choice('pulsar::pulsar.comment', 2)], (object)['class' => 'align-center', 'data' => trans_choice('pulsar::pulsar.state', 2)]],
         'tbody'     => [
