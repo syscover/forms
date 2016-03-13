@@ -15,7 +15,7 @@ class PreferenceController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'FormsPreference';
+    protected $routeSuffix  = 'formsPreference';
     protected $folder       = 'preference';
     protected $package      = 'forms';
     protected $aColumns     = [];

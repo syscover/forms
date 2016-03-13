@@ -13,7 +13,7 @@ class StateController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'FormsState';
+    protected $routeSuffix  = 'formsState';
     protected $folder       = 'state';
     protected $package      = 'forms';
     protected $aColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];

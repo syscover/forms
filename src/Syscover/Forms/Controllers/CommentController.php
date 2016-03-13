@@ -19,7 +19,7 @@ class CommentController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix      = 'FormsComment';
+    protected $routeSuffix      = 'formsComment';
     protected $folder           = 'comment';
     protected $package          = 'forms';
     protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];

@@ -17,7 +17,7 @@ class FormController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'FormsForm';
+    protected $routeSuffix  = 'formsForm';
     protected $folder       = 'form';
     protected $package      = 'forms';
     protected $aColumns     = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
