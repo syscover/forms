@@ -13,6 +13,8 @@ class FormsTableSeeder extends Seeder
         $this->call(FormsResourceTableSeeder::class);
         $this->call(FormsCronjobTableSeeder::class);
         $this->call(FormsStateTableSeeder::class);
+
+        Model::reguard();
     }
 }
 
