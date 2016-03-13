@@ -141,7 +141,7 @@
                 <table class="table table-striped table-bordered table-hover table-checkable table-responsive datatable-pulsar">
                     <thead>
                     <tr>
-                        <th data-hide="expand">{{ trans('pulsar::pulsar.date') }}</th>
+                        <th data-hide="expand">{{ trans_choice('pulsar::pulsar.date', 1) }}</th>
                         <th data-hide="phone">{{ trans_choice('pulsar::pulsar.user', 1) }}</th>
                         <th data-hide="phone">{{ trans('pulsar::pulsar.subject') }}</th>
                         <th class="checkbox-column"><input type="checkbox" class="uniform"></th>
