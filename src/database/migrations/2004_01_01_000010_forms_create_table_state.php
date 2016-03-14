@@ -12,12 +12,12 @@ class FormsCreateTableState extends Migration {
      */
     public function up()
     {
-        if(!Schema::hasTable('004_400_state'))
+        if(! Schema::hasTable('004_400_state'))
         {
             Schema::create('004_400_state', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id_400')->unsigned();
-                $table->string('name_400', 50);
+                $table->string('name_400');
                 $table->string('color_400', 50);
             });
         }
@@ -30,7 +30,9 @@ class FormsCreateTableState extends Migration {
      */
     public function down()
     {
-        Schema::drop('004_400_state');
+        if (Schema::hasTable('004_400_state'))
+        {
+            Schema::drop('004_400_state');
+        }
     }
-
 }
