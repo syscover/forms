@@ -2,8 +2,10 @@
 
 @section('head')
     @parent
+    <!-- forms::states.create -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <script src="{{ asset('packages/syscover/pulsar/vendor/colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+    <!-- ./forms::states.create -->
 @stop
 
 @section('rows')
