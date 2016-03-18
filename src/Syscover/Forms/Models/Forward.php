@@ -42,9 +42,4 @@ class Forward extends Model {
     {
         return $query->join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401');
     }
-
-    public static function addToGetIndexRecords($parameters)
-    {
-        return Forward::builder();
-    }
 }
