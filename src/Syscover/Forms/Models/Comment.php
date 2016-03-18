@@ -45,12 +45,15 @@ class Comment extends Model {
     public static function addToGetIndexRecords($parameters)
     {
         return Comment::builder()
-            ->where('record_404', $parameters['ref'])->newQuery();
+            ->where('record_404', $parameters['ref'])
+            ->newQuery();
     }
 
     public function customCount($parameters)
     {
-        return Comment::where('record_404', $parameters['ref'])->newQuery();
+        return Comment::builder()
+            ->where('record_404', $parameters['ref'])
+            ->newQuery();
     }
 
     /**

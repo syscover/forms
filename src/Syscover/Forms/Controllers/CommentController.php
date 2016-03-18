@@ -27,7 +27,11 @@ class CommentController extends Controller {
     protected $model            = Comment::class;
     protected $icon             = 'icon-comments';
     protected $objectTrans      = 'comment';
-    protected $jsonParam        = ['onlyEditOwner' => 'user_404', 'showIfNotEdit' => true, 'show' => true];
+    protected $viewParameters   = [
+        'showButton'    => true,
+        'editButton'    => false,
+        'deleteButton'  => false
+    ];
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
@@ -35,6 +39,16 @@ class CommentController extends Controller {
         $actionUrlParameters['ref']     = $parameters['ref'];
 
         return $actionUrlParameters;
+    }
+
+    // delete edit and delete buttons, on finished rows
+    public function jsonCustomDataBeforeActions($request, $aObject)
+    {
+        if($aObject['user_404'] == auth('pulsar')->user()->id_010)
+        {
+            $this->viewParameters['editButton']     = true;
+            $this->viewParameters['deleteButton']   = true;
+        }
     }
 
     public function storeCustomRecord($request, $parameters)
