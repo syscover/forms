@@ -1,4 +1,9 @@
-@extends('pulsar::layouts.tab', ['tabs' => [['id' => 'box_tab1', 'name' => trans_choice('pulsar::pulsar.record', 1)], ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.comment', 2)]]])
+@extends('pulsar::layouts.tab', [
+    'tabs' => [
+        ['id' => 'box_tab1', 'name' => trans_choice('pulsar::pulsar.record', 1)],
+        ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.comment', 2)]
+    ]
+])
 
 @section('head')
     @parent
@@ -10,7 +15,7 @@
     @include('pulsar::includes.js.success_message')
     @include('pulsar::includes.js.datatable_config')
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
 
             if ($.fn.dataTable)
@@ -28,17 +33,17 @@
                     "sAjaxSource": "{{ route('jsonDataFormsComment', ['ref' => $object->id_403, 'modal' => 0]) }}"
                 }).fnSetFilteringDelay().on('xhr.dt', function (e, settings, json)
                 {
-                    var url = '{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form, 'offset' => '%offset%', 'tab' => 0]) }}';
+                    var url = '{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form, 'offset' => '%offset%', 'tab' => 0]) }}'
 
-                    $('[name="urlTarget"]').val(url.replace('%offset%', settings._iDisplayStart));
-                });
+                    $('[name="urlTarget"]').val(url.replace('%offset%', settings._iDisplayStart))
+                })
             }
 
             $("#selectState").select2({
                 templateResult: formatState,
                 templateSelection: formatState,
                 minimumResultsForSearch: -1
-            }).on('change', function(){
+            }).on('change', function() {
                 $.ajax({
                     url: '{{ route('jsonSetStateFormsRecord') }}',
                     data: {
@@ -56,38 +61,38 @@
                             text:   '{{ trans('forms::pulsar.change_state') }}',
                             opacity: .9,
                             styling: 'fontawesome'
-                        });
+                        })
                     }
-                });
-            });
+                })
+            })
 
             $('.magnific-popup').magnificPopup({
                 type: 'iframe',
                 removalDelay: 300,
                 mainClass: 'mfp-fade'
-            });
+            })
 
             // set tab active
             @if($tab == 0)
-            $('.tabbable li:eq(0) a').tab('show');
+                $('.tabbable li:eq(0) a').tab('show')
             @elseif($tab == 1)
-            $('.tabbable li:eq(1) a').tab('show');
+                $('.tabbable li:eq(1) a').tab('show')
             @endif
 
             // new comment
             @if(isset($newComment) && $newComment)
-                $('.magnific-popup').magnificPopup('open');
+                $('.magnific-popup').magnificPopup('open')
             @endif
-        });
+        })
 
         function formatState(option)
         {
-            if (!option.id) { return option.text; }
+            if (!option.id) { return option.text }
             var $option = $(
                     '<span><i class="color" style="background-color:' + $(option.element).data('color') + '"></i>' + ' ' + option.text + '</span>'
-            );
-            return $option;
-        };
+            )
+            return $option
+        }
     </script>
     <!-- /forms::records.show -->
 @stop
@@ -125,7 +130,7 @@
 
 @section('box_tab2')
     <!-- forms::records.show -->
-    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn marginB10 fl"><i class="icon-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
+    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn marginB10 fl"><i class="fa fa-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
     <div id="select2-records" class="fr col-xs-6 col-md-4">
         <select id="selectState" data-width="100%">
             @foreach($states as $state)

@@ -29,12 +29,13 @@ class RecordController extends Controller {
     protected $aColumns         = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'date_text_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM            = 'id_403';
     protected $model            = Record::class;
-    protected $icon             = 'icon-file-text-alt';
+    protected $icon             = 'fa fa-file-text';
     protected $objectTrans      = 'record';
     protected $viewParameters = [
-        'showButton'    => true,
-        'editButton'    => false,
-        'deleteButton'  => true
+        'checkBoxColumn'    => true,
+        'showButton'        => true,
+        'editButton'        => false,
+        'deleteButton'      => true
     ];
 
     public function indexCustom($parameters)
@@ -66,7 +67,7 @@ class RecordController extends Controller {
         return $actionUrlParameters;
     }
 
-    public function showCustomRecord($parameters)
+    public function showCustomRecord($request, $parameters)
     {
         if($parameters['object']->opened_403 == false)
         {

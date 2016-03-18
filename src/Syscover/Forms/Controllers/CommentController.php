@@ -22,15 +22,17 @@ class CommentController extends Controller {
     protected $routeSuffix      = 'formsComment';
     protected $folder           = 'comment';
     protected $package          = 'forms';
-    protected $aColumns         = [['type' => 'date','format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
+    // todo: set format date with config('pulsar.datePattern')
+    protected $aColumns         = [['type' => 'date', 'format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';
     protected $model            = Comment::class;
-    protected $icon             = 'icon-comments';
+    protected $icon             = 'fa fa-comments';
     protected $objectTrans      = 'comment';
     protected $viewParameters   = [
-        'showButton'    => true,
-        'editButton'    => false,
-        'deleteButton'  => false
+        'checkBoxColumn'    => true,
+        'showButton'        => true,
+        'editButton'        => false,
+        'deleteButton'      => false
     ];
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
