@@ -68,8 +68,8 @@ class FormController extends Controller {
 
         $form = Form::create([
             'name_401'              => $request->input('name'),
-            'email_account_401'     => $request->input('email'),
-            'push_notification_401' => $request->input('push', 0)
+            'email_account_401'     => $request->input('emailAccount'),
+            'push_notification_401' => $request->has('pushNotification')
         ]);
 
         $forwardsData = json_decode($request->input('forwardsData'));
@@ -103,8 +103,8 @@ class FormController extends Controller {
     {
         Form::where('id_401', $parameters['id'])->update([
             'name_401'              => $request->input('name'),
-            'email_account_401'     => $request->input('email'),
-            'push_notification_401' => $request->input('push', 0)
+            'email_account_401'     => $request->input('emailAccount'),
+            'push_notification_401' => $request->has('pushNotification')
         ]);
 
         $forwardsData = json_decode($request->input('forwardsData'));

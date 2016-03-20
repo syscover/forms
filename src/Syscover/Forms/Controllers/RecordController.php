@@ -227,7 +227,7 @@ class RecordController extends Controller {
      *
      * @access	public
      * @param   HttpRequest  $request
-     * @return  json | Illuminate\Http\RedirectResponse
+     * @return  json | \Illuminate\Http\RedirectResponse
      */
     public function recordForm(HttpRequest $request)
     {
