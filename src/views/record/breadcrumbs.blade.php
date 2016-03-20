@@ -8,4 +8,4 @@
 <li class="current">
     <a href="{{ route($routeSuffix, $form) }}">{{ trans_choice($objectTrans, 2) }}</a>
 </li>
-<!-- /forms::records.breadcrumbs -->
+<!-- ./forms::records.breadcrumbs -->

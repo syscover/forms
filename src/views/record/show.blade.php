@@ -100,32 +100,93 @@
 @section('box_tab1')
     <!-- forms::records.show -->
     @include('pulsar::includes.html.form_record_header', ['action' => 'show'])
-        @include('pulsar::includes.html.form_text_group', ['label' => 'ID', 'name' => 'id', 'value' => $object->id_403, 'fieldSize' => 2, 'readOnly' => true])
-        @include('pulsar::includes.html.form_text_group', ['label' => trans('forms::pulsar.record_date'), 'name' => 'recordDate', 'value' => date(config('pulsar.datePattern'), $object->date_403), 'fieldSize' => 4, 'readOnly' => true])
-        @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.subject'), 'name' => 'subject', 'value' => $object->subject_403, 'fieldSize' => 10, 'readOnly' => true,])
+        @include('pulsar::includes.html.form_text_group', [
+            'label' => 'ID',
+            'name' => 'id',
+            'value' => $object->id_403,
+            'fieldSize' => 2,
+            'readOnly' => true
+        ])
+        @include('pulsar::includes.html.form_text_group', [
+            'label' => trans('forms::pulsar.record_date'),
+            'name' => 'recordDate',
+            'value' => date(config('pulsar.datePattern'), $object->date_403),
+            'fieldSize' => 4,
+            'readOnly' => true
+        ])
+        @include('pulsar::includes.html.form_text_group', [
+            'label' => trans('pulsar::pulsar.subject'),
+            'name' => 'subject',
+            'value' => $object->subject_403,
+            'fieldSize' => 10,
+            'readOnly' => true
+        ])
         @if(isset($object->company_403))
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('pulsar::pulsar.company', 1), 'name' => 'company', 'value' => $object->company_403, 'fieldSize' => 10, 'readOnly' => true])
+            @include('pulsar::includes.html.form_text_group', [
+                'label' => trans_choice('pulsar::pulsar.company', 1),
+                'name' => 'company',
+                'value' => $object->company_403,
+                'fieldSize' => 10,
+                'readOnly' => true
+            ])
         @endif
         @if(isset($object->name_403))
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.name'), 'name' => 'name', 'value' => $object->name_403, 'fieldSize' => 5, 'readOnly' => true])
+            @include('pulsar::includes.html.form_text_group', [
+                'label' => trans('pulsar::pulsar.name'),
+                'name' => 'name',
+                'value' => $object->name_403,
+                'fieldSize' => 5,
+                'readOnly' => true
+            ])
         @endif
         @if(isset($object->surname_403))
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.surname'), 'name' => 'surname', 'value' => $object->surname_403, 'fieldSize' => 10, 'readOnly' => true])
+            @include('pulsar::includes.html.form_text_group', [
+                'label' => trans('pulsar::pulsar.surname'),
+                'name' => 'surname',
+                'value' => $object->surname_403,
+                'fieldSize' => 10,
+                'readOnly' => true
+            ])
         @endif
         @if(isset($object->email_403))
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'email', 'value' => $object->email_403, 'fieldSize' => 5, 'readOnly' => true])
+            @include('pulsar::includes.html.form_text_group', [
+                'label' => trans('pulsar::pulsar.email'),
+                'name' => 'email',
+                'value' => $object->email_403,
+                'fieldSize' => 5,
+                'readOnly' => true
+            ])
         @endif
         @foreach(json_decode($object->data_403) as $field)
             @if($field->type == 'text' || $field->type == 'select-one'|| $field->type == 'select-multiple' || $field->type == 'hidden' || $field->type == 'tel' || $field->type == 'email')
-                @include('pulsar::includes.html.form_text_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'fieldSize' => isset($field->length)? $field->length : 10 , 'readOnly' => true])
+                @include('pulsar::includes.html.form_text_group', [
+                    'label' => isset($field->label)? $field->label : ucfirst($field->name),
+                    'name' => '',
+                    'value' => $field->value,
+                    'fieldSize' => isset($field->length)? $field->length : 10 ,
+                    'readOnly' => true
+                ])
             @elseif($field->type == 'textarea')
-                @include('pulsar::includes.html.form_textarea_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'labelSize' => 2, 'fieldSize' => 10, 'readOnly' => true])
+                @include('pulsar::includes.html.form_textarea_group', [
+                    'label' => isset($field->label)? $field->label : ucfirst($field->name),
+                    'name' => '',
+                    'value' => $field->value,
+                    'labelSize' => 2,
+                    'fieldSize' => 10,
+                    'readOnly' => true
+                ])
             @elseif($field->type == 'checkbox')
-                @include('pulsar::includes.html.form_checkbox_group', ['label' => isset($field->label)? $field->label : ucfirst($field->name), 'name' => '', 'value' => $field->value, 'checked' => $field->value, 'disabled' => true])
+                @include('pulsar::includes.html.form_checkbox_group', [
+                    'label' => isset($field->label)? $field->label : ucfirst($field->name),
+                    'name' => '',
+                    'value' => $field->value,
+                    'checked' => $field->value,
+                    'disabled' => true
+                ])
             @endif
         @endforeach
     @include('pulsar::includes.html.form_record_footer', ['action' => 'show'])
-    <!-- /forms::records.show -->
+    <!-- ./forms::records.show -->
 @stop
 
 @section('box_tab2')
@@ -134,7 +195,7 @@
     <div id="select2-records" class="fr col-xs-6 col-md-4">
         <select id="selectState" data-width="100%">
             @foreach($states as $state)
-            <option value="{{ $state->id_400 }}" data-color="{{ $state->color_400 }}"{{ $state->id_400 == $object->state_403? ' selected' : null }}>{{ $state->name_400 }}</option>
+                <option value="{{ $state->id_400 }}" data-color="{{ $state->color_400 }}"{{ $state->id_400 == $object->state_403? ' selected' : null }}>{{ $state->name_400 }}</option>
             @endforeach
         </select>
     </div>
@@ -160,5 +221,5 @@
             </form>
         </div>
     </div>
-    <!-- /forms::records.show -->
+    <!-- ./forms::records.show -->
 @stop
