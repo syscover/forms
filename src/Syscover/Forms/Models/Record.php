@@ -63,13 +63,13 @@ class Record extends Model {
         return $this->hasMany('Syscover\Forms\Models\Recipient', 'record_406');
     }
 
-    public function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($request, $parameters)
     {
         return $this->builder()
             ->where('form_403', $parameters['form']);
     }
 
-    public function customCount($parameters)
+    public function customCount($request, $parameters)
     {
         return Record::where('form_403', $parameters['form']);
     }
