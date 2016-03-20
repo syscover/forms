@@ -5,7 +5,7 @@
                 {{ trans('forms::pulsar.actions_email_record') }},
                 @if($dataTextMessage->permission_record_405)
                     <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 1]) }}">{{ trans('forms::pulsar.view_on_forms') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
-                    <a href="{{ route('FormsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
+                    <a href="{{ route('formsRecord', ['form' => $dataMessage->form_405, 'offset' => 0]) }}">{{ trans('forms::pulsar.view_all_records') }}</a> @if($dataTextMessage->permission_comment_405 || $dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif
                 @endif
                 @if($dataTextMessage->permission_comment_405)
                     <a href="{{ route('showFormsRecord', ['id' => $dataMessage->record_405, 'form' => $dataMessage->form_405, 'offset' => 0, 'tab' => 0, 'newComment' => 1]) }}">{{ trans('forms::pulsar.create_comment') }}</a> @if($dataTextMessage->permission_state_405) {{ trans('forms::pulsar.or') }} @endif

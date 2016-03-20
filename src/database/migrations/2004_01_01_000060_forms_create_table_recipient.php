@@ -18,7 +18,7 @@ class FormsCreateTableRecipient extends Migration {
                 $table->engine = 'InnoDB';
                 $table->increments('id_406')->unsigned();
                 $table->integer('record_406')->unsigned();
-                $table->boolean('forward_406')->default(false); // check if repient is record like forward
+                $table->boolean('forward_406')->default(false); // check if recipient is record like forward
                 $table->string('name_406', 100);
                 $table->string('email_406', 50);
                 $table->boolean('comments_406')->default(false);
