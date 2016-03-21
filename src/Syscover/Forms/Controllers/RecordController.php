@@ -32,10 +32,11 @@ class RecordController extends Controller {
     protected $icon             = 'fa fa-file-text';
     protected $objectTrans      = 'record';
     protected $viewParameters = [
-        'checkBoxColumn'    => true,
-        'showButton'        => true,
-        'editButton'        => false,
-        'deleteButton'      => true
+        'checkBoxColumn'        => true,
+        'showButton'            => true,
+        'editButton'            => false,
+        'deleteButton'          => true,
+        'deleteSelectButton'    => true
     ];
 
     public function indexCustom($parameters)

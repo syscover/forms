@@ -29,10 +29,11 @@ class CommentController extends Controller {
     protected $icon             = 'fa fa-comments';
     protected $objectTrans      = 'comment';
     protected $viewParameters   = [
-        'checkBoxColumn'    => true,
-        'showButton'        => true,
-        'editButton'        => false,
-        'deleteButton'      => false
+        'checkBoxColumn'        => true,
+        'showButton'            => true,
+        'editButton'            => false,
+        'deleteButton'          => false,
+        'deleteSelectButton'    => true
     ];
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
