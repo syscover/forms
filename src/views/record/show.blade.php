@@ -58,7 +58,7 @@
                         new PNotify({
                             type:   'success',
                             title:  '{{ trans('pulsar::pulsar.action_successful') }}',
-                            text:   '{{ trans('forms::pulsar.change_state') }}',
+                            text:   '{{ trans('forms::pulsar.message_change_state') }}',
                             opacity: .9,
                             styling: 'fontawesome'
                         })

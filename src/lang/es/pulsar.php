@@ -12,13 +12,15 @@ return [
     | If you come up with something more exciting, let us know.
     |
     */
+
+
+
     'package_name'                          => 'Forms',
     'push_notifications'                    => 'Notificaciones push',
     'view_forms'                            => 'Ver formularios',
     'view_records'                          => 'Ver registros',
     'record_date'                           => 'Fecha registro',
-    'change_state'                          => 'El estado del registro ha sido modificado',
-    'notifications_account'                 => 'Cuenta de notificaciones',
+    'message_change_state'                          => 'El estado del registro ha sido modificado',
     'stop_email_form'                       => 'Parar de recibir emails',
     'stop_email_form2'                      => 'de este formulario.',
     'stop_email_form3'                      => 'de este registro.',

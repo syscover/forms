@@ -12,13 +12,15 @@ return [
     | If you come up with something more exciting, let us know.
     |
     */
+
+
+
     'package_name'                          => 'Forms',
     'push_notifications'                    => 'Push notifications',
     'view_forms'                            => 'View forms',
     'view_records'                          => 'View records',
     'record_date'                           => 'Record date',
-    'change_state'                          => 'Registration status has been modified',
-    'notifications_account'                 => 'Notifications account',
+    'message_change_state'                  => 'Registration status has been modified',
     'stop_email_form'                       => 'Stop receiving emails',
     'stop_email_form2'                      => 'about this form.',
     'stop_email_form3'                      => 'about this record.',

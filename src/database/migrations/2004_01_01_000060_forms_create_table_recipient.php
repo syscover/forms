@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 class FormsCreateTableRecipient extends Migration {
 
     /**
-     * Run the migrations.
+     * Registra los correos a los que enviar las notificaciones, puede variar respecto a los forward
+     * ya que un usuario se puede dar de baja del hilo de conversación
      *
      * @return void
      */

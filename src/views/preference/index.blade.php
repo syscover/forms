@@ -43,7 +43,7 @@
         ]
     ])
     @include('pulsar::includes.html.form_select_group', [
-        'label' => trans('forms::pulsar.notifications_account'),
+        'label' => trans('pulsar::pulsar.notifications_account'),
         'name' => 'notificationsAccount',
         'value' => (int)$notificationsAccount->value_018,
         'objects' => $accounts,
