@@ -12,6 +12,7 @@ return [
     | If you come up with something more exciting, let us know.
     |
     */
+    'actions_email_record'                  => 'You can perform these actions',
 
 
 
@@ -33,7 +34,6 @@ return [
     'create_comment'                        => 'create a comment',
     'change_state'                          => 'change state record',
     'sent_form'                             => 'sent this record on Pulsar Forms.',
-    'actions_email_record'                  => 'You can perform these actions',
     'form_received'                         => 'You\'ve received a new registration form',
     'form_comment'                          => 'You\'ve a new comment on record for this form',
     'record_change_state'                   => 'A record has changed state, for this form',

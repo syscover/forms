@@ -12,6 +12,7 @@ return [
     | If you come up with something more exciting, let us know.
     |
     */
+    'actions_email_record'                  => 'Puedes realizar las siguientes acciones',
 
 
 
@@ -20,7 +21,7 @@ return [
     'view_forms'                            => 'Ver formularios',
     'view_records'                          => 'Ver registros',
     'record_date'                           => 'Fecha registro',
-    'message_change_state'                          => 'El estado del registro ha sido modificado',
+    'message_change_state'                  => 'El estado del registro ha sido modificado',
     'stop_email_form'                       => 'Parar de recibir emails',
     'stop_email_form2'                      => 'de este formulario.',
     'stop_email_form3'                      => 'de este registro.',
@@ -33,7 +34,6 @@ return [
     'create_comment'                        => 'crear un comentario',
     'change_state'                          => 'cambiar el estos del registro',
     'sent_form'                             => 'envió este registro sobre Pulsar Forms.',
-    'actions_email_record'                  => 'Puedes realizar las siguites acciones',
     'form_received'                         => 'Has recibido un nuevo registro del formulario',
     'form_comment'                          => 'Tienes un nuevo comentario de un registro de este formulario',
     'record_change_state'                   => 'Un registro ha cambiado de estado, del formulario',
