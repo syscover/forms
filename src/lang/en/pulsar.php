@@ -13,6 +13,9 @@ return [
     |
     */
     'actions_email_record'                  => 'You can perform these actions',
+    'change_state'                          => 'change state record',
+    'comment'                               => 'Comment',
+    'create_comment'                        => 'create a comment',
 
 
 
@@ -28,11 +31,8 @@ return [
     'sent_to'                               => 'This email was sent to:',
     'or'                                    => 'or',
     'to'                                    => 'to',
-    'comment'                               => 'Comment',
     'view_on_forms'                         => 'view this record',
     'view_all_records'                      => 'view all records for this form',
-    'create_comment'                        => 'create a comment',
-    'change_state'                          => 'change state record',
     'sent_form'                             => 'sent this record on Pulsar Forms.',
     'form_received'                         => 'You\'ve received a new registration form',
     'form_comment'                          => 'You\'ve a new comment on record for this form',

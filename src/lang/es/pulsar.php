@@ -13,6 +13,9 @@ return [
     |
     */
     'actions_email_record'                  => 'Puedes realizar las siguientes acciones',
+    'change_state'                          => 'cambiar el estos del registro',
+    'comment'                               => 'Comentario',
+    'create_comment'                        => 'crear un comentario',
 
 
 
@@ -28,11 +31,8 @@ return [
     'sent_to'                               => 'Este email fue enviado a:',
     'or'                                    => 'o',
     'to'                                    => 'a',
-    'comment'                               => 'Comentario',
     'view_on_forms'                         => 'ver este registro',
     'view_all_records'                      => 'ver todos los registros del formulario',
-    'create_comment'                        => 'crear un comentario',
-    'change_state'                          => 'cambiar el estos del registro',
     'sent_form'                             => 'envió este registro sobre Pulsar Forms.',
     'form_received'                         => 'Has recibido un nuevo registro del formulario',
     'form_comment'                          => 'Tienes un nuevo comentario de un registro de este formulario',
