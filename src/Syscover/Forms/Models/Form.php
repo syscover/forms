@@ -29,8 +29,8 @@ class Form extends Model {
         'email_account'      => \Syscover\Pulsar\Models\EmailAccount::class,
     ];
     private static $rules   = [
-        'name'  => 'required|between:2,50',
-        'email' => 'required'
+        'name'          => 'required|between:2,50',
+        'emailAccount'  => 'required'
     ];
 
     public static function validate($data)
