@@ -1,7 +1,6 @@
 <?php namespace Syscover\Forms\Controllers;
 
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Http\Request as HttpRequest;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Form;
 use Syscover\Forms\Models\Message;
@@ -46,7 +45,7 @@ class RecordController extends Controller {
         return $parameters;
     }
 
-    public function customColumnType($request, $row, $aColumn, $aObject)
+    public function customColumnType($row, $aColumn, $aObject)
     {
         switch ($aColumn['type'])
         {
@@ -68,7 +67,7 @@ class RecordController extends Controller {
         return $actionUrlParameters;
     }
 
-    public function showCustomRecord($request, $parameters)
+    public function showCustomRecord($parameters)
     {
         if($parameters['object']->opened_403 == false)
         {
@@ -84,7 +83,7 @@ class RecordController extends Controller {
         return $parameters;
     }
 
-    public function deleteCustomRecord($request, $record)
+    public function deleteCustomRecord($record)
     {
         // set records unopened
         if(!$record->opened_403)
@@ -93,7 +92,7 @@ class RecordController extends Controller {
         }
     }
 
-    public function deleteCustomRecordsSelect($request, $ids)
+    public function deleteCustomRecordsSelect($ids)
     {
         $nUnopenedToDelete = Record::where('opened_403', false)->whereIn('id_403', $ids)->count();
         // set records unopened
@@ -108,12 +107,11 @@ class RecordController extends Controller {
      *  Delete recipient from record
      *
      * @access	public
-     * @param   HttpRequest  $request
      * @return  \Illuminate\Support\Facades\Redirect
      */
-    public function deleteRecipient(HttpRequest $request)
+    public function deleteRecipient()
     {
-        $parameters = $request->route()->parameters();
+        $parameters = $this->request->route()->parameters();
         $recipient  = Recipient::find($parameters['id']);
         $record     = $recipient->record;
 
@@ -132,28 +130,27 @@ class RecordController extends Controller {
      *  Change state record
      *
      * @access	public
-     * @param   HttpRequest  $request
      * @return  json
      */
-    public function jsonSetStateRecordForm(HttpRequest $request)
+    public function jsonSetStateRecordForm()
     {
-        $record             = Record::find($request->input('record'));
+        $record             = Record::find($this->request->input('record'));
         $record->data_403   = json_decode($record->data_403);
         $form               = $record->getForm;
         $oldState           = $record->getState;
-        $state              = State::find($request->input('value'));
+        $state              = State::find($this->request->input('value'));
         $names              = [];
         $usersEmails        = [];
 
-        Record::where('id_403', $request->input('record'))->update([
-            'state_403' => $request->input('value')
+        Record::where('id_403', $this->request->input('record'))->update([
+            'state_403' => $this->request->input('value')
         ]);
 
         // check new recipients
         Miscellaneous::checkRecipients($record, $form);
 
         // get recipients emails to compare with new user email
-        $recipients = Recipient::where('record_406', $request->input('record'))->where('states_406', true)->get();
+        $recipients = Recipient::where('record_406', $this->request->input('record'))->where('states_406', true)->get();
 
         // set recipients
         foreach($recipients as $recipient)
@@ -216,8 +213,8 @@ class RecordController extends Controller {
 
         $response = [
             'success'   => true,
-            'record'    => $request->input('record'),
-            'value'     => $request->input('value')
+            'record'    => $this->request->input('record'),
+            'value'     => $this->request->input('value')
         ];
 
         return response()->json($response);
@@ -227,13 +224,12 @@ class RecordController extends Controller {
      *  Function to record a data form
      *
      * @access	public
-     * @param   HttpRequest  $request
      * @return  json | \Illuminate\Http\RedirectResponse
      */
-    public function recordForm(HttpRequest $request)
+    public function recordForm()
     {
-        $fields             = json_decode($request->input('_fields'));
-        $form               = Form::find(Crypt::decrypt($request->input('_tokenForm')));
+        $fields             = json_decode($this->request->input('_fields'));
+        $form               = Form::find(Crypt::decrypt($this->request->input('_tokenForm')));
         $forwards           = $form->getForwards;
         $recipients         = [];
         $names              = [];
@@ -257,7 +253,7 @@ class RecordController extends Controller {
             $obj = [
                 'type'  => $field->type,
                 'name'  => $field->name,
-                'value' => $request->input($field->name)
+                'value' => $this->request->input($field->name)
             ];
 
             if(isset($field->length)) $obj['length']    = $field->length;
@@ -274,11 +270,11 @@ class RecordController extends Controller {
             'date_403'              => $recordDate,
             'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
             'state_403'             => $defaultState->value_018,
-            'subject_403'           => $request->input($fields->subject, null),
-            'name_403'              => $request->input($fields->name, null),
-            'surname_403'           => $request->input($fields->surname, null),
-            'company_403'           => $request->input($fields->company, null),
-            'email_403'             => $request->input($fields->email, null),
+            'subject_403'           => $this->request->input($fields->subject, null),
+            'name_403'              => $this->request->input($fields->name, null),
+            'surname_403'           => $this->request->input($fields->surname, null),
+            'company_403'           => $this->request->input($fields->company, null),
+            'email_403'             => $this->request->input($fields->email, null),
             'data_403'              => json_encode($data)
         ];
 
@@ -353,19 +349,19 @@ class RecordController extends Controller {
 
         if(count($messages) > 0)    Message::insert($messages);
 
-        if($request->input('_redirectOk') == '')
+        if($this->request->input('_redirectOk') == '')
         {
             $response = [
                 'success'   => true,
                 'form'      => [
                     'date_403'              => $recordDate,
                     'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
-                    'subject_403'           => $request->input($fields->subject, null),
+                    'subject_403'           => $this->request->input($fields->subject, null),
                     'state_403'             => $defaultState->value_018,
-                    'name_403'              => $request->input($fields->name, null),
-                    'surname_403'           => $request->input($fields->surname, null),
-                    'company_403'           => $request->input($fields->company, null),
-                    'email_403'             => $request->input($fields->email, null),
+                    'name_403'              => $this->request->input($fields->name, null),
+                    'surname_403'           => $this->request->input($fields->surname, null),
+                    'company_403'           => $this->request->input($fields->company, null),
+                    'email_403'             => $this->request->input($fields->email, null),
                     'data_403'              => json_encode($data)
                 ]
             ];
@@ -374,7 +370,7 @@ class RecordController extends Controller {
         }
         else
         {
-            return redirect($request->input('_redirectOk'));
+            return redirect($this->request->input('_redirectOk'));
         }
     }
 }

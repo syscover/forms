@@ -22,20 +22,20 @@ class StateController extends Controller {
     protected $icon         = 'fa fa-fire';
     protected $objectTrans  = 'state';
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         State::create([
-            'id_400'        => $request->input('id'),
-            'name_400'      => $request->input('name'),
-            'color_400'     => $request->input('color')
+            'id_400'        => $this->request->input('id'),
+            'name_400'      => $this->request->input('name'),
+            'color_400'     => $this->request->input('color')
         ]);
     }
     
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
         State::where('id_400', $parameters['id'])->update([
-            'name_400'  => $request->input('name'),
-            'color_400'  => $request->input('color')
+            'name_400'  => $this->request->input('name'),
+            'color_400'  => $this->request->input('color')
         ]);
     }
 }

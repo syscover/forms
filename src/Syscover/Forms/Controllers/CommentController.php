@@ -45,7 +45,7 @@ class CommentController extends Controller {
     }
 
     // delete edit and delete buttons, on finished rows
-    public function jsonCustomDataBeforeActions($request, $aObject)
+    public function jsonCustomDataBeforeActions($aObject, $actionUrlParameters, $parameters)
     {
         if($aObject['user_404'] == auth('pulsar')->user()->id_010)
         {
@@ -54,9 +54,9 @@ class CommentController extends Controller {
         }
     }
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
-        $record             = Record::find($request->input('ref'));
+        $record             = Record::find($this->request->input('ref'));
         $record->data_403   = json_decode($record->data_403);
         $form               = $record->getForm;
         $state              = $record->getState;
@@ -65,18 +65,18 @@ class CommentController extends Controller {
         $messages           = [];
 
         $comment = Comment::create([
-            'record_404'                => $request->input('ref'),
+            'record_404'                => $this->request->input('ref'),
             'user_404'                  => auth('pulsar')->user()->id_010,
             'date_404'                  => date('U'),
-            'subject_404'               => $request->input('subject'),
-            'comment_404'               => $request->input('comment')
+            'subject_404'               => $this->request->input('subject'),
+            'comment_404'               => $this->request->input('comment')
         ]);
 
         // check new recipients
         Miscellaneous::checkRecipients($record, $form);
 
         // get recipient emails to compare with new user email
-        $recipients = Recipient::where('record_406', $request->input('ref'))->where('comments_406', true)->get();
+        $recipients = Recipient::where('record_406', $this->request->input('ref'))->where('comments_406', true)->get();
 
         // set recipients
         foreach($recipients as $recipient)
@@ -168,14 +168,14 @@ class CommentController extends Controller {
         return $parameters;
     }
     
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
-        if($request->input('favorite')) Address::resetFavorite($request->input('ref'));
+        if($this->request->input('favorite')) Address::resetFavorite($this->request->input('ref'));
 
         Comment::where('id_404', $parameters['id'])->update([
             'date_404'                  => date('U'),
-            'subject_404'               => $request->input('subject'),
-            'comment_404'               => $request->input('comment')
+            'subject_404'               => $this->request->input('subject'),
+            'comment_404'               => $this->request->input('comment')
         ]);
 
         $parameters['modal'] = 1;
@@ -183,7 +183,7 @@ class CommentController extends Controller {
         return $parameters;
     }
 
-    public function deleteCustomRecordRedirect($request, $object, $parameters)
+    public function deleteCustomRecordRedirect($object, $parameters)
     {
         $parameters['tab'] = 0;
 
@@ -193,7 +193,7 @@ class CommentController extends Controller {
         ]);
     }
 
-    public function deleteCustomRecordsRedirect($request, $parameters)
+    public function deleteCustomRecordsRedirect($parameters)
     {
         $parameters['tab'] = 0;
 

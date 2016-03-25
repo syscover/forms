@@ -1,6 +1,5 @@
 <?php namespace Syscover\Forms\Controllers;
 
-use Illuminate\Http\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use ReCaptcha\ReCaptcha;
 
@@ -15,14 +14,13 @@ class ReCaptchaController extends Controller {
      *  Function to verify captcha request
      *
      * @access  public
-     * @param   \Illuminate\Http\Request   $request
      * @return  string
      */
-    public function verify(Request $request)
+    public function verify()
     {
         $recaptcha = new ReCaptcha(config('api.googleRecaptchaSecretKey'));
 
-        $resp = $recaptcha->verify($request->input('g-recaptcha-response'), $request->getClientIp());
+        $resp = $recaptcha->verify($this->request->input('g-recaptcha-response'), $this->request->getClientIp());
 
         if ($resp->isSuccess())
         {
