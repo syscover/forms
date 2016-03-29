@@ -24,7 +24,7 @@ class PreferenceController extends Controller {
     protected $icon         = 'fa fa-cog';
     protected $objectTrans  = 'preference';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['states']                       = State::all();
         $parameters['defaultState']                 = Preference::getValue('formsDefaultState', 4);

@@ -38,7 +38,7 @@ class RecordController extends Controller {
         'deleteSelectButton'    => true
     ];
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['objForm'] = Form::find($parameters['form']);
 
