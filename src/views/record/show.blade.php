@@ -191,7 +191,7 @@
 
 @section('box_tab2')
     <!-- forms::records.show -->
-    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn marginB10 fl"><i class="fa fa-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
+    <a href="{{ route('createFormsComment', $urlParameters) }}" class="magnific-popup bs-tooltip btn margin-b10 fl"><i class="fa fa-comments"></i> {{ trans('pulsar::pulsar.new') }} {{ trans_choice('pulsar::pulsar.comment', 1) }}</a>
     <div id="select2-records" class="fr col-xs-6 col-md-4">
         <select id="selectState" data-width="100%">
             @foreach($states as $state)
