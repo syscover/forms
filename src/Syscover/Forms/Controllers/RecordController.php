@@ -31,6 +31,7 @@ class RecordController extends Controller {
     protected $icon             = 'fa fa-file-text';
     protected $objectTrans      = 'record';
     protected $viewParameters = [
+        'newButton'             => false,
         'checkBoxColumn'        => true,
         'showButton'            => true,
         'editButton'            => false,
@@ -263,7 +264,6 @@ class RecordController extends Controller {
         }
 
         $defaultState   = Preference::getValue('formsDefaultState', 4);
-
 
         $dataRecord     = [
             'form_403'              => $form->id_401,

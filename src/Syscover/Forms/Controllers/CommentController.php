@@ -29,6 +29,7 @@ class CommentController extends Controller {
     protected $icon             = 'fa fa-comments';
     protected $objectTrans      = 'comment';
     protected $viewParameters   = [
+        'newButton'             => true,
         'checkBoxColumn'        => true,
         'showButton'            => true,
         'editButton'            => false,
