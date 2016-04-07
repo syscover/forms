@@ -186,7 +186,7 @@
             @endif
         @endforeach
     @include('pulsar::includes.html.form_record_footer', ['action' => 'show'])
-    <!-- ./forms::records.show -->
+    <!-- /.forms::records.show -->
 @stop
 
 @section('box_tab2')
@@ -221,5 +221,5 @@
             </form>
         </div>
     </div>
-    <!-- ./forms::records.show -->
+    <!-- /.forms::records.show -->
 @stop

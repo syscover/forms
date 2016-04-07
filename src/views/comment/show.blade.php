@@ -10,7 +10,7 @@
             });
         });
     </script>
-    <!-- ./form::comments.edit -->
+    <!-- /.form::comments.edit -->
 @stop
 
 @section('rows')
@@ -38,5 +38,5 @@
         'name' => 'ref',
         'value' => $ref
     ])
-    <!-- ./form::comments.edit -->
+    <!-- /.form::comments.edit -->
 @stop

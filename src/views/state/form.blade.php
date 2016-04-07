@@ -5,7 +5,7 @@
     <!-- forms::states.create -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <script src="{{ asset('packages/syscover/pulsar/vendor/colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-    <!-- ./forms::states.create -->
+    <!-- /.forms::states.create -->
 @stop
 
 @section('rows')
@@ -32,5 +32,5 @@
         'value' => old('color', isset($object)? $object->color_400 : '#ff0000'),
         'required' => true
     ])
-    <!-- ./forms::states.create -->
+    <!-- /.forms::states.create -->
 @stop

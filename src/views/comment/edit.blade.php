@@ -3,7 +3,7 @@
 @section('head')
     @parent
     <!-- octopus::comments.edit -->
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             $('#cancel').bind('click', function(){
                 parent.$.magnificPopup.close();

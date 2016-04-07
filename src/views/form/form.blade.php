@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">
     <script src="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('packages/syscover/pulsar/vendor/jquery.element-table/jquery.element-table.js') }}"></script>
-    <!-- ./forms::forms.create -->
+    <!-- /.forms::forms.create -->
 @stop
 
 @section('rows')
@@ -60,5 +60,5 @@
             (object)['include' => 'pulsar::includes.html.form_checkbox_group', 'class' => 'align-center', 'properties' => ['label' => trans_choice('pulsar::pulsar.state', 2), 'name' => 'states_402', 'value' => 1]]
         ]
     ])
-    <!-- ./forms::forms.create -->
+    <!-- /.forms::forms.create -->
 @stop
