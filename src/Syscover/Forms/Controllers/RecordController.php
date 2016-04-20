@@ -33,7 +33,8 @@ class RecordController extends Controller
         'showButton'            => true,
         'editButton'            => false,
         'deleteButton'          => true,
-        'deleteSelectButton'    => true
+        'deleteSelectButton'    => true,
+        'relatedButton'         => false,
     ];
 
     public function customIndex($parameters)
@@ -58,9 +59,10 @@ class RecordController extends Controller
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
         // set reference to form
-        $actionUrlParameters['form'] = $parameters['form'];
+        $actionUrlParameters['form']    = $parameters['form'];
+
         // init record on tap 1
-        $actionUrlParameters['tab'] = 1;
+        $actionUrlParameters['tab']     = 1;
 
         return $actionUrlParameters;
     }

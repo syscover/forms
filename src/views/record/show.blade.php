@@ -31,11 +31,12 @@
                     "bProcessing": true,
                     "bServerSide": true,
                     "sAjaxSource": "{{ route('jsonDataFormsComment', ['ref' => $object->id_403, 'modal' => 0]) }}"
-                }).fnSetFilteringDelay().on('xhr.dt', function (e, settings, json)
-                {
-                    var url = '{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form, 'offset' => '%offset%', 'tab' => 0]) }}'
+                }).fnSetFilteringDelay().on('xhr.dt', function (e, settings, json) {
 
+                    // set url to call from modal when submit any action
+                    var url = '{{ route('showFormsRecord', ['id' => $object->id_403, 'form' => $form, 'offset' => '%offset%', 'tab' => 0]) }}'
                     $('[name="urlTarget"]').val(url.replace('%offset%', settings._iDisplayStart))
+
                 })
             }
 
@@ -73,11 +74,7 @@
             })
 
             // set tab active
-            @if($tab == 0)
-                $('.tabbable li:eq(0) a').tab('show')
-            @elseif($tab == 1)
-                $('.tabbable li:eq(1) a').tab('show')
-            @endif
+            $('.tabbable li:eq({{ $tab }}) a').tab('show')
 
             // new comment
             @if(isset($newComment) && $newComment)
@@ -89,7 +86,7 @@
         {
             if (!option.id) { return option.text }
             var $option = $(
-                    '<span><i class="color" style="background-color:' + $(option.element).data('color') + '"></i>' + ' ' + option.text + '</span>'
+                '<span><i class="color" style="background-color:' + $(option.element).data('color') + '"></i>' + ' ' + option.text + '</span>'
             )
             return $option
         }

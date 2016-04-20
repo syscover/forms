@@ -49,7 +49,7 @@ class FormController extends Controller
     public function jsonCustomDataBeforeActions($aObject, $actionUrlParameters, $parameters)
     {
         $unOpened = $aObject['n_unopened_401'] > 0? '<span class="badge bg-red">' . $aObject['n_unopened_401'] . '</span> ' : null;
-        return session('userAcl')->allows($this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('formsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_records') . '">' . $unOpened . '<i class="fa fa-eye"></i></a>' : null;
+        return is_allowed($this->resource, 'show')? '<a class="btn btn-xs bs-tooltip" href="' . route('formsRecord', [$aObject['id_401']]) . '" data-original-title="' . trans('forms::pulsar.view_records') . '">' . $unOpened . '<i class="fa fa-eye"></i></a>' : null;
     }
 
     public function createCustomRecord($parameters)

@@ -31,7 +31,8 @@ class CommentController extends Controller
         'showButton'            => true,
         'editButton'            => false,
         'deleteButton'          => false,
-        'deleteSelectButton'    => true
+        'deleteSelectButton'    => true,
+        'relatedButton'         => false,
     ];
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
@@ -50,6 +51,13 @@ class CommentController extends Controller
             $this->viewParameters['editButton']     = true;
             $this->viewParameters['deleteButton']   = true;
         }
+    }
+
+    public function createCustomRecord($parameters)
+    {
+        $parameters['modal'] = true;
+
+        return $parameters;
     }
 
     public function storeCustomRecord($parameters)
@@ -146,13 +154,13 @@ class CommentController extends Controller
             }
         }
 
-        if(!$matchAuthor)
+        if(! $matchAuthor)
         {
             // Include Author to recipients but not forward
             Recipient::create([
                 'record_406'    => $record->id_403,
                 'forward_406'   => false,
-                'name_406'      => auth('pulsar')->user()->name_010 . ' ' .  auth('pulsar')->user()->surname_010,
+                'name_406'      => auth('pulsar')->user()->name_010 . ' ' . auth('pulsar')->user()->surname_010,
                 'email_406'     => auth('pulsar')->user()->email_010,
                 'comments_406'  => true,
                 'states_406'    => true
@@ -161,14 +169,29 @@ class CommentController extends Controller
 
         if(count($messages) > 0)    Message::insert($messages);
 
-        $parameters['modal'] = 1;
+        $parameters['redirectModal'] = true;
+
+        return $parameters;
+    }
+
+    public function showCustomRecord($parameters)
+    {
+        $parameters['modal'] = true;
+
+        return $parameters;
+    }
+
+    public function editCustomRecord($parameters)
+    {
+        $parameters['modal'] = true;
 
         return $parameters;
     }
     
     public function updateCustomRecord($parameters)
     {
-        if($this->request->input('favorite')) Address::resetFavorite($this->request->input('ref'));
+        if($this->request->input('favorite'))
+            Address::resetFavorite($this->request->input('ref'));
 
         Comment::where('id_404', $parameters['id'])->update([
             'date_404'                  => date('U'),
@@ -176,7 +199,7 @@ class CommentController extends Controller
             'comment_404'               => $this->request->input('comment')
         ]);
 
-        $parameters['modal'] = 1;
+        $parameters['redirectModal'] = true;
 
         return $parameters;
     }

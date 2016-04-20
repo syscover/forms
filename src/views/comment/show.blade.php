@@ -1,8 +1,8 @@
-@extends('pulsar::layouts.form', ['newTrans' => 'new', 'modal' => true])
+@extends('pulsar::layouts.form', ['newTrans' => 'new'])
 
 @section('head')
     @parent
-    <!-- form::comments.edit -->
+    <!-- form::comment.edit -->
     <script>
         $(document).ready(function() {
             $('#cancel').bind('click', function(){
@@ -10,11 +10,11 @@
             });
         });
     </script>
-    <!-- /.form::comments.edit -->
+    <!-- /.form::comment.edit -->
 @stop
 
 @section('rows')
-    <!-- form::comments.edit -->
+    <!-- form::comment.edit -->
     @include('pulsar::includes.html.form_text_group', [
         'label' => 'ID',
         'name' => 'id',
@@ -38,5 +38,5 @@
         'name' => 'ref',
         'value' => $ref
     ])
-    <!-- /.form::comments.edit -->
+    <!-- /.form::comment.edit -->
 @stop
