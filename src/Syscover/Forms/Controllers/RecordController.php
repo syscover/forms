@@ -1,5 +1,6 @@
 <?php namespace Syscover\Forms\Controllers;
 
+use Syscover\Pulsar\Core\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Form;
@@ -7,21 +8,17 @@ use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
 use Syscover\Forms\Models\State;
-use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AclLibrary;
 use Syscover\Pulsar\Models\Preference;
 use Syscover\Pulsar\Models\User;
-use Syscover\Pulsar\Traits\TraitController;
 
 /**
  * Class RecordController
  * @package Syscover\Forms\Controllers
  */
 
-class RecordController extends Controller {
-
-    use TraitController;
-
+class RecordController extends Controller
+{
     protected $routeSuffix      = 'formsRecord';
     protected $folder           = 'record';
     protected $package          = 'forms';

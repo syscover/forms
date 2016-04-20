@@ -1,6 +1,7 @@
 <?php namespace Syscover\Forms\Controllers;
 
-use Syscover\Pulsar\Controllers\Controller;
+// todo, hace falta que herede de Controller?
+use Syscover\Pulsar\Core\Controller;
 use ReCaptcha\ReCaptcha;
 
 /**
@@ -8,8 +9,8 @@ use ReCaptcha\ReCaptcha;
  * @package Syscover\Forms\Controllers
  */
 
-class ReCaptchaController extends Controller {
-
+class ReCaptchaController extends Controller
+{
     /**
      *  Function to verify captcha request
      *

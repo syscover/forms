@@ -1,7 +1,6 @@
 <?php namespace Syscover\Forms\Controllers;
 
-use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Traits\TraitController;
+use Syscover\Pulsar\Core\Controller;
 use Syscover\Forms\Models\State;
 
 /**
@@ -9,10 +8,8 @@ use Syscover\Forms\Models\State;
  * @package Syscover\Forms\Controllers
  */
 
-class StateController extends Controller {
-
-    use TraitController;
-
+class StateController extends Controller
+{
     protected $routeSuffix  = 'formsState';
     protected $folder       = 'state';
     protected $package      = 'forms';

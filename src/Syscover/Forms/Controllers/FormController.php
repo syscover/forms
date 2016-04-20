@@ -1,10 +1,9 @@
 <?php namespace Syscover\Forms\Controllers;
 
+use Syscover\Pulsar\Core\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Syscover\Forms\Models\Forward;
-use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Models\EmailAccount;
-use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Form;
 
 /**
@@ -12,10 +11,8 @@ use Syscover\Forms\Models\Form;
  * @package Syscover\Forms\Controllers
  */
 
-class FormController extends Controller {
-
-    use TraitController;
-
+class FormController extends Controller
+{
     protected $routeSuffix  = 'formsForm';
     protected $folder       = 'form';
     protected $package      = 'forms';

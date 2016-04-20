@@ -1,13 +1,12 @@
 <?php namespace Syscover\Forms\Controllers;
 
+use Syscover\Pulsar\Core\Controller;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
 use Syscover\Forms\Models\Record;
-use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AclLibrary;
 use Syscover\Pulsar\Models\User;
-use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Forms\Models\Comment;
 
 /**
@@ -15,10 +14,8 @@ use Syscover\Forms\Models\Comment;
  * @package Syscover\Forms\Controllers
  */
 
-class CommentController extends Controller {
-
-    use TraitController;
-
+class CommentController extends Controller
+{
     protected $routeSuffix      = 'formsComment';
     protected $folder           = 'comment';
     protected $package          = 'forms';

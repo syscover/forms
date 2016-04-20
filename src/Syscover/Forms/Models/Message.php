@@ -1,10 +1,9 @@
 <?php namespace Syscover\Forms\Models;
 
-use Syscover\Pulsar\Models\Model;
-use Illuminate\Support\Facades\Validator;
-use Syscover\Pulsar\Traits\TraitModel;
+use Syscover\Pulsar\Core\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Message
@@ -15,9 +14,8 @@ use Sofa\Eloquence\Mappable;
  * @package     Syscover\Forms\Models
  */
 
-class Message extends Model {
-
-    use TraitModel;
+class Message extends Model
+{
     use Eloquence, Mappable;
 
 	protected $table        = '004_405_message';
