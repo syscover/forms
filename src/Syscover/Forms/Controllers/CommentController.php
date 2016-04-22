@@ -169,7 +169,7 @@ class CommentController extends Controller
 
         if(count($messages) > 0)    Message::insert($messages);
 
-        $parameters['redirectModal'] = true;
+        $parameters['redirectParentJs'] = true;
 
         return $parameters;
     }
@@ -199,7 +199,7 @@ class CommentController extends Controller
             'comment_404'               => $this->request->input('comment')
         ]);
 
-        $parameters['redirectModal'] = true;
+        $parameters['redirectParentJs'] = true;
 
         return $parameters;
     }
