@@ -3,7 +3,7 @@
 @section('head')
     @parent
     <!-- forms::preferences.index -->
-    @include('pulsar::includes.js.success_message')
+    @include('pulsar::includes.js.messages')
 
     <script>
         $(document).ready(function() {

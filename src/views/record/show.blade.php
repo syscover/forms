@@ -12,7 +12,7 @@
 
     <script src="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 
-    @include('pulsar::includes.js.success_message')
+    @include('pulsar::includes.js.messages')
     @include('pulsar::includes.js.datatable_config')
 
     <script>
