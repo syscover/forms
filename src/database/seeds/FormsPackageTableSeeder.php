@@ -8,7 +8,7 @@ class FormsPackageTableSeeder extends Seeder
     public function run()
     {
         Package::insert([
-            ['id_012' => '4', 'name_012' => 'Forms Package', 'folder_012' => 'forms', 'sorting_012' => 4, 'active_012' => '0']
+            ['id_012' => '4', 'name_012' => 'Forms Package', 'folder_012' => 'forms', 'sorting_012' => 4, 'active_012' => false]
         ]);
     }
 }
