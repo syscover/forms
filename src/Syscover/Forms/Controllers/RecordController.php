@@ -1,6 +1,7 @@
 <?php namespace Syscover\Forms\Controllers;
 
 use Syscover\Pulsar\Core\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Form;
@@ -27,15 +28,15 @@ class RecordController extends Controller
     protected $model            = Record::class;
     protected $icon             = 'fa fa-file-text';
     protected $objectTrans      = 'record';
-    protected $viewParameters = [
-        'newButton'             => false,
-        'checkBoxColumn'        => true,
-        'showButton'            => true,
-        'editButton'            => false,
-        'deleteButton'          => true,
-        'deleteSelectButton'    => true,
-        'relatedButton'         => false,
-    ];
+
+    function __construct(Request $request)
+    {
+        parent::__construct($request);
+
+        $this->viewParameters['newButton']      = true;
+        $this->viewParameters['showButton']     = true;
+        $this->viewParameters['editButton']     = false;
+    }
 
     public function customIndex($parameters)
     {

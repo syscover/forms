@@ -1,6 +1,7 @@
 <?php namespace Syscover\Forms\Controllers;
 
 use Syscover\Pulsar\Core\Controller;
+use Illuminate\Http\Request;
 use Syscover\Forms\Libraries\Miscellaneous;
 use Syscover\Forms\Models\Message;
 use Syscover\Forms\Models\Recipient;
@@ -25,15 +26,15 @@ class CommentController extends Controller
     protected $model            = Comment::class;
     protected $icon             = 'fa fa-comments';
     protected $objectTrans      = 'comment';
-    protected $viewParameters   = [
-        'newButton'             => true,
-        'checkBoxColumn'        => true,
-        'showButton'            => true,
-        'editButton'            => false,
-        'deleteButton'          => false,
-        'deleteSelectButton'    => true,
-        'relatedButton'         => false,
-    ];
+
+    function __construct(Request $request)
+    {
+        parent::__construct($request);
+
+        $this->viewParameters['showButton']         = true;
+        $this->viewParameters['editButton']         = false;
+        $this->viewParameters['deleteButton']       = false;
+    }
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
