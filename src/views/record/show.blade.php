@@ -7,6 +7,7 @@
 
 @section('head')
     @parent
+
     <!-- forms::records.show -->
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/jquery.magnific-popup/magnific-popup.css') }}">
 
@@ -96,7 +97,8 @@
 
 @section('box_tab1')
     <!-- forms::records.show -->
-    @include('pulsar::includes.html.form_record_header', ['action' => 'show'])
+    @include('pulsar::includes.html.form_record_header')
+
         @include('pulsar::includes.html.form_text_group', [
             'label' => 'ID',
             'name' => 'id',
@@ -182,7 +184,8 @@
                 ])
             @endif
         @endforeach
-    @include('pulsar::includes.html.form_record_footer', ['action' => 'show'])
+
+    @include('pulsar::includes.html.form_record_footer')
     <!-- /.forms::records.show -->
 @stop
 

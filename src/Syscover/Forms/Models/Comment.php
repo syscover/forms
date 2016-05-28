@@ -48,7 +48,7 @@ class Comment extends Model
 
     public function customCount($request, $parameters)
     {
-        return Comment::builder()
+        return $this->builder()
             ->where('record_404', $parameters['ref']);
     }
 }

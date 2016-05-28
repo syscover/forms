@@ -33,7 +33,7 @@ class RecordController extends Controller
     {
         parent::__construct($request);
 
-        $this->viewParameters['newButton']      = true;
+        $this->viewParameters['newButton']      = false;
         $this->viewParameters['showButton']     = true;
         $this->viewParameters['editButton']     = false;
     }
