@@ -8,18 +8,18 @@
             if ($.fn.dataTable)
             {
                 $('.datatable-pulsar').dataTable({
-                    'iDisplayStart' : {{ $offset }},
-                    'aoColumnDefs': [
-                        { 'visible': false, "bSearchable": false, 'aTargets': [2]}, // hidden column 2 and prevents search on column 2
-                        { "iDataSort": 2, "aTargets": [3] }, // sort column 3 according hidden column 2 data
-                        { 'bSortable': false, 'aTargets': [8,9]},
-                        { 'sClass': 'checkbox-column', 'aTargets': [8]},
-                        { 'sClass': 'align-center', 'aTargets': [1,7,9]}
+                    'displayStart' : {{ $offset }},
+                    'columnDefs': [
+                        { 'visible': false, 'searchable': false, 'targets': [2]}, // hidden column 2 and prevents search on column 2
+                        { 'dataSort': 2, 'targets': [3] }, // sort column 3 according hidden column 2 data
+                        { 'sortable': false, 'targets': [8,9]},
+                        { 'class': 'checkbox-column', 'targets': [8]},
+                        { 'class': 'align-center', 'targets': [1,7,9]}
                     ],
-                    'aaSorting': [[ 0, 'desc' ]],
-                    'bProcessing': true,
-                    'bServerSide': true,
-                    'sAjaxSource': "{{ route('jsonData' . ucfirst($routeSuffix), ['form' => $form]) }}"
+                    'sorting': [[0, 'desc']],
+                    'processing': true,
+                    'serverSide': true,
+                    'ajax': "{{ route('jsonData' . ucfirst($routeSuffix), ['form' => $form]) }}"
                 }).fnSetFilteringDelay();
             }
         });
