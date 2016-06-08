@@ -22,16 +22,22 @@
             if ($.fn.dataTable)
             {
                 $('.datatable-pulsar').dataTable({
-                    'displayStart' : 0,
-                    'sorting': [[0, 'desc']],
-                    'columnDefs': [
-                        { 'sortable': false, 'targets': [3,4]},
-                        { 'class': 'checkbox-column', 'targets': [3]},
-                        { 'class': 'align-center', 'targets': [4]}
+                    "displayStart": 0,
+                    "sorting": [[0, "desc"]],
+                    "columnDefs": [
+                        { "sortable": false, "targets": [3,4]},
+                        { "class": "checkbox-column", "targets": [3]},
+                        { "class": "align-center", "targets": [4]}
                     ],
                     "processing": true,
                     "serverSide": true,
-                    "ajax": "{{ route('jsonDataFormsComment', ['ref' => $object->id_403, 'modal' => 0]) }}"
+                    "ajax": {
+                        "url": "{{ route('jsonDataFormsComment', ['ref' => $object->id_403, 'modal' => 0]) }}",
+                        "type": "POST",
+                        "headers": {
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        }
+                    }
                 }).fnSetFilteringDelay().on('xhr.dt', function (e, settings, json) {
 
                     // set url to call from modal when submit any action
