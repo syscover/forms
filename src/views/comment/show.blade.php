@@ -1,4 +1,4 @@
-@extends('pulsar::layouts.form', ['newTrans' => 'new'])
+@extends('pulsar::layouts.form')
 
 @section('head')
     @parent
