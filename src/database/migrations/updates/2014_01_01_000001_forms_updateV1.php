@@ -18,9 +18,9 @@ class FormsUpdateV1 extends Migration
 		if($resource == null)
 		{
 			Resource::create([
-				'id_007' 		=> 'forms-master-tables',
-				'name_007' 		=> 'Master tables',
-				'package_007'	=> '4'
+				'id_007' 			=> 'forms-master-tables',
+				'name_007' 			=> 'Master tables',
+				'package_id_007'	=> '4'
 			]);
 		}
 	}

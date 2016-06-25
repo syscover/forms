@@ -178,7 +178,7 @@ class RecordController extends Controller
 
             if($matchUser != null)
             {
-                $userAcl = AclLibrary::getProfileAcl($matchUser->profile_010);
+                $userAcl = AclLibrary::getProfileAcl($matchUser->profile_id_010);
             }
 
             $messages[] = [
@@ -201,10 +201,10 @@ class RecordController extends Controller
                     'name_state_405'            => $state->name_400,
                     'color_state_405'           => $state->color_400,
                     'names_405'                 => implode (", ", $names),
-                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_010),
-                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_010),
-                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_010),
-                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_010),
+                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_id_010),
+                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_id_010),
+                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_id_010),
+                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_id_010),
                 ]),
                 'data_405'                  => json_encode($record->toArray())
             ];
@@ -317,7 +317,7 @@ class RecordController extends Controller
             $user = User::where('email_010', $recipient->email_406)->first();
             if($user != null)
             {
-                $userAcl = AclLibrary::getProfileAcl($user->profile_010);
+                $userAcl = AclLibrary::getProfileAcl($user->profile_id_010);
             }
 
             $messages[] = [
@@ -338,10 +338,10 @@ class RecordController extends Controller
                     'name_state_405'            => $state->name_400,
                     'color_state_405'           => $state->color_400,
                     'names_405'                 => implode (", ", $names),
-                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_010),
-                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_010),
-                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_010),
-                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_010),
+                    'permission_state_405'      => $user == null? false : $userAcl->allows('forms-record', 'edit', $user->profile_id_010),
+                    'permission_comment_405'    => $user == null? false : $userAcl->allows('forms-comment', 'create', $user->profile_id_010),
+                    'permission_forward_405'    => $user == null? false : $userAcl->allows('forms-form', 'edit', $user->profile_id_010),
+                    'permission_record_405'     => $user == null? false : $userAcl->allows('forms-record', 'show', $user->profile_id_010),
                 ]),
                 'data_405'                  => json_encode($dataRecord)
             ];
