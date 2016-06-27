@@ -16,6 +16,7 @@ class FormsCreateTableComment extends Migration {
         {
             Schema::create('004_404_comment', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
+                
                 $table->increments('id_404')->unsigned();
                 $table->integer('record_404')->unsigned();
                 $table->integer('user_404')->unsigned();
@@ -23,10 +24,16 @@ class FormsCreateTableComment extends Migration {
                 $table->string('subject_404', 255);
                 $table->text('comment_404');
 
-                $table->foreign('record_404', 'fk01_004_404_comment')->references('id_403')->on('004_403_record')
-                    ->onDelete('cascade')->onUpdate('cascade');
-                $table->foreign('user_404', 'fk02_004_404_comment')->references('id_010')->on('001_010_user')
-                    ->onDelete('restrict')->onUpdate('cascade');
+                $table->foreign('record_404', 'fk01_004_404_comment')
+                    ->references('id_403')
+                    ->on('004_403_record')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+                $table->foreign('user_404', 'fk02_004_404_comment')
+                    ->references('id_010')
+                    ->on('001_010_user')
+                    ->onDelete('restrict')
+                    ->onUpdate('cascade');
             });
         }
     }

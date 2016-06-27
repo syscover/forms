@@ -17,6 +17,7 @@ class FormsCreateTableRecipient extends Migration {
         {
             Schema::create('004_406_recipient', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
+                
                 $table->increments('id_406')->unsigned();
                 $table->integer('record_406')->unsigned();
                 $table->boolean('forward_406')->default(false); // check if recipient is record like forward
@@ -25,8 +26,11 @@ class FormsCreateTableRecipient extends Migration {
                 $table->boolean('comments_406')->default(false);
                 $table->boolean('states_406')->default(false);
 
-                $table->foreign('record_406', 'fk01_004_406_recipient')->references('id_403')->on('004_403_record')
-                    ->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('record_406', 'fk01_004_406_recipient')
+                    ->references('id_403')
+                    ->on('004_403_record')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             });
         }
     }

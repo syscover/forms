@@ -16,6 +16,7 @@ class FormsCreateTableForm extends Migration {
         {
             Schema::create('004_401_form', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
+                
                 $table->increments('id_401')->unsigned();
                 $table->string('name_401', 100);
                 $table->integer('email_account_401')->unsigned();
@@ -23,8 +24,11 @@ class FormsCreateTableForm extends Migration {
                 $table->integer('n_unopened_401')->unsigned()->default(0);
 
                 // correos de reenvío
-                $table->foreign('email_account_401', 'fk01_004_401_form')->references('id_013')->on('001_013_email_account')
-                    ->onDelete('restrict')->onUpdate('cascade');
+                $table->foreign('email_account_401', 'fk01_004_401_form')
+                    ->references('id_013')
+                    ->on('001_013_email_account')
+                    ->onDelete('restrict')
+                    ->onUpdate('cascade');
             });
         }
     }
