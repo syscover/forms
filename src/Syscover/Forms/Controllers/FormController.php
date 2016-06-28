@@ -63,7 +63,7 @@ class FormController extends Controller
     {
         $form = Form::create([
             'name_401'              => $this->request->input('name'),
-            'email_account_401'     => $this->request->input('emailAccount'),
+            'email_account_id_401'  => $this->request->input('emailAccount'),
             'push_notification_401' => $this->request->has('pushNotification')
         ]);
 
@@ -72,7 +72,7 @@ class FormController extends Controller
         foreach($forwardsData as $forwardData)
         {
             $forwards[] = [
-                "form_402"      =>  $form->id_401,
+                "form_id_402"   =>  $form->id_401,
                 "name_402"      =>  $forwardData->name_402,
                 "email_402"     =>  trim(strtolower($forwardData->email_402)),
                 "comments_402"  =>  $forwardData->comments_402,
@@ -98,7 +98,7 @@ class FormController extends Controller
     {
         Form::where('id_401', $parameters['id'])->update([
             'name_401'              => $this->request->input('name'),
-            'email_account_401'     => $this->request->input('emailAccount'),
+            'email_account_id_401'  => $this->request->input('emailAccount'),
             'push_notification_401' => $this->request->has('pushNotification')
         ]);
 
@@ -121,8 +121,8 @@ class FormController extends Controller
             else
             {
                 $forwards[] = [
-                    "form_402"  =>  $parameters['id'],
-                    "name_402"  =>  $forwardData->name_402,
+                    "form_id_402"   =>  $parameters['id'],
+                    "name_402"      =>  $forwardData->name_402,
                     "email_402"     =>  trim(strtolower($forwardData->email_402)),
                     "comments_402"  =>  $forwardData->comments_402,
                     "states_402"    =>  $forwardData->states_402

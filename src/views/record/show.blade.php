@@ -204,7 +204,7 @@
     <div id="select2-records" class="fr col-xs-6 col-md-4">
         <select id="selectState" data-width="100%">
             @foreach($states as $state)
-                <option value="{{ $state->id_400 }}" data-color="{{ $state->color_400 }}"{{ $state->id_400 == $object->state_403? ' selected' : null }}>{{ $state->name_400 }}</option>
+                <option value="{{ $state->id_400 }}" data-color="{{ $state->color_400 }}"{{ $state->id_400 == $object->state_id_403? ' selected' : null }}>{{ $state->name_400 }}</option>
             @endforeach
         </select>
     </div>

@@ -30,7 +30,7 @@
     @include('pulsar::includes.html.form_select_group', [
         'label' => trans('pulsar::pulsar.email'),
         'name' => 'emailAccount',
-        'value' => old('emailAccount', isset($object)? $object->email_account_401 : null),
+        'value' => old('emailAccount', isset($object)? $object->email_account_id_401 : null),
         'objects' => $emails,
         'idSelect' => 'id_013',
         'nameSelect' => 'name_013',

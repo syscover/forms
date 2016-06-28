@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class Forward
  *
  * Model with properties
- * <br><b>[id, form, name, email, comments, states]</b>
+ * <br><b>[id, form_id, name, email, comments, states]</b>
  *
  * @package     Syscover\Forms\Models
  */
@@ -21,7 +21,7 @@ class Forward extends Model
 	protected $table        = '004_402_forward';
     protected $primaryKey   = 'id_402';
     public $timestamps      = false;
-    protected $fillable     = ['id_402', 'form_402', 'name_402', 'email_402', 'comments_402', 'states_402'];
+    protected $fillable     = ['id_402', 'form_id_402', 'name_402', 'email_402', 'comments_402', 'states_402'];
     protected $maps         = [];
     protected $relationMaps = [
         'form'      => \Syscover\Forms\Models\Form::class,
@@ -38,6 +38,6 @@ class Forward extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->join('004_401_form', '004_402_forward.form_402', '=', '004_401_form.id_401');
+        return $query->join('004_401_form', '004_402_forward.form_id_402', '=', '004_401_form.id_401');
     }
 }

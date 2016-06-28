@@ -21,7 +21,7 @@ class Comment extends Model
 	protected $table        = '004_404_comment';
     protected $primaryKey   = 'id_404';
     public $timestamps      = false;
-    protected $fillable     = ['id_404', 'record_404', 'user_404', 'date_404', 'subject_404', 'comment_404'];
+    protected $fillable     = ['id_404', 'record_id_404', 'user_id_404', 'date_404', 'subject_404', 'comment_404'];
     protected $maps         = [];
     protected $relationMaps = [
         'user'      => \Syscover\Pulsar\Models\User::class,
@@ -37,18 +37,18 @@ class Comment extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->join('001_010_user', '004_404_comment.user_404', '=', '001_010_user.id_010');
+        return $query->join('001_010_user', '004_404_comment.user_id_404', '=', '001_010_user.id_010');
     }
 
     public function addToGetIndexRecords($request, $parameters)
     {
         return $this->builder()
-            ->where('record_404', $parameters['ref']);
+            ->where('record_id_404', $parameters['ref']);
     }
 
     public function customCount($request, $parameters)
     {
         return $this->builder()
-            ->where('record_404', $parameters['ref']);
+            ->where('record_id_404', $parameters['ref']);
     }
 }

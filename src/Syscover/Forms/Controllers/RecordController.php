@@ -121,7 +121,7 @@ class RecordController extends Controller
             Recipient::where('id_406', $parameters['id'])->delete();
         }
 
-        return redirect()->route('showFormsRecord', ['id' => $record->id_403, 'form' => $record->form_403, 'offset' => 0, 'tab' => 0])->with([
+        return redirect()->route('showFormsRecord', ['id' => $record->id_403, 'form' => $record->form_id_403, 'offset' => 0, 'tab' => 0])->with([
             'msg'        => 1,
             'txtMsg'     => trans('pulsar::pulsar.message_delete_record_successful', ['name' => $recipient->email_406])
         ]);
@@ -144,14 +144,14 @@ class RecordController extends Controller
         $usersEmails        = [];
 
         Record::where('id_403', $this->request->input('record'))->update([
-            'state_403' => $this->request->input('value')
+            'state_id_403' => $this->request->input('value')
         ]);
 
         // check new recipients
         Miscellaneous::checkRecipients($record, $form);
 
         // get recipients emails to compare with new user email
-        $recipients = Recipient::where('record_406', $this->request->input('record'))->where('states_406', true)->get();
+        $recipients = Recipient::where('record_id_406', $this->request->input('record'))->where('states_406', true)->get();
 
         // set recipients
         foreach($recipients as $recipient)
@@ -182,16 +182,16 @@ class RecordController extends Controller
             }
 
             $messages[] = [
-                'type_405'                  => 'state',
-                'record_405'                => $record->id_403,
+                'type_id_405'               => 'state',
+                'record_id_405'             => $record->id_403,
                 'date_405'                  => date('U'),
-                'recipient_405'             => $recipient->id_406,
+                'recipient_id_405'          => $recipient->id_406,
                 'forward_405'               => $recipient->forward_406,
                 'subject_405'               => 'forms::pulsar.subject_change_state',
                 'name_405'                  => $recipient->name_406,
                 'email_405'                 => $recipient->email_406,
-                'form_405'                  => $form->id_401,
-                'user_405'                  => $user == null? null : $user->id_010,
+                'form_id_405'               => $form->id_401,
+                'user_id_405'               => $user == null? null : $user->id_010,
                 'template_405'              => 'forms::emails.state',
                 'text_template_405'         => 'forms::emails.text_state',
                 'data_message_405'          => json_encode([
@@ -266,10 +266,10 @@ class RecordController extends Controller
         $defaultState   = Preference::getValue('formsDefaultState', 4);
 
         $dataRecord     = [
-            'form_403'              => $form->id_401,
+            'form_id_403'           => $form->id_401,
             'date_403'              => $recordDate,
             'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
-            'state_403'             => $defaultState->value_018,
+            'state_id_403'          => $defaultState->value_018,
             'subject_403'           => $this->request->input($fields->subject, null),
             'name_403'              => $this->request->input($fields->name, null),
             'surname_403'           => $this->request->input($fields->surname, null),
@@ -288,7 +288,7 @@ class RecordController extends Controller
         $dataRecord['id_403']   = $record->id_403;
 
         // set records unopened
-        $form->n_unopened_401 = Record::where('form_403', $form->id_401)->where('opened_403', false)->count();
+        $form->n_unopened_401 = Record::where('form_id_403', $form->id_401)->where('opened_403', false)->count();
         $form->save();
 
         foreach($forwards as $forward)
@@ -297,7 +297,7 @@ class RecordController extends Controller
             $names[] = $forward->name_402;
 
             $recipients[] = [
-                'record_406'    => $record->id_403,
+                'record_id_406' => $record->id_403,
                 'forward_406'   => true,
                 'name_406'      => $forward->name_402,
                 'email_406'     => $forward->email_402,
@@ -321,16 +321,16 @@ class RecordController extends Controller
             }
 
             $messages[] = [
-                'type_405'                  => 'record',
-                'record_405'                => $record->id_403,
+                'type_id_405'               => 'record',
+                'record_id_405'             => $record->id_403,
                 'date_405'                  => date('U'),
-                'recipient_405'             => $recipient->id_406,
+                'recipient_id_405'          => $recipient->id_406,
                 'forward_405'               => true,
                 'subject_405'               => 'forms::pulsar.subject_email_record',
                 'name_405'                  => $recipient->name_406,
                 'email_405'                 => $recipient->email_406,
-                'form_405'                  => $form->id_401,
-                'user_405'                  => $user == null? null : $user->id_010,
+                'form_id_405'               => $form->id_401,
+                'user_id_405'               => $user == null? null : $user->id_010,
                 'template_405'              => 'forms::emails.record',
                 'text_template_405'         => 'forms::emails.text_record',
                 'data_message_405'          => json_encode([
@@ -357,7 +357,7 @@ class RecordController extends Controller
                     'date_403'              => $recordDate,
                     'date_text_403'         => date(config('pulsar.datePattern'), $recordDate),
                     'subject_403'           => $this->request->input($fields->subject, null),
-                    'state_403'             => $defaultState->value_018,
+                    'state_id_403'          => $defaultState->value_018,
                     'name_403'              => $this->request->input($fields->name, null),
                     'surname_403'           => $this->request->input($fields->surname, null),
                     'company_403'           => $this->request->input($fields->company, null),

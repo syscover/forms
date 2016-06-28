@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class Recipient
  *
  * Model with properties
- * <br><b>[id, record, forward, name, email, comments, states]</b>
+ * <br><b>[id, record_id, forward, name, email, comments, states]</b>
  *
  * @package     Syscover\Forms\Models
  */
@@ -21,7 +21,7 @@ class Recipient extends Model
 	protected $table        = '004_406_recipient';
     protected $primaryKey   = 'id_406';
     public $timestamps      = false;
-    protected $fillable     = ['id_406', 'record_406', 'forward_406', 'name_406', 'email_406', 'comments_406', 'states_406'];
+    protected $fillable     = ['id_406', 'record_id_406', 'forward_406', 'name_406', 'email_406', 'comments_406', 'states_406'];
     protected $maps         = [];
     protected $relationMaps = [];
     private static $rules   = [];
@@ -33,6 +33,6 @@ class Recipient extends Model
 
     public function getRecord()
     {
-        return $this->belongsTo('Syscover\Forms\Models\Record', 'record_406');
+        return $this->belongsTo('Syscover\Forms\Models\Record', 'record_id_406');
     }
 }

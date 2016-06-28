@@ -27,7 +27,7 @@ class Miscellaneous
         $forwards       = $form->getForwards;
         $newRecipients  = [];
         $oldRecipients  = [];
-        $recipients     = Recipient::where('record_406', $record->id_403)->where('forward_406', true)->get();
+        $recipients     = Recipient::where('record_id_406', $record->id_403)->where('forward_406', true)->get();
 
         // found new recipients
         foreach($forwards as $forward)
@@ -45,7 +45,7 @@ class Miscellaneous
             if(!$matchRecipient)
             {
                 $newRecipients[] = [
-                    'record_406'    => $record->id_403,
+                    'record_id_406' => $record->id_403,
                     'forward_406'   => true,
                     'name_406'      => $forward->name_402,
                     'email_406'     => $forward->email_402,

@@ -18,18 +18,18 @@ class FormsCreateTableComment extends Migration {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id_404')->unsigned();
-                $table->integer('record_404')->unsigned();
-                $table->integer('user_404')->unsigned();
+                $table->integer('record_id_404')->unsigned();
+                $table->integer('user_id_404')->unsigned();
                 $table->integer('date_404')->unsigned();
                 $table->string('subject_404', 255);
                 $table->text('comment_404');
 
-                $table->foreign('record_404', 'fk01_004_404_comment')
+                $table->foreign('record_id_404', 'fk01_004_404_comment')
                     ->references('id_403')
                     ->on('004_403_record')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-                $table->foreign('user_404', 'fk02_004_404_comment')
+                $table->foreign('user_id_404', 'fk02_004_404_comment')
                     ->references('id_010')
                     ->on('001_010_user')
                     ->onDelete('restrict')

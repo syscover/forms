@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class Record
  *
  * Model with properties
- * <br><b>[id, form, date, date_text, state, subject, name, surname, company, email, country, territorial_area_1, territorial_area_2, territorial_area_3, opened, data]</b>
+ * <br><b>[id, form_id, date, date_text, state_id, subject, name, surname, company, email, country_id, territorial_area_1_id, territorial_area_2_id, territorial_area_3_id, opened, data]</b>
  *
  * @package     Syscover\Forms\Models
  */
@@ -21,7 +21,7 @@ class Record extends Model
 	protected $table        = '004_403_record';
     protected $primaryKey   = 'id_403';
     public $timestamps      = false;
-    protected $fillable     = ['id_403', 'form_403', 'date_403', 'date_text_403', 'state_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'country_403', 'territorial_area_1_403', 'territorial_area_2_403', 'territorial_area_3_403', 'opened_403', 'data_403'];
+    protected $fillable     = ['id_403', 'form_id_403', 'date_403', 'date_text_403', 'state_id_403', 'subject_403', 'name_403', 'surname_403', 'company_403', 'email_403', 'country_id_403', 'territorial_area_1_id_403', 'territorial_area_2_id_403', 'territorial_area_3_id_403', 'opened_403', 'data_403'];
     protected $maps         = [];
     protected $relationMaps = [
         'state'      => \Syscover\Forms\Models\State::class,
@@ -38,37 +38,37 @@ class Record extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('004_400_state', '004_403_record.state_403', '=', '004_400_state.id_400');
+        return $query->leftJoin('004_400_state', '004_403_record.state_id_403', '=', '004_400_state.id_400');
     }
 
     public function getForm()
     {
-        return $this->belongsTo('Syscover\Forms\Models\Form', 'form_403');
+        return $this->belongsTo('Syscover\Forms\Models\Form', 'form_id_403');
     }
 
     public function getState()
     {
-        return $this->belongsTo('Syscover\Forms\Models\State', 'state_403');
+        return $this->belongsTo('Syscover\Forms\Models\State', 'state_id_403');
     }
 
     public function getComments()
     {
-        return $this->hasMany('Syscover\Forms\Models\Comment', 'record_404');
+        return $this->hasMany('Syscover\Forms\Models\Comment', 'record_id_404');
     }
 
     public function getRecipients()
     {
-        return $this->hasMany('Syscover\Forms\Models\Recipient', 'record_406');
+        return $this->hasMany('Syscover\Forms\Models\Recipient', 'record_id_406');
     }
 
     public function addToGetIndexRecords($request, $parameters)
     {
         return $this->builder()
-            ->where('form_403', $parameters['form']);
+            ->where('form_id_403', $parameters['form']);
     }
 
     public function customCount($request, $parameters)
     {
-        return Record::where('form_403', $parameters['form']);
+        return Record::where('form_id_403', $parameters['form']);
     }
 }

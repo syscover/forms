@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class Form
  *
  * Model with properties
- * <br><b>[id, name, email_account, push_notification]</b>
+ * <br><b>[id, name, email_account_id, push_notification]</b>
  *
  * @package     Syscover\Forms\Models
  */
@@ -21,7 +21,7 @@ class Form extends Model
 	protected $table        = '004_401_form';
     protected $primaryKey   = 'id_401';
     public $timestamps      = false;
-    protected $fillable     = ['id_401', 'name_401', 'email_account_401', 'push_notification_401'];
+    protected $fillable     = ['id_401', 'name_401', 'email_account_id_401', 'push_notification_401'];
     protected $maps         = [];
     protected $relationMaps = [
         'email_account'      => \Syscover\Pulsar\Models\EmailAccount::class,
@@ -38,11 +38,11 @@ class Form extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->join('001_013_email_account', '004_401_form.email_account_401', '=', '001_013_email_account.id_013');
+        return $query->join('001_013_email_account', '004_401_form.email_account_id_401', '=', '001_013_email_account.id_013');
     }
 
     public function getForwards()
     {
-        return Form::hasMany('Syscover\Forms\Models\Forward','form_402');
+        return Form::hasMany('Syscover\Forms\Models\Forward','form_id_402');
     }
 }
