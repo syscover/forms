@@ -19,11 +19,11 @@ class ReCaptchaController extends Controller
      */
     public function verify()
     {
-        $recaptcha = new ReCaptcha(config('api.googleRecaptchaSecretKey'));
+        $recaptcha = new ReCaptcha(config('google_api.googleRecaptchaSecretKey'));
 
         $resp = $recaptcha->verify($this->request->input('g-recaptcha-response'), $this->request->getClientIp());
 
-        if ($resp->isSuccess())
+        if($resp->isSuccess())
         {
             $response = [
                 'success'   => true
@@ -35,7 +35,7 @@ class ReCaptchaController extends Controller
         {
             $response = [
                 'success'       => false,
-                "error-codes"   => $resp->getErrorCodes()
+                'error-codes'   => $resp->getErrorCodes()
             ];
 
             return response()->json($response);
