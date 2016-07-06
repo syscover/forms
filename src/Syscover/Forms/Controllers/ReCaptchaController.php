@@ -1,7 +1,7 @@
 <?php namespace Syscover\Forms\Controllers;
 
-// todo, hace falta que herede de Controller?
-use Syscover\Pulsar\Core\Controller;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use ReCaptcha\ReCaptcha;
 
 /**
@@ -9,19 +9,19 @@ use ReCaptcha\ReCaptcha;
  * @package Syscover\Forms\Controllers
  */
 
-class ReCaptchaController extends Controller
+class ReCaptchaController extends BaseController
 {
     /**
-     *  Function to verify captcha request
+     * Function to verify captcha request
      *
-     * @access  public
-     * @return  string
+     * @param   \Illuminate\Http\Request        $request
+     * @return  \Illuminate\Http\JsonResponse
      */
-    public function verify()
+    public function verify(Request $request)
     {
         $recaptcha = new ReCaptcha(config('google_api.googleRecaptchaSecretKey'));
 
-        $resp = $recaptcha->verify($this->request->input('g-recaptcha-response'), $this->request->getClientIp());
+        $resp = $recaptcha->verify($request->input('g-recaptcha-response'), $request->getClientIp());
 
         if($resp->isSuccess())
         {
