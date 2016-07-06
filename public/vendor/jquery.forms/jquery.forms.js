@@ -62,6 +62,7 @@
                 {
                     if(response.success)
                     {
+                        $(that.item).attr('method', 'post');
                         $(that.item).attr('action', response.action);
                         $(that.item).prepend('<input type="hidden" name="_redirectOk">');
                         $(that.item).prepend('<input type="hidden" name="_fields">');
