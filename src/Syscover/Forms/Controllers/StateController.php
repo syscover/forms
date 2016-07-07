@@ -13,7 +13,7 @@ class StateController extends Controller
     protected $routeSuffix  = 'formsState';
     protected $folder       = 'state';
     protected $package      = 'forms';
-    protected $aColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];
+    protected $indexColumns     = ['id_400', 'name_400', ['type' => 'color', 'data' => 'color_400']];
     protected $nameM        = 'name_400';
     protected $model        = State::class;
     protected $icon         = 'fa fa-fire';

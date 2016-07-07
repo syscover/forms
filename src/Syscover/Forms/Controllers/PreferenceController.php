@@ -16,7 +16,7 @@ class PreferenceController extends Controller
     protected $routeSuffix  = 'formsPreference';
     protected $folder       = 'preference';
     protected $package      = 'forms';
-    protected $aColumns     = [];
+    protected $indexColumns     = [];
     protected $nameM        = null;
     protected $model        = Preference::class;
     protected $icon         = 'fa fa-cog';

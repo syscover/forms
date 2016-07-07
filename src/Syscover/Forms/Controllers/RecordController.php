@@ -23,7 +23,7 @@ class RecordController extends Controller
     protected $routeSuffix      = 'formsRecord';
     protected $folder           = 'record';
     protected $package          = 'forms';
-    protected $aColumns         = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'date_text_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
+    protected $indexColumns         = ['id_403', ['type' => 'color_400', 'data' => 'name_400', 'tooltip' => true, 'title' => 'name_400'], 'date_403', 'date_text_403', 'name_403', 'surname_403', ['type' => 'email', 'data' => 'email_403'], ['type' => 'active', 'data' => 'opened_403']];
     protected $nameM            = 'id_403';
     protected $model            = Record::class;
     protected $icon             = 'fa fa-file-text';
@@ -45,12 +45,12 @@ class RecordController extends Controller
         return $parameters;
     }
 
-    public function customColumnType($row, $aColumn, $aObject)
+    public function customColumnType($row, $indexColumn, $aObject)
     {
-        switch ($aColumn['type'])
+        switch ($indexColumn['type'])
         {
             case 'color_400':
-                $row[] = $aObject['name_400'] . ' <i class="color' . (isset($aColumn['tooltip']) && $aColumn['tooltip']? ' bs-tooltip' : null) . '"' . (isset($aColumn['title'])? ' title="' . $aObject[$aColumn['title']] . '"' : null) . ' style="background-color: ' . $aObject['color_400'] . '"></i>';
+                $row[] = $aObject['name_400'] . ' <i class="color' . (isset($indexColumn['tooltip']) && $indexColumn['tooltip']? ' bs-tooltip' : null) . '"' . (isset($indexColumn['title'])? ' title="' . $aObject[$indexColumn['title']] . '"' : null) . ' style="background-color: ' . $aObject['color_400'] . '"></i>';
                 break;
         }
 

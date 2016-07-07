@@ -21,7 +21,7 @@ class CommentController extends Controller
     protected $folder           = 'comment';
     protected $package          = 'forms';
     // todo: set format date with config('pulsar.datePattern')
-    protected $aColumns         = [['type' => 'date', 'format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
+    protected $indexColumns         = [['type' => 'date', 'format' => 'd-m-Y', 'data' => 'date_404'], 'user_010', 'subject_404'];
     protected $nameM            = 'id_404';
     protected $model            = Comment::class;
     protected $icon             = 'fa fa-comments';
