@@ -16,7 +16,7 @@ class FormController extends Controller
     protected $routeSuffix  = 'formsForm';
     protected $folder       = 'form';
     protected $package      = 'forms';
-    protected $indexColumns     = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
+    protected $indexColumns = ['id_401', 'name_401', ['type' => 'email', 'data' => 'email_013'], ['type' => 'active', 'data' => 'push_notification_401']];
     protected $nameM        = 'name_401';
     protected $model        = Form::class;
     protected $icon         = 'fa fa-file-text-o';
