@@ -20,7 +20,7 @@ Para instalar este módulo es necesario tener instalado previamente el módulo p
 ```
 and execute on console:
 ```
-composer update
+composer install
 ```
 
 **2 - Register service provider, on file config/app.php add to providers array**
@@ -30,25 +30,31 @@ Syscover\Forms\FormsServiceProvider::class,
 
 ```
 
-**3 - To publish package and migrate**
-
-and execute composer update again:
-```
-composer update
-```
-
-**4 - Run seed database**
+**3 - Run publish command**
 
 ```
-php artisan db:seed --class="FormsTableSeeder"
+php artisan vendor:publish --force
+```
+
+**4 - Run migrate command**
+
+```
+php artisan migrate
+```
+
+**5 - Run seed database, but before you must execute optimize command to load seeds classes**
+
+```
+php artisan optimize
+php artisan db:seed --class="PulsarTableSeeder"
 ```
 
 
-**5 - Activate package**
+**6 - Activate package**
 
 Access to Pulsar Panel, and go to **_Administration->Permissions->Profiles_**, and set all permissions to your profile by clicking on the open lock.
 
-**6 - Implementation**
+**7 - Implementation**
 
 Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro **_Administración->Cuentas_**, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
 
