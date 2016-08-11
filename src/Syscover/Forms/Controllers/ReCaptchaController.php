@@ -19,7 +19,7 @@ class ReCaptchaController extends BaseController
      */
     public function verify(Request $request)
     {
-        $recaptcha = new ReCaptcha(config('google_api.googleRecaptchaSecretKey'));
+        $recaptcha = new ReCaptcha(config('googleApi.googleRecaptchaSecretKey'));
 
         $resp = $recaptcha->verify($request->input('g-recaptcha-response'), $request->getClientIp());
 
