@@ -1,9 +1,7 @@
 {
     "name": "syscover/forms",
-    "version": "5.2",
     "description": "Forms package",
     "keywords": ["syscover","pulsar","laravel","Forms"],
-    "license": "MIT",
     "authors": [
         {
             "name": "SYSCOVER SL",
