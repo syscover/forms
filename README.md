@@ -1,5 +1,7 @@
 # Forms App to Pulsar to Laravel 5.2
 
+[![Total Downloads](https://poser.pugx.org/syscover/forms/downloads)](https://packagist.org/packages/syscover/forms)
+
 Forms es una aplicación que gestiona formularios, registra cualquier formulario en una base de datos, las características más destacadas de forms son:
 * Envío de formularios tanto por ajax como por submit
 * Reenvío de formularios a tantos correos como se desee
@@ -15,7 +17,7 @@ Para instalar este módulo es necesario tener instalado previamente el módulo p
 
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
-"syscover/forms": "dev-master"
+"syscover/forms": "~1.0"
 
 ```
 and execute on console:
