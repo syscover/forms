@@ -1,4 +1,4 @@
-# Forms App to Pulsar to Laravel 5.2
+# Forms to Laravel 5.2
 
 [![Total Downloads](https://poser.pugx.org/syscover/forms/downloads)](https://packagist.org/packages/syscover/forms)
 
