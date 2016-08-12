@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": ">=5.5.9",
+        "syscover/pulsar": "~1.0",
         "google/recaptcha": "~1.1"
     },
     "autoload": {
