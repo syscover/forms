@@ -48,7 +48,7 @@ php artisan migrate
 
 ```
 php artisan optimize
-php artisan db:seed --class="PulsarTableSeeder"
+php artisan db:seed --class="FormsTableSeeder"
 ```
 
 
