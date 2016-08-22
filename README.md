@@ -18,46 +18,48 @@ Para instalar este módulo es necesario tener instalado previamente el módulo p
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
 "syscover/forms": "~1.0"
-
 ```
 and execute on console:
 ```
-composer install
+composer update
 ```
 
 **2 - Register service provider, on file config/app.php add to providers array**
-
 ```
 Syscover\Forms\FormsServiceProvider::class,
-
 ```
 
-**3 - Run publish command**
-
+**3 - Execute publish command**
 ```
-php artisan vendor:publish --force
-```
-
-**4 - Run migrate command**
-
-```
-php artisan migrate
+php artisan vendor:publish
 ```
 
-**5 - Run seed database, but before you must execute optimize command to load seeds classes**
-
+**4 - Execute optimize command load new classes**
 ```
 php artisan optimize
+```
+
+**5 - And execute migrations and seed database**
+```
+php artisan migrate
 php artisan db:seed --class="FormsTableSeeder"
 ```
 
+**6 - Execute command to load all updates**
+```
+php artisan migrate --path=database/migrations/updates
+```
 
-**6 - Activate package**
 
-Access to Pulsar Panel, and go to **_Administration->Permissions->Profiles_**, and set all permissions to your profile by clicking on the open lock.
+## Activate Package
+Access to Pulsar Panel, and go to:
+ 
+Administration-> Permissions-> Profiles, and set all permissions to your profile by clicking on the open lock.<br>
 
-**7 - Implementation**
+Go to Administration -> Packages, edit the package installed and activate it.
 
+
+## Implementation
 Una vez instalado y activado el package, debemos de crear una cuenta de envío dentro **_Administración->Cuentas_**, necesitaremos tanto datos del servidor como usuario y contraseña de la cuenta.
 
 Una vez creada la cuenta de correo nos vamos a la sección **_Forms->Master tables->Preferences_**, seleccionamos el estado que tendrá cada registro por defecto, si deamos cambiar o añadir más estados lo podemos realizar desde la sección **_Forms->Master tables->States_**, y la cuenta desde la que se enviarán las notificaciones.
