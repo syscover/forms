@@ -1,4 +1,4 @@
-# Forms to Laravel 5.2
+# Forms to Laravel 5.3
 
 [![Total Downloads](https://poser.pugx.org/syscover/forms/downloads)](https://packagist.org/packages/syscover/forms)
 
@@ -17,7 +17,7 @@ Para instalar este módulo es necesario tener instalado previamente el módulo p
 
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
-"syscover/forms": "~1.0"
+"syscover/forms": "~2.0"
 ```
 and execute on console:
 ```
