@@ -14,6 +14,6 @@ class FormsCronjobTableSeeder extends Seeder {
 }
 
 /*
- * Comand to run:
+ * Command to run:
  * php artisan db:seed --class="FormsCronjobTableSeeder"
  */
