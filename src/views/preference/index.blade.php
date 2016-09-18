@@ -23,7 +23,7 @@
             return $option;
         };
     </script>
-    <!-- /.forms::preferences.index -->
+    <!-- /forms::preferences.index -->
 @stop
 
 @section('rows')
@@ -52,5 +52,5 @@
         'fieldSize' => 5,
         'required' => true
     ])
-    <!-- /.forms::preferences.index -->
+    <!-- /forms::preferences.index -->
 @stop
