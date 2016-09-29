@@ -47,7 +47,7 @@
         'label' => trans_choice('pulsar::pulsar.forward', 2),
         'icon' => 'fa fa-share'
     ])
-    @include('pulsar::includes.html.form_element_table_group', [
+    @include('pulsar::elements.select_multiple_table', [
         'id' => 'forwards',
         'label' => trans_choice('pulsar::pulsar.forward', 1),
         'icon'  => 'fa fa-share',
