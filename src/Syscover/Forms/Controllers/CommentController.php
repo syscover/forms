@@ -47,7 +47,7 @@ class CommentController extends Controller
     // delete edit and delete buttons, on finished rows
     public function jsonCustomDataBeforeActions($aObject, $actionUrlParameters, $parameters)
     {
-        if($aObject['user_id_404'] == auth('pulsar')->user()->id_010)
+        if($aObject['user_id_404'] == auth()->guard('pulsar')->user()->id_010)
         {
             $this->viewParameters['editButton']     = true;
             $this->viewParameters['deleteButton']   = true;
@@ -73,7 +73,7 @@ class CommentController extends Controller
 
         $comment = Comment::create([
             'record_id_404'             => $this->request->input('ref'),
-            'user_id_404'               => auth('pulsar')->user()->id_010,
+            'user_id_404'               => auth()->guard('pulsar')->user()->id_010,
             'date_404'                  => date('U'),
             'subject_404'               => $this->request->input('subject'),
             'comment_404'               => $this->request->input('comment')
@@ -88,7 +88,7 @@ class CommentController extends Controller
         // set recipients
         foreach($recipients as $recipient)
         {
-            if($recipient->email_406 != auth('pulsar')->user()->email_010)
+            if($recipient->email_406 != auth()->guard('pulsar')->user()->email_010)
             {
                 $names[]        = $recipient->name_406;
                 $usersEmails[]  = $recipient->email_406;
@@ -100,7 +100,7 @@ class CommentController extends Controller
         $matchAuthor = false;
         foreach($recipients as $recipient)
         {
-            if($recipient->email_406 == auth('pulsar')->user()->email_010)
+            if($recipient->email_406 == auth()->guard('pulsar')->user()->email_010)
             {
                 $matchAuthor = true;
             }
@@ -138,7 +138,7 @@ class CommentController extends Controller
                     'text_template_405'         => 'forms::emails.text_comment',
                     'data_message_405'          => json_encode([
                         'name_form_405'             => $form->name_401,
-                        'author_comment_405'        => auth('pulsar')->user()->name_010 . ' ' .  auth('pulsar')->user()->surname_010,
+                        'author_comment_405'        => auth()->guard('pulsar')->user()->name_010 . ' ' .  auth()->guard('pulsar')->user()->surname_010,
                         'date_comment_405'          => date(config('pulsar.datePattern')),
                         'subject_comment_405'       => $comment->subject_404,
                         'comment_405'               => $comment->comment_404,
@@ -161,8 +161,8 @@ class CommentController extends Controller
             Recipient::create([
                 'record_id_406' => $record->id_403,
                 'forward_406'   => false,
-                'name_406'      => auth('pulsar')->user()->name_010 . ' ' . auth('pulsar')->user()->surname_010,
-                'email_406'     => auth('pulsar')->user()->email_010,
+                'name_406'      => auth()->guard('pulsar')->user()->name_010 . ' ' . auth()->guard('pulsar')->user()->surname_010,
+                'email_406'     => auth()->guard('pulsar')->user()->email_010,
                 'comments_406'  => true,
                 'states_406'    => true
             ]);
